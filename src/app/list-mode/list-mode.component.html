@@ -1,0 +1,91 @@
+<section id="blocoCentralEmpty" class="item-central" [hidden]="isEmptyHidden">
+  <h2 class="titleContainerEmpty">ready to put some tasks!</h2>
+  <h3 class="titleContainerEmpty">Click on de (+) button to start</h3>
+</section>
+
+<section id="blocoCentral" class="item-central" [hidden]="isCentralHidden" >
+    <div class="titleContainer">
+      
+
+      <h2>
+        <div @fade @slideLight class="edit-icon-name" routerLink="edit-name"><i class="material-icons materialIconEditName"> edit</i></div>
+        
+        {{ nomeLista }}
+        <a (click)="showCompletedTasks()" class="fly-r" [class.selected]="completeSelected">complete</a>
+        <a (click)="showIncompletedTasks()" class="fly-r" [class.selected]="incompleteSelected">incomplete</a>
+      </h2>
+
+    </div>
+    <div class="inputContainer" [class.container-disabled]="!incompleteBtns">
+      <input type="text" #inputItem name="inputItem" placeholder="new item" maxlength="120"/>
+      <button (click)="addItem(inputItem)" (keyup)="addItem(inputItem)">OK</button>
+    </div>
+
+    <ng-container *ngIf = "incompleteBtns == true">
+      <section @fade id="itemControllers">
+        <button [class.active]="activateButton" (click)="moveToDone()">done</button>
+        <button [class.active]="activateButton" (click)="deleteItens()">delete</button>
+        <button [class.active]="activateButtonEdit" #editButton (click)="emitSelectedItem()" routerLink="edit-item">edit</button>
+        
+        <button [class.active]="activateButton" (click)="showListsNames()">
+            change 
+           <i class="material-icons">{{ arrowIcon }}</i>
+        </button>
+
+        <ng-container *ngIf="showNameLists">
+          <article @fadeout id="containerLista" (mouseleave)="showListsNames()">
+            <div class="envelop">
+              <ul>
+                <ng-container *ngFor = "let lista of this.listasService.getListas()">
+                  <li *ngIf="lista.nome != nomeLista" (click)="doChange(lista.nome)">{{ lista.nome }}</li>
+                </ng-container>
+                
+              </ul>
+            </div>
+        </article>
+        </ng-container>
+
+      </section>
+    </ng-container>
+
+    <ng-container *ngIf = "incompleteBtns == false">
+      <section @fade id="itemControllers">
+        <button [class.active]="activateButton" (click)="moveToUndone()">undone</button>
+        <button [class.active]="activateButton" (click)="deleteItens()">delete</button>
+        <button [class.active]="activateButton" #editButton (click)="emitSelectedItem()" routerLink="edit-item">edit</button>
+        <button>
+          change
+          <i class="material-icons">{{ arrowIcon }}</i>
+        </button>
+      </section>
+    </ng-container>
+    
+    <div @fade class="listContainer" *ngIf = "selectIncompleteTasks">
+       <ng-container *ngFor="let item of activedList; let i = index">
+         <div @fade @fadeout *ngIf="item.complete == false" class="itemContainer" (click)="itemClicked(item._id)" >
+          
+          <input type="checkbox" class="elementItem" id="{{ item._id }}" [checked]="item.checked"  />
+          <div class="wrapCheckBox">
+            <span></span>
+           </div>
+          <p class="item">{{ item.text }}</p>
+          <!-- <div class="deleteIcon"><i class="material-icons">delete_forever</i></div> -->
+        </div>
+      </ng-container>
+    </div>
+
+    <div @fade class="listContainer" *ngIf = "!selectIncompleteTasks">
+      <ng-container *ngFor="let item of activedList; let i = index">
+        <div *ngIf="item.complete == true" class="itemContainer" (click)="itemClicked(item._id)">
+          <input type="checkbox" class="elementItem" id="{{ item._id }}" [checked]="item.checked"  />
+         <div class="wrapCheckBox">
+            <span></span>
+           </div>
+           <p class="item item-done">{{ item.text }}</p>
+           <!-- <div class="deleteIcon"><i class="material-icons">delete_forever</i></div> -->
+       </div>
+     </ng-container>
+   </div>
+   
+
+</section>

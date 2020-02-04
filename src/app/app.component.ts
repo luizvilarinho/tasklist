@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ListasService } from './listas.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'tasklist';
+
+  selectedList:string;
+
+  constructor(private listas:ListasService) {
+
+  }
+
+  ngOnInit() {
+      if(this.listas.isEmptyLists){
+        return false;
+      }else{
+        this.selectedList=this.listas.getListas()[0].nome;
+      }
+  }
+
+  selectList(nomeLista:string){
+    this.selectedList=nomeLista;
+  }
+
 }

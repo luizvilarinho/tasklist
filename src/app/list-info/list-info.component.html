@@ -1,0 +1,34 @@
+<section @fade @slideLight @fadeout *ngIf="listInfoShow == true" id="listInformation" class="background-blue">
+  
+  <div class="titleContainer">
+    <h2>SubTask</h2>
+  </div>
+  <div class="inputContainer">
+    <input type="text" #inputSubitem name="inputItem" placeholder="new item"/><button (click)="addSubItem(inputSubitem)">OK</button>
+  </div>
+  
+<app-subtask-porcentagem></app-subtask-porcentagem>
+
+  <ng-container>
+    <section @fade id="subItemControllers">
+      <button *ngIf="showDoneBtn; else undoneBtn" [class.active]="activateButton" (click)="markToDone()">done</button>
+      <ng-template #undoneBtn>
+        <button [class.active]="activateButton" (click)="markToUndone()">undone</button>
+      </ng-template>
+      <button [class.active]="activateButton" (click)="deleteSubItens()">delete</button>
+      <button [class.active]="activateButtonEdit" #editButton (click)="changeEditParam()" routerLink="edit-item">edit</button>
+    </section>
+  </ng-container>
+
+  <div class="listContainer">
+    <div *ngFor="let subitem of subItens" class="itemContainer" (click)="subItemClicked(subitem._id)">
+      <input type="checkbox" id="subitem._id" [checked]="subitem.checked" />
+      <div class="wrapCheckBox">
+        <span></span>
+       </div>
+      <p class="item" [class.completed]="subitem.complete">{{ subitem.text }}</p>
+    </div>
+  </div>
+
+  <app-notes></app-notes>
+</section>

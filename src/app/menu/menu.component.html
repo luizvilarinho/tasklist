@@ -1,0 +1,26 @@
+<section id="menuLateral" class="background-blue">
+  <div class="titulo-container borderBottom">
+    <h2>Listas:<span routerLink="addLista" class="teste addIcon"></span></h2>
+  </div>
+  <div class="md-marginBottom">
+    <ul id="listNames">
+      <li @fade @fadeout @slideLight *ngFor="let nomesListaItem of nomesListas; let idx=index">
+        <a href="javascript:;" (click)="selected(idx)" id="{{ idx }}" class=""> {{ nomesListaItem.nome }} </a>
+        <span @fade @fadeout @slideLight class="list-length">{{ nomesListaItem.incompletedItens() }}</span>
+        <a (click)="deleteList(idx)"><i class="material-icons deleteIcon">delete_forever</i></a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <!-- <div class="titulo-container borderBottom">
+    <h2>Modo Tarefa:</h2>
+  </div>
+  <div>
+    <ul>
+      <li>nome 1</li>
+      <li>nome 2</li>
+    </ul>
+  </div> -->
+
+</section>

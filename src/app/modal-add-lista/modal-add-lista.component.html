@@ -1,0 +1,13 @@
+<section @fade @fadeout></section>
+
+
+<div @fade @fadeout @slideLight class="modal-container">
+  <h3>Qual é o nome da lista?</h3>
+  <div class="container-input">
+    <input type="text" #inputLNewList name="newListName" placeholder="digite um nome" maxlength="14"/>
+  </div>
+  <div class="btn-container">
+    <button class="btn-primary" routerLink="/" (click)="addNewList(inputLNewList.value)">ok</button>
+    <button class="btn" routerLink="/">cancel</button>
+  </div>
+</div>

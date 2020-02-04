@@ -13,19 +13,27 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tasklist",
+            "outputPath": "public",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/images/addIcon_hover.svg",
+              "src/assets/images/addIcon.svg",
+              "src/assets/images/baseline-check-24px.svg",
+              "src/assets/images/baseline-delete_forever-24px.svg",
+              "src/assets/images/listas_icon.svg"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/task.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/layout-ajustes.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

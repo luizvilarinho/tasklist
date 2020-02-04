@@ -1,0 +1,14 @@
+<section @fade @fadeout></section>
+
+
+<div @fade @slideLight @fadeout class="modal-container">
+  <h3>Editar Nome</h3>
+  <div class="container-input">
+    <input type="text" #inputEditItem [value]="listName" maxlength="14"/>
+  </div>
+  <div class="btn-container">
+    <button class="btn-primary" routerLink="/" (click)="editItemName(inputEditItem.value)">ok</button>
+    <button class="btn" routerLink="/">cancel</button>
+  </div>
+
+</div>

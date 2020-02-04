@@ -1,0 +1,20 @@
+.active{
+    font-weight: 400!important;
+    color: #b0e0e6ff!important;
+}
+.deleteIcon{
+    float: right;
+    font-size: 20px;
+    margin-right: 24px;
+    opacity: 0.2;
+    cursor:pointer;
+}
+a.active ~ a>i{
+    opacity: 0.8;
+}
+.deleteIcon:hover{
+    opacity: 1.0;
+}
+.deleteIcon:active{
+    opacity: 0.4;
+}

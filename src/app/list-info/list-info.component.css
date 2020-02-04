@@ -1,0 +1,60 @@
+#listInformation .wrapCheckBox{
+    width: 25px;
+    height: 24px;
+    float: left;
+    margin-top: 5px;
+}
+#listInformation .itemContainer {
+    padding: 8px 20px 2px 23px;
+}
+#listInformation div.wrapCheckBox:before{
+    width: 15px;
+    height: 15px;
+    border:1px solid #b0e0e6ff;
+    background-color: #ffffff;
+    border-radius: 3px;
+    display: inline-block;
+    content: "";
+    margin-right: 12px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    cursor:pointer;
+  }
+  
+  #listInformation input[type='checkbox']:checked ~ div.wrapCheckBox:before{
+      font-family: 'Material Icons';
+       content: "check";
+       font-weight: 800;
+       color:#5f9ea0ff;
+       text-align: center;
+  }
+#subItemControllers{
+    margin: 0px 20px 0px 30px;
+    text-align: right;
+}
+#subItemControllers button{
+    padding: 4px;
+    width: auto;
+    color:#246c6e;
+    border: 1px solid #33878a;
+    margin:0px 5px 0px 5px;
+    pointer-events: none;
+}
+#subItemControllers button.active{
+    background-color: #b0e0e6ff;
+    color: #5f9ea0ff;
+    border: 1px solid #5f9ea0ff;
+    cursor: pointer;
+    pointer-events: all;
+}
+#subItemControllers button.active:active{
+    background-color:#b0e0e6ff;
+    color:#5f9ea0ff;
+}
+#subItemControllers button.active:hover{
+    background-color:rgb(147, 190, 196);
+}
+.completed{
+    text-decoration: line-through;
+    opacity: 0.5;
+}

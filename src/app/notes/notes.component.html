@@ -1,0 +1,21 @@
+<div id="annotation">
+  <div class="titleContainer">
+    <h2>Notes</h2>
+  </div>
+  <div class="inputContainer">
+    <input type="text" #newNote [value]="inputNoteValue" placeholder="new item"/><button (click)="addNote( newNote )">OK</button>
+  </div>
+  <div *ngFor = "let note of notes; let i=index" class="annotationItem">
+    <div [hidden]="note.edit" class="txtAnnotation">{{ note.txt }}</div>
+    <input [type]="typeEditInput" #iptEdit value="{{ note.txt }}" />
+  <div class="editAnnotation">
+    <div *ngIf = "note.edit == false; else editBtns">
+      <span (click)="editNote(i)">Edit</span><span (click)="deleteNote(i)">delete</span>
+    </div>
+    <ng-template #editBtns>
+      <span (click)="confirmNote(iptEdit, i)">Confirmar edição</span>
+    </ng-template>
+  </div>
+
+  </div>
+</div>
