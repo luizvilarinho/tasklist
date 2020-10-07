@@ -61,7 +61,7 @@ color:#b0e0e6ff;
   margin-left: 25px;
   list-style: none;
   color:#dcdcdcff;
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-bottom: 10px;
 }
 #menuLateral a{
@@ -146,7 +146,7 @@ color: #f5f5f5ff;
 #blocoCentral input[type='checkbox'], #listInformation input[type='checkbox']{
   display: none;
 }
-#blocoCentral p.item, #listInformation p.item{
+#blocoCentral label, #listInformation label{
   font-size: 1.3em;
   margin: 5px;
   color:#1f3131ff;
@@ -172,7 +172,26 @@ color: #f5f5f5ff;
   height: 100px;
   border:1px solid #dcdcdcff
 }
-
+input[type='checkbox'] + label:before{
+  width: 15px;
+  height: 15px;
+  border:1px solid #b0e0e6ff;
+  background-color: #ffffff;
+  border-radius: 3px;
+  display: inline-block;
+  content: "";
+  margin-right: 12px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+  cursor:pointer;
+}
+input[type='checkbox']:checked + label:before{
+    font-family: 'Material Icons';
+     content: "check";
+     font-weight: 800;
+     color:#5f9ea0ff;
+     text-align: center;
+}
 #blocoCentral .deleteIcon, #listInformation .deleteIcon{
 width: 10%;
 height: auto;

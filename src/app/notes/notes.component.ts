@@ -36,7 +36,15 @@ export class NotesComponent implements OnInit {
 
     this.notes = note.concat(this.notes);
 
+    this.listaService.getListas()[this.listaService.idxListActive].itens.filter((item)=>{
+      return item.checked == true;
+    })[0].notas = this.notes;
+
     newNote.value = "";
+
+    console.log("gravar nota");
+    console.log(this.listaService.getListas());
+    this.listaService.gravarDados(this.listaService.getListas());
   }
 
   editNote(index){

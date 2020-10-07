@@ -311,12 +311,13 @@ var EditItemComponent = /** @class */ (function () {
     EditItemComponent.prototype.initListener = function () {
         var _this = this;
         this.subscribeItemId.add(this.listasService.selectedItemId$.subscribe(function (itemId) {
-            var itens = _this.listasService.getListas()[_this.listasService.idxListActive].itens;
-            //let lista = this.listasService.getListByName(activeName).itens;
-            for (var i = 0; i < itens.length; i++) {
-                if (itens[i].checked == true) {
-                    _this._selectedItem = itens[i];
-                    _this.itemEditValue = itens[i].text;
+            var activeName = _this.listasService.getListas()[_this.listasService.idxListActive].nome;
+            var lista = _this.listasService.getListByName(activeName).itens;
+            for (var i = 0; i < lista.length; i++) {
+                if (lista[i]._id == itemId) {
+                    _this.itemEditValue = lista[i].text;
+                    _this._selectedItem = lista[i];
+                    return false;
                 }
             }
         }));
@@ -362,7 +363,7 @@ module.exports = "section{\r\n    width: 100%;\r\n    height: 100%;\r\n    posit
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section @fade @fadeout></section>\n\n\n<div @fade @slideLight @fadeout class=\"modal-container\">\n  <h3>Editar Nome</h3>\n  <div class=\"container-input\">\n    <input type=\"text\" #inputEditItem [value]=\"listName\" maxlength=\"14\"/>\n  </div>\n  <div class=\"btn-container\">\n    <button class=\"btn-primary\" routerLink=\"/\" (click)=\"editItemName(inputEditItem.value)\">ok</button>\n    <button class=\"btn\" routerLink=\"/\">cancel</button>\n  </div>\n\n</div>\n"
+module.exports = "<section @fade @fadeout></section>\n\n\n<div @fade @slideLight @fadeout class=\"modal-container\">\n  <h3>Editar Nome</h3>\n  <div class=\"container-input\">\n    <input type=\"text\" #inputEditItem [value]=\"listName\" maxlength=\"60\"/>\n  </div>\n  <div class=\"btn-container\">\n    <button class=\"btn-primary\" routerLink=\"/\" (click)=\"editItemName(inputEditItem.value)\">ok</button>\n    <button class=\"btn\" routerLink=\"/\">cancel</button>\n  </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -537,7 +538,7 @@ var ListInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#itemControllers{\r\n    margin: 15px 20px 15px 30px;\r\n    text-align: right;\r\n}\r\n#itemControllers button{\r\n    padding: 6px;\r\n    width: auto;\r\n    background-color:white;\r\n    color: #c1c1c1;\r\n    border: 1px solid #DCDCDC;\r\n    margin:5px 5px;\r\n    pointer-events: none;\r\n}\r\n#itemControllers button.active{\r\n    background-color: #5f9ea0ff;\r\n    color: whitesmoke;\r\n    border: 0;\r\n    cursor: pointer;\r\n    pointer-events: all;\r\n}\r\n#itemControllers button.active:active{\r\n    background-color: #b0e0e6ff;\r\n    color:#5f9ea0ff;\r\n}\r\n#itemControllers button.active:hover{\r\n    background-color:rgb(29, 156, 160);\r\n}\r\n.titleContainerEmpty{\r\n    border-bottom: 0;\r\n    padding: 30px 0px 0px 30px;\r\n    color: #5f9ea0ff;\r\n    font-weight: 300;\r\n}\r\nh3.titleContainerEmpty {\r\n    margin-left: 7px;\r\n    \r\n}\r\n.edit-icon-name{\r\n    margin-right: 15px;\r\n    border: 1px solid #c1c1c1;\r\n    width: 22px;\r\n    height: 22px;\r\n    border-radius: 5px;\r\n    float: left;\r\n    opacity: 0.5;\r\n}\r\n.edit-icon-name i{\r\n    position: relative;\r\n    top:-7px;\r\n    left:2px;\r\n    margin-top: 2px;\r\n}\r\n.edit-icon-name:hover{\r\n    background-color:#5f9ea0ff ;\r\n    color:#f1ebeb;\r\n    opacity: 1;\r\n    border:1px solid white;\r\n}\r\n.titleContainer a{\r\n    cursor:pointer;\r\n}\r\n.titleContainer a{\r\n    text-decoration: none;\r\n    color:#dcdcdcff;\r\n    font-size: 0.75em;\r\n    margin-left:15px;\r\n    margin-right:5px;\r\n  }\r\n.titleContainer a.selected{\r\n    color:rgb(105, 191, 202);\r\n  }\r\n#blocoCentral .titleContainer a.selected:hover{\r\n    color:rgb(86, 157, 167);\r\n  }\r\n.titleContainer a:active{\r\n    color:#b0e0e6ff;\r\n  }\r\n.container-disabled{\r\n    opacity: 0.5;\r\n    pointer-events: none;\r\n  }\r\n#blocoCentral p.item-done{\r\n      color:#c1c1c1;\r\n  }\r\n#containerLista{\r\n    \r\n  }\r\n#containerLista div.envelop{\r\n    position: relative;\r\n    top:-5px;\r\n    left:-5px;\r\n    width: 110px;\r\n    background-color: #5f9ea0ff;\r\n    float: right;\r\n    border-radius:3px;\r\n    font-family: Calibri, sans-serif;\r\n    font-size: 1.4em;\r\n  }\r\n#containerLista ul{\r\n      list-style: none;\r\n      margin: 0 auto;\r\n  }\r\n#containerLista li{\r\n    border-bottom:1px solid rgb(105, 191, 202);\r\n    width: 91%;\r\n    color:whitesmoke;\r\n    text-align: center;\r\n    margin: 0 auto;\r\n    padding: 5px;\r\n    cursor: pointer;\r\n}\r\n#containerLista ul:first-child{\r\n    border-top: 1px solid rgb(105, 191, 202);\r\n}\r\n#containerLista li:hover{\r\n    background-color: rgb(148, 199, 206);\r\n    color:#5f9ea0ff ;\r\n}\r\n.wrapCheckBox{\r\n    width: 25px;\r\n    height: 24px;\r\n    float: left;\r\n    margin-top: 5px;\r\n}\r\ndiv.wrapCheckBox:before{\r\n    width: 15px;\r\n    height: 15px;\r\n    border:1px solid #b0e0e6ff;\r\n    background-color: #ffffff;\r\n    border-radius: 3px;\r\n    display: inline-block;\r\n    content: \"\";\r\n    margin-right: 12px;\r\n    vertical-align: middle;\r\n    margin-bottom: 3px;\r\n    cursor:pointer;\r\n  }\r\ninput[type='checkbox']:checked ~ div.wrapCheckBox:before{\r\n      font-family: 'Material Icons';\r\n       content: \"check\";\r\n       font-weight: 800;\r\n       color:#5f9ea0ff;\r\n       text-align: center;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGlzdC1tb2RlL2xpc3QtbW9kZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksMkJBQTJCO0lBQzNCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLFdBQVc7SUFDWCxzQkFBc0I7SUFDdEIsY0FBYztJQUNkLHlCQUF5QjtJQUN6QixjQUFjO0lBQ2Qsb0JBQW9CO0FBQ3hCO0FBRUE7SUFDSSwyQkFBMkI7SUFDM0IsaUJBQWlCO0lBQ2pCLFNBQVM7SUFDVCxlQUFlO0lBQ2YsbUJBQW1CO0FBQ3ZCO0FBRUE7SUFDSSwyQkFBMkI7SUFDM0IsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksa0NBQWtDO0FBQ3RDO0FBSUE7SUFDSSxnQkFBZ0I7SUFDaEIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixnQkFBZ0I7QUFDcEI7QUFDQTtJQUNJLGdCQUFnQjs7QUFFcEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQix5QkFBeUI7SUFDekIsV0FBVztJQUNYLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsUUFBUTtJQUNSLGVBQWU7QUFDbkI7QUFDQTtJQUNJLDJCQUEyQjtJQUMzQixhQUFhO0lBQ2IsVUFBVTtJQUNWLHNCQUFzQjtBQUMxQjtBQUNBO0lBQ0ksY0FBYztBQUNsQjtBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLGdCQUFnQjtFQUNsQjtBQUNGO0lBQ0ksd0JBQXdCO0VBQzFCO0FBQ0E7SUFDRSx1QkFBdUI7RUFDekI7QUFDQTtJQUNFLGVBQWU7RUFDakI7QUFDQTtJQUNFLFlBQVk7SUFDWixvQkFBb0I7RUFDdEI7QUFDQTtNQUNJLGFBQWE7RUFDakI7QUFDQTs7RUFFQTtBQUNBO0lBQ0Usa0JBQWtCO0lBQ2xCLFFBQVE7SUFDUixTQUFTO0lBQ1QsWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLGdDQUFnQztJQUNoQyxnQkFBZ0I7RUFDbEI7QUFDQTtNQUNJLGdCQUFnQjtNQUNoQixjQUFjO0VBQ2xCO0FBQ0E7SUFDRSwwQ0FBMEM7SUFDMUMsVUFBVTtJQUNWLGdCQUFnQjtJQUNoQixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLFlBQVk7SUFDWixlQUFlO0FBQ25CO0FBQ0E7SUFDSSx3Q0FBd0M7QUFDNUM7QUFDQTtJQUNJLG9DQUFvQztJQUNwQyxnQkFBZ0I7QUFDcEI7QUFDQTtJQUNJLFdBQVc7SUFDWCxZQUFZO0lBQ1osV0FBVztJQUNYLGVBQWU7QUFDbkI7QUFDQTtJQUNJLFdBQVc7SUFDWCxZQUFZO0lBQ1osMEJBQTBCO0lBQzFCLHlCQUF5QjtJQUN6QixrQkFBa0I7SUFDbEIscUJBQXFCO0lBQ3JCLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsc0JBQXNCO0lBQ3RCLGtCQUFrQjtJQUNsQixjQUFjO0VBQ2hCO0FBRUE7TUFDSSw2QkFBNkI7T0FDNUIsZ0JBQWdCO09BQ2hCLGdCQUFnQjtPQUNoQixlQUFlO09BQ2Ysa0JBQWtCO0VBQ3ZCIiwiZmlsZSI6InNyYy9hcHAvbGlzdC1tb2RlL2xpc3QtbW9kZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI2l0ZW1Db250cm9sbGVyc3tcclxuICAgIG1hcmdpbjogMTVweCAyMHB4IDE1cHggMzBweDtcclxuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xyXG59XHJcbiNpdGVtQ29udHJvbGxlcnMgYnV0dG9ue1xyXG4gICAgcGFkZGluZzogNnB4O1xyXG4gICAgd2lkdGg6IGF1dG87XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO1xyXG4gICAgY29sb3I6ICNjMWMxYzE7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjRENEQ0RDO1xyXG4gICAgbWFyZ2luOjVweCA1cHg7XHJcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxufVxyXG5cclxuI2l0ZW1Db250cm9sbGVycyBidXR0b24uYWN0aXZle1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzVmOWVhMGZmO1xyXG4gICAgY29sb3I6IHdoaXRlc21va2U7XHJcbiAgICBib3JkZXI6IDA7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBwb2ludGVyLWV2ZW50czogYWxsO1xyXG59XHJcblxyXG4jaXRlbUNvbnRyb2xsZXJzIGJ1dHRvbi5hY3RpdmU6YWN0aXZle1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2IwZTBlNmZmO1xyXG4gICAgY29sb3I6IzVmOWVhMGZmO1xyXG59XHJcbiNpdGVtQ29udHJvbGxlcnMgYnV0dG9uLmFjdGl2ZTpob3ZlcntcclxuICAgIGJhY2tncm91bmQtY29sb3I6cmdiKDI5LCAxNTYsIDE2MCk7XHJcbn1cclxuXHJcblxyXG5cclxuLnRpdGxlQ29udGFpbmVyRW1wdHl7XHJcbiAgICBib3JkZXItYm90dG9tOiAwO1xyXG4gICAgcGFkZGluZzogMzBweCAwcHggMHB4IDMwcHg7XHJcbiAgICBjb2xvcjogIzVmOWVhMGZmO1xyXG4gICAgZm9udC13ZWlnaHQ6IDMwMDtcclxufVxyXG5oMy50aXRsZUNvbnRhaW5lckVtcHR5IHtcclxuICAgIG1hcmdpbi1sZWZ0OiA3cHg7XHJcbiAgICBcclxufVxyXG4uZWRpdC1pY29uLW5hbWV7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDE1cHg7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjYzFjMWMxO1xyXG4gICAgd2lkdGg6IDIycHg7XHJcbiAgICBoZWlnaHQ6IDIycHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICBmbG9hdDogbGVmdDtcclxuICAgIG9wYWNpdHk6IDAuNTtcclxufVxyXG4uZWRpdC1pY29uLW5hbWUgaXtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHRvcDotN3B4O1xyXG4gICAgbGVmdDoycHg7XHJcbiAgICBtYXJnaW4tdG9wOiAycHg7XHJcbn1cclxuLmVkaXQtaWNvbi1uYW1lOmhvdmVye1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjojNWY5ZWEwZmYgO1xyXG4gICAgY29sb3I6I2YxZWJlYjtcclxuICAgIG9wYWNpdHk6IDE7XHJcbiAgICBib3JkZXI6MXB4IHNvbGlkIHdoaXRlO1xyXG59XHJcbi50aXRsZUNvbnRhaW5lciBhe1xyXG4gICAgY3Vyc29yOnBvaW50ZXI7XHJcbn1cclxuLnRpdGxlQ29udGFpbmVyIGF7XHJcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgICBjb2xvcjojZGNkY2RjZmY7XHJcbiAgICBmb250LXNpemU6IDAuNzVlbTtcclxuICAgIG1hcmdpbi1sZWZ0OjE1cHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6NXB4O1xyXG4gIH1cclxuLnRpdGxlQ29udGFpbmVyIGEuc2VsZWN0ZWR7XHJcbiAgICBjb2xvcjpyZ2IoMTA1LCAxOTEsIDIwMik7XHJcbiAgfVxyXG4gICNibG9jb0NlbnRyYWwgLnRpdGxlQ29udGFpbmVyIGEuc2VsZWN0ZWQ6aG92ZXJ7XHJcbiAgICBjb2xvcjpyZ2IoODYsIDE1NywgMTY3KTtcclxuICB9XHJcbiAgLnRpdGxlQ29udGFpbmVyIGE6YWN0aXZle1xyXG4gICAgY29sb3I6I2IwZTBlNmZmO1xyXG4gIH1cclxuICAuY29udGFpbmVyLWRpc2FibGVke1xyXG4gICAgb3BhY2l0eTogMC41O1xyXG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbiAgfVxyXG4gICNibG9jb0NlbnRyYWwgcC5pdGVtLWRvbmV7XHJcbiAgICAgIGNvbG9yOiNjMWMxYzE7XHJcbiAgfVxyXG4gICNjb250YWluZXJMaXN0YXtcclxuICAgIFxyXG4gIH1cclxuICAjY29udGFpbmVyTGlzdGEgZGl2LmVudmVsb3B7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICB0b3A6LTVweDtcclxuICAgIGxlZnQ6LTVweDtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM1ZjllYTBmZjtcclxuICAgIGZsb2F0OiByaWdodDtcclxuICAgIGJvcmRlci1yYWRpdXM6M3B4O1xyXG4gICAgZm9udC1mYW1pbHk6IENhbGlicmksIHNhbnMtc2VyaWY7XHJcbiAgICBmb250LXNpemU6IDEuNGVtO1xyXG4gIH1cclxuICAjY29udGFpbmVyTGlzdGEgdWx7XHJcbiAgICAgIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbiAgICAgIG1hcmdpbjogMCBhdXRvO1xyXG4gIH1cclxuICAjY29udGFpbmVyTGlzdGEgbGl7XHJcbiAgICBib3JkZXItYm90dG9tOjFweCBzb2xpZCByZ2IoMTA1LCAxOTEsIDIwMik7XHJcbiAgICB3aWR0aDogOTElO1xyXG4gICAgY29sb3I6d2hpdGVzbW9rZTtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIG1hcmdpbjogMCBhdXRvO1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiNjb250YWluZXJMaXN0YSB1bDpmaXJzdC1jaGlsZHtcclxuICAgIGJvcmRlci10b3A6IDFweCBzb2xpZCByZ2IoMTA1LCAxOTEsIDIwMik7XHJcbn1cclxuI2NvbnRhaW5lckxpc3RhIGxpOmhvdmVye1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDE0OCwgMTk5LCAyMDYpO1xyXG4gICAgY29sb3I6IzVmOWVhMGZmIDtcclxufVxyXG4ud3JhcENoZWNrQm94e1xyXG4gICAgd2lkdGg6IDI1cHg7XHJcbiAgICBoZWlnaHQ6IDI0cHg7XHJcbiAgICBmbG9hdDogbGVmdDtcclxuICAgIG1hcmdpbi10b3A6IDVweDtcclxufVxyXG5kaXYud3JhcENoZWNrQm94OmJlZm9yZXtcclxuICAgIHdpZHRoOiAxNXB4O1xyXG4gICAgaGVpZ2h0OiAxNXB4O1xyXG4gICAgYm9yZGVyOjFweCBzb2xpZCAjYjBlMGU2ZmY7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xyXG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIG1hcmdpbi1yaWdodDogMTJweDtcclxuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAzcHg7XHJcbiAgICBjdXJzb3I6cG9pbnRlcjtcclxuICB9XHJcbiAgXHJcbiAgaW5wdXRbdHlwZT0nY2hlY2tib3gnXTpjaGVja2VkIH4gZGl2LndyYXBDaGVja0JveDpiZWZvcmV7XHJcbiAgICAgIGZvbnQtZmFtaWx5OiAnTWF0ZXJpYWwgSWNvbnMnO1xyXG4gICAgICAgY29udGVudDogXCJjaGVja1wiO1xyXG4gICAgICAgZm9udC13ZWlnaHQ6IDgwMDtcclxuICAgICAgIGNvbG9yOiM1ZjllYTBmZjtcclxuICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB9Il19 */"
+module.exports = "#itemControllers{\r\n    margin: 15px 20px 15px 30px;\r\n    text-align: right;\r\n}\r\n#itemControllers button{\r\n    padding: 6px;\r\n    width: auto;\r\n    background-color:white;\r\n    color: #c1c1c1;\r\n    border: 1px solid #DCDCDC;\r\n    margin:5px 5px;\r\n    pointer-events: none;\r\n}\r\n#itemControllers button.active{\r\n    background-color: #5f9ea0ff;\r\n    color: whitesmoke;\r\n    border: 0;\r\n    cursor: pointer;\r\n    pointer-events: all;\r\n}\r\n#itemControllers button.active:active{\r\n    background-color: #b0e0e6ff;\r\n    color:#5f9ea0ff;\r\n}\r\n#itemControllers button.active:hover{\r\n    background-color:rgb(29, 156, 160);\r\n}\r\n.titleContainerEmpty{\r\n    border-bottom: 0;\r\n    padding: 30px 0px 0px 30px;\r\n    color: #5f9ea0ff;\r\n    font-weight: 300;\r\n}\r\nh3.titleContainerEmpty {\r\n    margin-left: 7px;\r\n    \r\n}\r\n.edit-icon-name{\r\n    margin-right: 15px;\r\n    border: 1px solid #c1c1c1;\r\n    width: 22px;\r\n    height: 22px;\r\n    border-radius: 5px;\r\n    float: left;\r\n    opacity: 0.5;\r\n}\r\n.edit-icon-name i{\r\n    position: relative;\r\n    top:-7px;\r\n    left:2px;\r\n    margin-top: 2px;\r\n}\r\n.edit-icon-name:hover{\r\n    background-color:#5f9ea0ff ;\r\n    color:#f1ebeb;\r\n    opacity: 1;\r\n    border:1px solid white;\r\n}\r\n.titleContainer a{\r\n    cursor:pointer;\r\n}\r\n.titleContainer a{\r\n    text-decoration: none;\r\n    color:#dcdcdcff;\r\n    font-size: 0.75em;\r\n    margin-left:15px;\r\n    margin-right:5px;\r\n  }\r\n.titleContainer a.selected{\r\n    color:rgb(105, 191, 202);\r\n  }\r\n#blocoCentral .titleContainer a.selected:hover{\r\n    color:rgb(86, 157, 167);\r\n  }\r\n.titleContainer a:active{\r\n    color:#b0e0e6ff;\r\n  }\r\n.container-disabled{\r\n    opacity: 0.5;\r\n    pointer-events: none;\r\n  }\r\n#blocoCentral label.item-done{\r\n      color:#c1c1c1;\r\n  }\r\n#containerLista{\r\n    \r\n  }\r\n#containerLista div.envelop{\r\n    position: relative;\r\n    top:-5px;\r\n    left:-5px;\r\n    width: 110px;\r\n    background-color: #5f9ea0ff;\r\n    float: right;\r\n    border-radius:3px;\r\n    font-family: Calibri, sans-serif;\r\n    font-size: 1.4em;\r\n  }\r\n#containerLista ul{\r\n      list-style: none;\r\n      margin: 0 auto;\r\n  }\r\n#containerLista li{\r\n    border-bottom:1px solid rgb(105, 191, 202);\r\n    width: 91%;\r\n    color:whitesmoke;\r\n    text-align: center;\r\n    margin: 0 auto;\r\n    padding: 5px;\r\n    cursor: pointer;\r\n}\r\n#containerLista ul:first-child{\r\n    border-top: 1px solid rgb(105, 191, 202);\r\n}\r\n#containerLista li:hover{\r\n    background-color: rgb(148, 199, 206);\r\n    color:#5f9ea0ff ;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGlzdC1tb2RlL2xpc3QtbW9kZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksMkJBQTJCO0lBQzNCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLFdBQVc7SUFDWCxzQkFBc0I7SUFDdEIsY0FBYztJQUNkLHlCQUF5QjtJQUN6QixjQUFjO0lBQ2Qsb0JBQW9CO0FBQ3hCO0FBRUE7SUFDSSwyQkFBMkI7SUFDM0IsaUJBQWlCO0lBQ2pCLFNBQVM7SUFDVCxlQUFlO0lBQ2YsbUJBQW1CO0FBQ3ZCO0FBRUE7SUFDSSwyQkFBMkI7SUFDM0IsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksa0NBQWtDO0FBQ3RDO0FBSUE7SUFDSSxnQkFBZ0I7SUFDaEIsMEJBQTBCO0lBQzFCLGdCQUFnQjtJQUNoQixnQkFBZ0I7QUFDcEI7QUFDQTtJQUNJLGdCQUFnQjs7QUFFcEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQix5QkFBeUI7SUFDekIsV0FBVztJQUNYLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsUUFBUTtJQUNSLGVBQWU7QUFDbkI7QUFDQTtJQUNJLDJCQUEyQjtJQUMzQixhQUFhO0lBQ2IsVUFBVTtJQUNWLHNCQUFzQjtBQUMxQjtBQUNBO0lBQ0ksY0FBYztBQUNsQjtBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLGdCQUFnQjtFQUNsQjtBQUNGO0lBQ0ksd0JBQXdCO0VBQzFCO0FBQ0E7SUFDRSx1QkFBdUI7RUFDekI7QUFDQTtJQUNFLGVBQWU7RUFDakI7QUFDQTtJQUNFLFlBQVk7SUFDWixvQkFBb0I7RUFDdEI7QUFDQTtNQUNJLGFBQWE7RUFDakI7QUFDQTs7RUFFQTtBQUNBO0lBQ0Usa0JBQWtCO0lBQ2xCLFFBQVE7SUFDUixTQUFTO0lBQ1QsWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLGdDQUFnQztJQUNoQyxnQkFBZ0I7RUFDbEI7QUFDQTtNQUNJLGdCQUFnQjtNQUNoQixjQUFjO0VBQ2xCO0FBQ0E7SUFDRSwwQ0FBMEM7SUFDMUMsVUFBVTtJQUNWLGdCQUFnQjtJQUNoQixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLFlBQVk7SUFDWixlQUFlO0FBQ25CO0FBQ0E7SUFDSSx3Q0FBd0M7QUFDNUM7QUFDQTtJQUNJLG9DQUFvQztJQUNwQyxnQkFBZ0I7QUFDcEIiLCJmaWxlIjoic3JjL2FwcC9saXN0LW1vZGUvbGlzdC1tb2RlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjaXRlbUNvbnRyb2xsZXJze1xyXG4gICAgbWFyZ2luOiAxNXB4IDIwcHggMTVweCAzMHB4O1xyXG4gICAgdGV4dC1hbGlnbjogcmlnaHQ7XHJcbn1cclxuI2l0ZW1Db250cm9sbGVycyBidXR0b257XHJcbiAgICBwYWRkaW5nOiA2cHg7XHJcbiAgICB3aWR0aDogYXV0bztcclxuICAgIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XHJcbiAgICBjb2xvcjogI2MxYzFjMTtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkICNEQ0RDREM7XHJcbiAgICBtYXJnaW46NXB4IDVweDtcclxuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xyXG59XHJcblxyXG4jaXRlbUNvbnRyb2xsZXJzIGJ1dHRvbi5hY3RpdmV7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNWY5ZWEwZmY7XHJcbiAgICBjb2xvcjogd2hpdGVzbW9rZTtcclxuICAgIGJvcmRlcjogMDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHBvaW50ZXItZXZlbnRzOiBhbGw7XHJcbn1cclxuXHJcbiNpdGVtQ29udHJvbGxlcnMgYnV0dG9uLmFjdGl2ZTphY3RpdmV7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjYjBlMGU2ZmY7XHJcbiAgICBjb2xvcjojNWY5ZWEwZmY7XHJcbn1cclxuI2l0ZW1Db250cm9sbGVycyBidXR0b24uYWN0aXZlOmhvdmVye1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjksIDE1NiwgMTYwKTtcclxufVxyXG5cclxuXHJcblxyXG4udGl0bGVDb250YWluZXJFbXB0eXtcclxuICAgIGJvcmRlci1ib3R0b206IDA7XHJcbiAgICBwYWRkaW5nOiAzMHB4IDBweCAwcHggMzBweDtcclxuICAgIGNvbG9yOiAjNWY5ZWEwZmY7XHJcbiAgICBmb250LXdlaWdodDogMzAwO1xyXG59XHJcbmgzLnRpdGxlQ29udGFpbmVyRW1wdHkge1xyXG4gICAgbWFyZ2luLWxlZnQ6IDdweDtcclxuICAgIFxyXG59XHJcbi5lZGl0LWljb24tbmFtZXtcclxuICAgIG1hcmdpbi1yaWdodDogMTVweDtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjMWMxYzE7XHJcbiAgICB3aWR0aDogMjJweDtcclxuICAgIGhlaWdodDogMjJweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgb3BhY2l0eTogMC41O1xyXG59XHJcbi5lZGl0LWljb24tbmFtZSBpe1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgdG9wOi03cHg7XHJcbiAgICBsZWZ0OjJweDtcclxuICAgIG1hcmdpbi10b3A6IDJweDtcclxufVxyXG4uZWRpdC1pY29uLW5hbWU6aG92ZXJ7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiM1ZjllYTBmZiA7XHJcbiAgICBjb2xvcjojZjFlYmViO1xyXG4gICAgb3BhY2l0eTogMTtcclxuICAgIGJvcmRlcjoxcHggc29saWQgd2hpdGU7XHJcbn1cclxuLnRpdGxlQ29udGFpbmVyIGF7XHJcbiAgICBjdXJzb3I6cG9pbnRlcjtcclxufVxyXG4udGl0bGVDb250YWluZXIgYXtcclxuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICAgIGNvbG9yOiNkY2RjZGNmZjtcclxuICAgIGZvbnQtc2l6ZTogMC43NWVtO1xyXG4gICAgbWFyZ2luLWxlZnQ6MTVweDtcclxuICAgIG1hcmdpbi1yaWdodDo1cHg7XHJcbiAgfVxyXG4udGl0bGVDb250YWluZXIgYS5zZWxlY3RlZHtcclxuICAgIGNvbG9yOnJnYigxMDUsIDE5MSwgMjAyKTtcclxuICB9XHJcbiAgI2Jsb2NvQ2VudHJhbCAudGl0bGVDb250YWluZXIgYS5zZWxlY3RlZDpob3ZlcntcclxuICAgIGNvbG9yOnJnYig4NiwgMTU3LCAxNjcpO1xyXG4gIH1cclxuICAudGl0bGVDb250YWluZXIgYTphY3RpdmV7XHJcbiAgICBjb2xvcjojYjBlMGU2ZmY7XHJcbiAgfVxyXG4gIC5jb250YWluZXItZGlzYWJsZWR7XHJcbiAgICBvcGFjaXR5OiAwLjU7XHJcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxuICB9XHJcbiAgI2Jsb2NvQ2VudHJhbCBsYWJlbC5pdGVtLWRvbmV7XHJcbiAgICAgIGNvbG9yOiNjMWMxYzE7XHJcbiAgfVxyXG4gICNjb250YWluZXJMaXN0YXtcclxuICAgIFxyXG4gIH1cclxuICAjY29udGFpbmVyTGlzdGEgZGl2LmVudmVsb3B7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICB0b3A6LTVweDtcclxuICAgIGxlZnQ6LTVweDtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM1ZjllYTBmZjtcclxuICAgIGZsb2F0OiByaWdodDtcclxuICAgIGJvcmRlci1yYWRpdXM6M3B4O1xyXG4gICAgZm9udC1mYW1pbHk6IENhbGlicmksIHNhbnMtc2VyaWY7XHJcbiAgICBmb250LXNpemU6IDEuNGVtO1xyXG4gIH1cclxuICAjY29udGFpbmVyTGlzdGEgdWx7XHJcbiAgICAgIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbiAgICAgIG1hcmdpbjogMCBhdXRvO1xyXG4gIH1cclxuICAjY29udGFpbmVyTGlzdGEgbGl7XHJcbiAgICBib3JkZXItYm90dG9tOjFweCBzb2xpZCByZ2IoMTA1LCAxOTEsIDIwMik7XHJcbiAgICB3aWR0aDogOTElO1xyXG4gICAgY29sb3I6d2hpdGVzbW9rZTtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIG1hcmdpbjogMCBhdXRvO1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiNjb250YWluZXJMaXN0YSB1bDpmaXJzdC1jaGlsZHtcclxuICAgIGJvcmRlci10b3A6IDFweCBzb2xpZCByZ2IoMTA1LCAxOTEsIDIwMik7XHJcbn1cclxuI2NvbnRhaW5lckxpc3RhIGxpOmhvdmVye1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDE0OCwgMTk5LCAyMDYpO1xyXG4gICAgY29sb3I6IzVmOWVhMGZmIDtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -548,7 +549,7 @@ module.exports = "#itemControllers{\r\n    margin: 15px 20px 15px 30px;\r\n    t
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"blocoCentralEmpty\" class=\"item-central\" [hidden]=\"isEmptyHidden\">\n  <h2 class=\"titleContainerEmpty\">ready to put some tasks!</h2>\n  <h3 class=\"titleContainerEmpty\">Click on de (+) button to start</h3>\n</section>\n\n<section id=\"blocoCentral\" class=\"item-central\" [hidden]=\"isCentralHidden\" >\n    <div class=\"titleContainer\">\n      \n\n      <h2>\n        <div @fade @slideLight class=\"edit-icon-name\" routerLink=\"edit-name\"><i class=\"material-icons\"> edit</i></div>\n        \n        {{ nomeLista }}\n        <a (click)=\"showCompletedTasks()\" class=\"fly-r\" [class.selected]=\"completeSelected\">complete</a>\n        <a (click)=\"showIncompletedTasks()\" class=\"fly-r\" [class.selected]=\"incompleteSelected\">incomplete</a>\n      </h2>\n\n    </div>\n    <div class=\"inputContainer\" [class.container-disabled]=\"!incompleteBtns\">\n      <input type=\"text\" #inputItem name=\"inputItem\" placeholder=\"new item\" maxlength=\"120\"/>\n      <button (click)=\"addItem(inputItem)\" (keyup)=\"addItem(inputItem)\">OK</button>\n    </div>\n\n    <ng-container *ngIf = \"incompleteBtns == true\">\n      <section @fade id=\"itemControllers\">\n        <button [class.active]=\"activateButton\" (click)=\"moveToDone()\">done</button>\n        <button [class.active]=\"activateButton\" (click)=\"deleteItens()\">delete</button>\n        <button [class.active]=\"activateButtonEdit\" #editButton (click)=\"emitSelectedItem()\" routerLink=\"edit-item\">edit</button>\n        \n        <button [class.active]=\"activateButton\" (click)=\"showListsNames()\">\n            change \n           <i class=\"material-icons\">{{ arrowIcon }}</i>\n        </button>\n\n        <ng-container *ngIf=\"showNameLists\">\n          <article @fade @fadeout id=\"containerLista\" (mouseleave)=\"showListsNames()\">\n            <div class=\"envelop\">\n              <ul>\n                <ng-container *ngFor = \"let lista of this.listasService.getListas()\">\n                  <li *ngIf=\"lista.nome != nomeLista\" (click)=\"doChange(lista.nome)\">{{ lista.nome }}</li>\n                </ng-container>\n                \n              </ul>\n            </div>\n        </article>\n        </ng-container>\n\n      </section>\n    </ng-container>\n\n    <ng-container *ngIf = \"incompleteBtns == false\">\n      <section @fade id=\"itemControllers\">\n        <button [class.active]=\"activateButton\" (click)=\"moveToUndone()\">undone</button>\n        <button [class.active]=\"activateButton\" (click)=\"deleteItens()\">delete</button>\n        <button [class.active]=\"activateButton\" #editButton (click)=\"emitSelectedItem()\" routerLink=\"edit-item\">edit</button>\n        <button>\n          change\n          <i class=\"material-icons\">{{ arrowIcon }}</i>\n        </button>\n      </section>\n    </ng-container>\n    \n    <div @fade class=\"listContainer\" *ngIf = \"selectIncompleteTasks\">\n       <ng-container *ngFor=\"let item of activedList; let i = index\">\n         <div @fade @fadeout *ngIf=\"item.complete == false\" class=\"itemContainer\" (click)=\"itemClicked(item._id)\" >\n          \n          <input type=\"checkbox\" class=\"elementItem\" id=\"{{ item._id }}\" [checked]=\"item.checked\"  />\n          <div class=\"wrapCheckBox\">\n            <span></span>\n           </div>\n          <p class=\"item\">{{ item.text }}</p>\n          <!-- <div class=\"deleteIcon\"><i class=\"material-icons\">delete_forever</i></div> -->\n        </div>\n      </ng-container>\n    </div>\n\n    <div @fade class=\"listContainer\" *ngIf = \"!selectIncompleteTasks\">\n      <ng-container *ngFor=\"let item of activedList; let i = index\">\n        <div *ngIf=\"item.complete == true\" class=\"itemContainer\" (click)=\"itemClicked(item._id)\">\n          <input type=\"checkbox\" class=\"elementItem\" id=\"{{ item._id }}\" [checked]=\"item.checked\"  />\n         <div class=\"wrapCheckBox\">\n            <span></span>\n           </div>\n           <p class=\"item item-done\">{{ item.text }}</p>\n           <!-- <div class=\"deleteIcon\"><i class=\"material-icons\">delete_forever</i></div> -->\n       </div>\n     </ng-container>\n   </div>\n   \n\n</section>\n"
+module.exports = "<section id=\"blocoCentralEmpty\" class=\"item-central\" [hidden]=\"isEmptyHidden\">\n  <h2 class=\"titleContainerEmpty\">ready to put some tasks!</h2>\n  <h3 class=\"titleContainerEmpty\">Click on de (+) button to start</h3>\n</section>\n\n<section id=\"blocoCentral\" class=\"item-central\" [hidden]=\"isCentralHidden\" >\n    <div class=\"titleContainer\">\n      \n\n      <h2>\n        <div @fade @slideLight class=\"edit-icon-name\" routerLink=\"edit-name\"><i class=\"material-icons\"> edit</i></div>\n        \n        {{ nomeLista }}\n        <a #complete (click)=\"showCompletedTasks(complete, incomplete)\" class=\"fly-r\">complete</a>\n        <a #incomplete (click)=\"showIncompletedTasks(complete, incomplete)\" class=\"fly-r selected\">incomplete</a>\n      </h2>\n\n    </div>\n    <div class=\"inputContainer\" [class.container-disabled]=\"!incompleteBtns\">\n      <input type=\"text\" #inputItem name=\"inputItem\" placeholder=\"new item\" maxlength=\"60\"/>\n      <button (click)=\"addItem(inputItem)\" (keyup)=\"addItem(inputItem)\">OK</button>\n    </div>\n\n    <ng-container *ngIf = \"incompleteBtns == true\">\n      <section @fade id=\"itemControllers\">\n        <button [class.active]=\"activateButton\" (click)=\"moveToDone()\">done</button>\n        <button [class.active]=\"activateButton\" (click)=\"deleteItens()\">delete</button>\n        <button [class.active]=\"activateButton\" #editButton (click)=\"emitSelectedItem()\" routerLink=\"edit-item\">edit</button>\n        \n        <button [class.active]=\"activateButton\" (click)=\"showListsNames()\">\n            change \n           <i class=\"material-icons\">{{ arrowIcon }}</i>\n        </button>\n\n        <ng-container *ngIf=\"showNameLists\">\n          <article id=\"containerLista\">\n            <div class=\"envelop\">\n              <ul>\n                <li *ngFor = \"let lista of this.listasService.getListas()\" (click)=\"doChange(lista.nome)\">{{ lista.nome }}</li>\n              </ul>\n            </div>\n        </article>\n        </ng-container>\n\n      </section>\n    </ng-container>\n\n    <ng-container *ngIf = \"incompleteBtns == false\">\n      <section @fade id=\"itemControllers\">\n        <button [class.active]=\"activateButton\" (click)=\"moveToUndone()\">undone</button>\n        <button [class.active]=\"activateButton\" (click)=\"deleteItens()\">delete</button>\n        <button [class.active]=\"activateButton\" #editButton (click)=\"emitSelectedItem()\" routerLink=\"edit-item\">edit</button>\n        <button>\n          change\n          <i class=\"material-icons\">{{ arrowIcon }}</i>\n        </button>\n      </section>\n    </ng-container>\n    \n    <div @fade class=\"listContainer\" *ngIf = \"selectIncompleteTasks\">\n       <ng-container *ngFor=\"let item of activedList; let i = index\">\n         <div @fade @fadeout *ngIf=\"item.complete == false\" class=\"itemContainer\" (click)=\"checkCurrentItem(i)\">\n          <input type=\"checkbox\" class=\"elementItem\" (click)=\"itemClicked(i)\" id=\"{{ item._id }}\" [checked]=\"isChecked\"  />\n            <label for=\"{{ item._id }}\" class=\"item\">{{ item.text }}</label>\n            <!-- <div class=\"deleteIcon\"><i class=\"material-icons\">delete_forever</i></div> -->\n        </div>\n      </ng-container>\n    </div>\n\n    <div @fade class=\"listContainer\" *ngIf = \"!selectIncompleteTasks\">\n      <ng-container *ngFor=\"let item of activedList; let i = index\">\n        <div *ngIf=\"item.complete == true\" class=\"itemContainer\">\n         <input  type=\"checkbox\" class=\"elementItem\" (click)=\"itemClicked(i)\" id=\"{{ item._id }}\"  />\n           <label for=\"{{ item._id }}\" class=\"item item-done\">{{ item.text }}</label>\n           <!-- <div class=\"deleteIcon\"><i class=\"material-icons\">delete_forever</i></div> -->\n       </div>\n     </ng-container>\n   </div>\n   \n\n</section>\n"
 
 /***/ }),
 
@@ -576,6 +577,7 @@ var ListModeComponent = /** @class */ (function () {
     function ListModeComponent(listasService) {
         this.listasService = listasService;
         this.subscriptions = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subscription"]();
+        this.activateButton = false;
         this.isCentralHidden = false;
         this.isEmptyHidden = true;
         this.showNameLists = false;
@@ -594,7 +596,6 @@ var ListModeComponent = /** @class */ (function () {
     ListModeComponent.prototype.initListModeComponent = function () {
         var _this = this;
         this.activedList = this.listasService.getListas()[this.listasService.idxListActive].itens;
-        this.incompleteSelected = true;
         this.initSubscription();
         this.checkedIfIsEmptyList();
         document.addEventListener('keypress', function (e) {
@@ -603,7 +604,6 @@ var ListModeComponent = /** @class */ (function () {
                 _this.addItem(item);
             }
         });
-        this.verifyCheckedItens();
     };
     ListModeComponent.prototype.ngOnChanges = function () {
     };
@@ -612,12 +612,15 @@ var ListModeComponent = /** @class */ (function () {
         this.subscriptions.add(this.listasService.idxList$.subscribe(function (novoIdx) {
             _this_1.activedList = _this_1.listasService.getListas()[novoIdx].itens;
             _this_1.nomeLista = _this_1.listasService.getListas()[novoIdx].nome;
-            _this_1.verifyCheckedItens();
         }));
         this.subscriptions.add(this.listasService.isEmptyLists$.subscribe(function (getIsEmpty) {
             _this_1.checkedIfIsEmptyList();
         }));
         this.checkedIfIsEmptyList();
+    };
+    ListModeComponent.prototype.checkCurrentItem = function (elementIndex) {
+        //let el=document.querySelectorAll(".itemContainer");
+        //el[elementIndex].firstChild.checked = true;
     };
     ListModeComponent.prototype.addItem = function (inputElement) {
         var item = inputElement.value;
@@ -636,54 +639,53 @@ var ListModeComponent = /** @class */ (function () {
         inputElement.value = "";
         this.listasService.gravarDados(this.listasService.getListas());
     };
-    ListModeComponent.prototype.verifyCheckedItens = function () {
-        var itensChecked = this.activedList.filter(function (el) {
-            if (el.checked == true) {
-                return el;
+    ListModeComponent.prototype.checkeditens = function () {
+        var nodeList = document.querySelectorAll(".listContainer input[type='checkbox'].elementItem");
+        var viewItens = {
+            checkedItens: [],
+            notChecked: [],
+            someCheckedItens: false
+        };
+        for (var i = 0; i < nodeList.length; i++) {
+            if (nodeList[i].checked) {
+                viewItens.checkedItens.push(nodeList[i]);
+                viewItens.someCheckedItens = true;
             }
-        });
-        if (itensChecked.length > 0) {
-            this.activateButton = true;
-            this.activateButtonEdit = true;
+            else {
+                viewItens.notChecked.push(nodeList[i]);
+            }
         }
-        if (itensChecked.length == 0) {
-            this.activateButton = false;
-            this.activateButtonEdit = false;
-        }
-        if (itensChecked.length > 1) {
-            this.activateButtonEdit = false;
-        }
+        return viewItens;
     };
-    ListModeComponent.prototype.itemClicked = function (id) {
-        var item = this.activedList.filter(function (el) {
-            if (el._id == id) {
-                return el;
-            }
-        })[0];
-        var isChecked = item.checked;
-        item.checked = !isChecked;
-        this.verifyCheckedItens();
-        this.listasService.gravarDados(this.listasService.getListas());
+    ListModeComponent.prototype.itemClicked = function (idx) {
+        var nodeList = document.querySelectorAll(".listContainer input[type='checkbox'].elementItem");
+        var elementsChecked = false;
+        this.activateButton = this.checkeditens().someCheckedItens;
+        if (this.checkeditens().checkedItens.length > 1) {
+            this.editButton.nativeElement.classList.remove("active");
+        }
+        else {
+            this.editButton.nativeElement.classList.add("active");
+        }
     };
     ListModeComponent.prototype.deleteItens = function () {
-        var itens = this.activedList.filter(function (el) {
-            if (el.checked == true) {
-                return el;
-            }
-        });
-        var itensUnchecked = this.activedList.filter(function (el) {
-            if (el.checked == false) {
-                return el;
-            }
-        });
+        //buscar qual é o tipo correto
+        var itens = this.checkeditens().checkedItens;
+        var currentList = this.listasService.getListByName(this.nomeLista);
+        var deleteIds = [];
         for (var ids = 0; ids < itens.length; ids++) {
-            var el = document.getElementById(itens[ids]._id);
+            deleteIds.push(itens[ids].attributes.id.nodeValue);
+            var el = document.getElementById(itens[ids].attributes.id.nodeValue);
             el.parentElement.style.backgroundColor = 'coral';
         }
-        this.listasService.getListByName(this.nomeLista).itens = itensUnchecked;
-        this.activedList = itensUnchecked;
+        for (var i = 0; i < currentList.itens.length; i++) {
+            for (var j = 0; j < deleteIds.length; j++) {
+                if (currentList.itens[i]._id == deleteIds[j]) {
+                    currentList.itens.splice(i, 1);
+                }
+            }
+        }
         this.activateButton = false;
-        this.activateButtonEdit = false;
         this.listasService.gravarDados(this.listasService.getListas());
     };
     ListModeComponent.prototype.checkedIfIsEmptyList = function () {
@@ -698,18 +700,15 @@ var ListModeComponent = /** @class */ (function () {
         }
     };
     ListModeComponent.prototype.moveToDone = function () {
-        var itens = this.activedList.filter(function (el) {
-            return el.checked = true;
-        });
+        var itens = this.checkeditens().checkedItens;
         var currentList = this.listasService.getListByName(this.nomeLista);
         for (var i = 0; i < itens.length; i++) {
-            var itemId = itens[i]._id;
-            var el = document.getElementById(itens[i]._id);
+            var itemId = itens[i].attributes.id.nodeValue;
+            var el = document.getElementById(itens[i].attributes.id.nodeValue);
             el.parentElement.style.backgroundColor = 'PaleGreen';
             for (var j = 0; j < currentList.itens.length; j++) {
                 if (itemId == currentList.itens[j]._id) {
                     currentList.itens[j].complete = true;
-                    currentList.itens[j].checked = false;
                 }
             }
             this.activateButton = false;
@@ -717,24 +716,17 @@ var ListModeComponent = /** @class */ (function () {
         this.listasService.gravarDados(this.listasService.getListas());
     };
     ListModeComponent.prototype.moveToUndone = function () {
-        var itens = this.activedList.filter(function (item) {
-            if (item.checked == true) {
-                return item;
-            }
-        });
+        var itens = this.checkeditens().checkedItens;
         var currentList = this.listasService.getListByName(this.nomeLista);
         for (var i = 0; i < itens.length; i++) {
-            var itemId = itens[i]._id;
+            var itemId = itens[i].attributes.id.nodeValue;
             for (var j = 0; j < currentList.itens.length; j++) {
                 if (itemId == currentList.itens[j]._id) {
                     currentList.itens[j].complete = false;
-                    currentList.itens[j].checked = false;
                 }
             }
+            this.activateButton = false;
         }
-        this.activateButton = false;
-        this.activateButtonEdit = false;
-        this.showIncompletedTasks();
         this.listasService.gravarDados(this.listasService.getListas());
     };
     ListModeComponent.prototype.showListsNames = function () {
@@ -746,48 +738,37 @@ var ListModeComponent = /** @class */ (function () {
             this.arrowIcon = 'keyboard_arrow_right';
         }
     };
-    ListModeComponent.prototype.uncheckedAll = function (nomeLista) {
-        var itens = this.listasService.getListByName(nomeLista).itens;
-        for (var i = 0; i < itens.length; i++) {
-            itens[i].checked = false;
-        }
-    };
     ListModeComponent.prototype.doChange = function (name) {
-        var itens = this.activedList.filter(function (el) {
-            if (el.checked == true && el.complete == false) {
-                return el;
-            }
-        });
-        var changeTo = this.listasService.getListByName(name).itens;
+        var itens = this.checkeditens().checkedItens;
+        var changeTo = this.listasService.getListByName(name);
+        var currentList = this.listasService.getListByName(this.nomeLista);
         for (var i = 0; i < itens.length; i++) {
-            var itemId = itens[i]._id;
-            changeTo.push(itens[i]);
+            var itemId = itens[i].attributes.id.nodeValue;
+            for (var L = 0; L < currentList.itens.length; L++) {
+                if (currentList.itens[L]._id == itemId) {
+                    changeTo.itens.push(currentList.itens[L]);
+                }
+            }
+            this.listasService.gravarDados(this.listasService.getListas());
         }
         this.deleteItens();
-        this.uncheckedAll(name);
-        this.showListsNames();
         this.showNameLists = false;
         this.arrowIcon = 'keyboard_arrow_right';
-        this.listasService.gravarDados(this.listasService.getListas());
     };
-    ListModeComponent.prototype.showCompletedTasks = function () {
+    ListModeComponent.prototype.showCompletedTasks = function (complete, incomplete) {
         this.selectIncompleteTasks = false;
-        this.completeSelected = true;
-        this.incompleteSelected = false;
+        complete.classList.add("selected");
+        incomplete.classList.remove("selected");
         this.incompleteBtns = false;
     };
-    ListModeComponent.prototype.showIncompletedTasks = function () {
+    ListModeComponent.prototype.showIncompletedTasks = function (complete, incomplete) {
         this.selectIncompleteTasks = true;
-        this.completeSelected = false;
-        this.incompleteSelected = true;
+        complete.classList.remove("selected");
+        incomplete.classList.add("selected");
         this.incompleteBtns = true;
     };
     ListModeComponent.prototype.emitSelectedItem = function () {
-        var itemId = this.activedList.filter(function (item) {
-            if (item.checked == true) {
-                return item._id;
-            }
-        })[0];
+        var itemId = this.checkeditens().checkedItens[0].id;
         this.listasService.selectedItemId = itemId;
         this.listasService.emitSelectedlistId();
     };
@@ -852,13 +833,17 @@ var ListasService = /** @class */ (function () {
     ListasService.prototype.init = function () {
         var listasSalvas = localStorage.getItem("tasks");
         if (listasSalvas == null) {
+            console.log("listaNull");
             this.listas = new Array();
             localStorage.setItem("tasks", JSON.stringify(this.listas));
         }
         else {
+            console.log("constriuLista");
             this.listas = new Array();
             var listasStorage = JSON.parse(listasSalvas);
+            console.log("listasStorage", listasStorage);
             for (var i = 0; i < listasStorage.length; i++) {
+                console.log("nomeLista", listasStorage[i].nome);
                 var menu1 = {
                     nome: listasStorage[i].nome,
                     incompletedItens: function () {
@@ -874,11 +859,13 @@ var ListasService = /** @class */ (function () {
                     itens: listasStorage[i].itens
                 };
                 this.listas.push(menu1);
+                console.log("menu", menu1);
             }
             this.isEmptyLists = false;
             this.idxListActive = 0;
         }
         this.verifyIfIsEmptyList();
+        console.log("listas", this.listas);
     };
     ListasService.prototype.getListas = function () {
         return this.listas;
@@ -1086,7 +1073,7 @@ module.exports = "section{\r\n  width: 100%;\r\n  height: 100%;\r\n  position: a
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section @fade @fadeout></section>\n\n\n<div @fade @fadeout @slideLight class=\"modal-container\">\n  <h3>Qual é o nome da lista?</h3>\n  <div class=\"container-input\">\n    <input type=\"text\" #inputLNewList name=\"newListName\" placeholder=\"digite um nome\" maxlength=\"14\"/>\n  </div>\n  <div class=\"btn-container\">\n    <button class=\"btn-primary\" routerLink=\"/\" (click)=\"addNewList(inputLNewList.value)\">ok</button>\n    <button class=\"btn\" routerLink=\"/\">cancel</button>\n  </div>\n</div>\n"
+module.exports = "<section @fade @fadeout></section>\n\n\n<div @fade @fadeout @slideLight class=\"modal-container\">\n  <h3>Qual é o nome da lista?</h3>\n  <div class=\"container-input\">\n    <input type=\"text\" #inputLNewList name=\"newListName\" placeholder=\"digite um nome\" maxlength=\"13\"/>\n  </div>\n  <div class=\"btn-container\">\n    <button class=\"btn-primary\" routerLink=\"/\" (click)=\"addNewList(inputLNewList.value)\">ok</button>\n    <button class=\"btn\" routerLink=\"/\">cancel</button>\n  </div>\n</div>\n"
 
 /***/ }),
 

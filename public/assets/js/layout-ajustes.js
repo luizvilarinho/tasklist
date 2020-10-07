@@ -19,6 +19,6 @@ function showHide(elementClick, elementShow){
 }
 window.onload=function(){
   //changeDisplayOnDeleteIconHover();
-  showHide(".listIconContainer img", ".boxListas");
-  
+  showHide(".listIconContainer img", ".boxListas")
+
 }

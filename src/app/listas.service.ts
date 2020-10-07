@@ -166,17 +166,12 @@ export class ListasService {
   }
 
   calcularPorcentagemConcluida(){
-      let itens = this.listas[this.idxListActive].itens.filter((item) =>{
-       return  item.checked == true;
-      });
 
-        if(itens.length > 0){
-          var subitens = itens[0].subItens
-        }else{
+        if(this.subtaskActive.length == 0){
           return false;
         }
-        
-        let subitensCompletedLength = subitens.filter((sub)=>{
+
+        let subitensCompletedLength = this.subtaskActive.filter((sub)=>{
               return sub.complete == true
         }).length;
 
@@ -184,7 +179,7 @@ export class ListasService {
             this.porcentagemConcluida = 0;
             this.porcentagemSubtaskSubject.next(this.porcentagemConcluida);
           }else{
-            let total = subitens.length;
+            let total = this.subtaskActive.length;
             console.log("total", total);
             let porcentagem = (subitensCompletedLength * 100) / total;
             this.porcentagemConcluida = Math.trunc(porcentagem);

@@ -84,6 +84,12 @@ export class ListInfoComponent implements OnInit {
   }
 
   addSubItem(inputSuitem){
+      
+
+      if(inputSuitem.value == ''){
+        return false;
+      }
+
       let subitem:Subitem = {
         _id:Math.floor(Math.random() * 10000),
         text:inputSuitem.value,
@@ -91,10 +97,11 @@ export class ListInfoComponent implements OnInit {
         checked:false
       };
 
-      console.log("listas", this.listasService.getListas());
+      this.listasService.subtaskActive.push(subitem);
 
-      this.subItens.push(subitem);
-      inputSuitem.value = "";
+      this.subItens = this.listasService.subtaskActive;
+
+        inputSuitem.value = "";
 
       let itensCompletes = this.subItens.filter((sub)=>{
         return sub.complete == true;
@@ -106,7 +113,6 @@ export class ListInfoComponent implements OnInit {
 
       this.subItens = itensUncomplete.concat(itensCompletes);
         
-
       this.listasService.calcularPorcentagemConcluida();
   }
 
@@ -157,6 +163,11 @@ export class ListInfoComponent implements OnInit {
       this.showDoneBtn = true;
     }
 
+    //desativa botoes 
+    this.activateButton = false;
+    this.activateButtonEdit = false;
+
+    //calcula porcentagem
     this.listasService.calcularPorcentagemConcluida();
     
   }
@@ -182,7 +193,6 @@ export class ListInfoComponent implements OnInit {
 
     this.subItens = itensUncomplete.concat(itensCompletes);
 
-    console.log(this.listasService.getListas());
     this.listasService.calcularPorcentagemConcluida();
   }
 
@@ -194,7 +204,11 @@ export class ListInfoComponent implements OnInit {
     subItensCheckeds.forEach((subitem)=>{
       var idxSub = this.subItens.indexOf(subitem);
       this.subItens.splice(idxSub, 1);
-    })
+    });
+
+    this.listasService.subtaskActive = this.subItens;
+
+    this.listasService.calcularPorcentagemConcluida();
   }
 
   changeEditParam(){
