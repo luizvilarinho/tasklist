@@ -83,6 +83,15 @@ export class ListInfoComponent implements OnInit {
 
   }
 
+  gravarSubitens(){
+     /*Gravar*/
+     this.listasService.getListas()[this.listasService.idxListActive].itens.filter((item)=>{
+      return item.checked == true;
+    })[0].subItens = this.subItens;
+
+    this.listasService.gravarDados(this.listasService.getListas());
+  }
+
   addSubItem(inputSuitem){
       
 
@@ -114,6 +123,10 @@ export class ListInfoComponent implements OnInit {
       this.subItens = itensUncomplete.concat(itensCompletes);
         
       this.listasService.calcularPorcentagemConcluida();
+
+      /*Gravar*/
+      this.gravarSubitens();
+
   }
 
   checkedActivateButtons(){
@@ -170,6 +183,8 @@ export class ListInfoComponent implements OnInit {
     //calcula porcentagem
     this.listasService.calcularPorcentagemConcluida();
     
+    /*Gravar*/
+    this.gravarSubitens();
   }
 
   markToUndone(){
@@ -194,6 +209,9 @@ export class ListInfoComponent implements OnInit {
     this.subItens = itensUncomplete.concat(itensCompletes);
 
     this.listasService.calcularPorcentagemConcluida();
+
+     /*Gravar*/
+     this.gravarSubitens();
   }
 
   deleteSubItens(){
@@ -209,6 +227,9 @@ export class ListInfoComponent implements OnInit {
     this.listasService.subtaskActive = this.subItens;
 
     this.listasService.calcularPorcentagemConcluida();
+
+     /*Gravar*/
+     this.gravarSubitens();
   }
 
   changeEditParam(){

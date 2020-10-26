@@ -71,10 +71,9 @@ export class EditItemComponent implements OnInit {
     if(this.listasService.edit == "subitem"){
       this._selectedSubitem.text = newValue;
     }else{
-    
       this._selectedItem.text = newValue;
-      this.listasService.gravarDados(this.listasService.getListas())
     }
+    this.listasService.gravarDados(this.listasService.getListas())
   }
 
   ngOnDestroy(): void {

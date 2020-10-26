@@ -59,10 +59,24 @@ export class NotesComponent implements OnInit {
       iptEdit.value = "";
 
       this.typeEditInput = "hidden";
+
+      /*Gravar*/
+      this.listaService.getListas()[this.listaService.idxListActive].itens.filter((item)=>{
+        return item.checked == true;
+      })[0].notas = this.notes;
+
+      this.listaService.gravarDados(this.listaService.getListas());
   }
 
   deleteNote(index){
     this.notes.splice(index, 1);
+
+     /*Gravar*/
+     this.listaService.getListas()[this.listaService.idxListActive].itens.filter((item)=>{
+      return item.checked == true;
+    })[0].notas = this.notes;
+
+    this.listaService.gravarDados(this.listaService.getListas());
   }
 
 }

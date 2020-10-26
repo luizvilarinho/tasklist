@@ -9,18 +9,10 @@ function changeDisplayOnDeleteIconHover(){
     })
 }
 
-function showHide(elementClick, elementShow){
-    var visible=false;
-    document.querySelector(elementClick).onclick=function(){
-        document.querySelector(".boxListas").classList.contains("show")? document.querySelector(elementShow).classList.remove("show") : document.querySelector(elementShow).classList.add("show")
-        visible=true;
-    }
 
-}
 window.onload=function(){
   //changeDisplayOnDeleteIconHover();
-  showHide(".listIconContainer img", ".boxListas")
-
+  
 }
 
 ;

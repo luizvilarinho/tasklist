@@ -10,10 +10,14 @@ cinza_background: e6e6e6ff;
   margin: 0;
   border:0;
   outline: 0;
+  box-sizing: border-box;
 }
 body{
   font-family: Calibri, sans-serif;
   font-size: 12px;
+}
+main{
+  height: auto;
 }
 
 
@@ -51,7 +55,8 @@ color:#b0e0e6ff;
 }
 
 #menuLateral{
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 #menuLateral .titulo-container{
@@ -61,7 +66,7 @@ color:#b0e0e6ff;
   margin-left: 25px;
   list-style: none;
   color:#dcdcdcff;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-bottom: 10px;
 }
 #menuLateral a{
@@ -84,17 +89,27 @@ color:#b0e0e6ff;
   font-weight: 400;
 }
 #listInformation{
-  height: 100vh;
+  min-height:100vh;
+  height: auto;
+  padding-bottom:40px;
 }
 #listInformation h2{
   color:#dcdcdcff;
   font-weight: 200;
 }
-#blocoCentral .titleContainer, #listInformation .titleContainer{
+#blocoCentral .titleContainer{
   border-bottom: 1px solid #5f9ea0ff;
   width: 90%;
   margin: 0 auto 15px auto;
   margin-top: 25px;
+}
+#listInformation .titleContainer{
+  border-bottom: 1px solid #5f9ea0ff;
+  width: 90%;
+  margin: 0 auto 15px auto;
+}
+#listInformation .titleContainer h2{
+  padding-top: 25px;
 }
 
 #blocoCentral .inputContainer, #listInformation .inputContainer{
@@ -131,14 +146,12 @@ color: #f5f5f5ff;
 #blocoCentral .listContainer, #listInformation .listContainer{
   width: 100%;
   height: auto;
-  margin: 10px auto 10px auto;
+  margin: 5px auto 10px auto;
 }
 
-#blocoCentral .itemContainer, #listInformation .itemContainer{
-  padding: 10px 20px 10px 23px;
-}
-#blocoCentral .itemContainer:hover{
-  background-color: #efefefff;
+
+#listInformation .itemContainer{
+  padding: 2px 20px 2px 23px;
 }
 #listInformation .itemContainer:hover{
   background-color: #5e9494ff;
@@ -146,14 +159,14 @@ color: #f5f5f5ff;
 #blocoCentral input[type='checkbox'], #listInformation input[type='checkbox']{
   display: none;
 }
-#blocoCentral label, #listInformation label{
+#blocoCentral p.item, #listInformation p.item{
   font-size: 1.3em;
-  margin: 5px;
+  z-index: 1;
   color:#1f3131ff;
   vertical-align: middle;
   position: relative;
   height: auto;
-  width: 70%;
+  width: 95%;
 }
 #listInformation label{
   color:#b0e0e6ff;
@@ -172,26 +185,7 @@ color: #f5f5f5ff;
   height: 100px;
   border:1px solid #dcdcdcff
 }
-input[type='checkbox'] + label:before{
-  width: 15px;
-  height: 15px;
-  border:1px solid #b0e0e6ff;
-  background-color: #ffffff;
-  border-radius: 3px;
-  display: inline-block;
-  content: "";
-  margin-right: 12px;
-  vertical-align: middle;
-  margin-bottom: 3px;
-  cursor:pointer;
-}
-input[type='checkbox']:checked + label:before{
-    font-family: 'Material Icons';
-     content: "check";
-     font-weight: 800;
-     color:#5f9ea0ff;
-     text-align: center;
-}
+
 #blocoCentral .deleteIcon, #listInformation .deleteIcon{
 width: 10%;
 height: auto;
@@ -204,25 +198,6 @@ display: block;
 }
 #listInformation .deleteIcon{
   color:#b0e0e6ff;
-}
-#doneComponent{
-  width: 90%;
-  margin: 20px auto 20px auto;
-  border-radius: 8px;
-  border:1px solid #dcdcdcff;
-  text-align: center;
-}
-#doneComponent .doneItem{
-  width: 25%;
-  border-radius: 8px;
-  background-color: #b0e0e6ff;
-  text-align: center;
-  height: 13px;
-}
-#doneComponent span{
-  position: absolute;
-  color: #1f3131ff;
-  opacity: 0.9;
 }
 #annotation .annotationItem{
   width: 90%;
@@ -274,8 +249,11 @@ display: block;
   width: 10px;
   height: auto;
   vertical-align: middle;
-  font-size: 18px;
+  font-size: 13px;
   cursor:pointer;
+}
+#blocoCentral .materialIconEditName{
+  font-size: 18px;
 }
 #loginContainer{
   height: calc(100vh - 60px);
@@ -368,9 +346,6 @@ padding: 14px;
   width: 90%;
   margin:0 auto;
   cursor:pointer;
-}
-.listIconContainer img:active{
-
 }
 .boxListas{
   width: 15%;
