@@ -473,7 +473,7 @@ module.exports = ".version{\r\n    color:#b0e0e6ff;\r\n    text-align:right;\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header id=\"menuPrincipal\" class=\"grid grid-template-columns-1\" style=\"height: 15px;\">\n  <h5 class=\"version\">Version 1.2.1</h5>\n  <nav class=\"menu\">\n    <!-- <ul>\n      <li>luiz vilarinho\n        <i class=\"material-icons vertical-align-middle\">account_circle</i>\n      </li>\n      <li>tasks</li>\n      <li>notes</li>\n      <li>task-mode</li>\n    </ul> -->\n  </nav>\n</header>\n"
+module.exports = "<header id=\"menuPrincipal\" class=\"grid grid-template-columns-1\" style=\"height: 15px;\">\n  <h5 class=\"version\">Version 1.3.1</h5>\n  <nav class=\"menu\">\n    <!-- <ul>\n      <li>luiz vilarinho\n        <i class=\"material-icons vertical-align-middle\">account_circle</i>\n      </li>\n      <li>tasks</li>\n      <li>notes</li>\n      <li>task-mode</li>\n    </ul> -->\n  </nav>\n</header>\n"
 
 /***/ }),
 
