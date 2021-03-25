@@ -31,25 +31,49 @@ export class ListInfoComponent implements OnInit {
 
   showDoneBtn:boolean;
 
+  anable = false;
+  
   constructor(private listasService:ListasService) { }
 
   ngOnInit() {
-    this.componentInit();
-    this.initSubscription();
     
+    this.initSubscription();
+    this.componentInit();
+    
+    console.log("LISTAS", this.listasService.getListas())
+    this.verifyCheckedItens();
+
   }
 
   componentInit(){
-
+    let _this = this;
     this.initSubscription();
     this.activateButton = false;
     this.showDoneBtn = true;
+
+    document.addEventListener('keypress', function(e:any){
+      if (e.keyCode == 13){
+        let item :HTMLInputElement = document.querySelector("[name='inputSubitem']");
+        
+        if(!item){
+          return false;
+        }
+
+        if(item.value == ""){
+          return false;
+        }
+
+        console.log("SUBITEM: ", item)
+        _this.addSubItem(item);
+      }
+  })
     
   }
 
   initSubscription(){
-    this.subscriptions.add(this.listasService.showSubtasks$.subscribe((subtasksShowHide:boolean) => {
-      this.listInfoShow = this.listasService.showSubtasks;
+    this.subscriptions.add(this.listasService.showSubtasksSubject.subscribe((subtasksShowHide:boolean) => {
+      console.log("subtasksShowHide", subtasksShowHide);
+      this.listInfoShow = subtasksShowHide;
     }));
 
     this.subscriptions.add(this.listasService.idxList$.subscribe((idx:number) => {
@@ -59,6 +83,21 @@ export class ListInfoComponent implements OnInit {
     this.subscriptions.add(this.listasService.subtaskActive$.subscribe((subitensListaService)=>{
       this.subItens = subitensListaService;
     }))
+  }
+
+  verifyCheckedItens(){
+    let showSubitens = false;
+    for(let lista of this.listasService.getListas()){
+      console.log("lista", lista.itens)
+        lista.itens.forEach(el => {
+          if(el.checked === true){
+            showSubitens = true;
+            return 
+          }
+        });
+    }
+   
+    this.listInfoShow = showSubitens;
   }
 
   subItemClicked(subItemId){

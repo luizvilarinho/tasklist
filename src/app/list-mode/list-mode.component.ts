@@ -18,10 +18,11 @@ import { transition, useAnimation, style } from '@angular/animations';
 })
 export class ListModeComponent implements OnInit {
   
-  @Input() nomeLista:string;
   @ViewChild('editButton') editButton: ElementRef;
 
   private subscriptions = new Subscription();
+
+  nomeLista:string;
 
   activedList:any;
 
@@ -59,7 +60,7 @@ export class ListModeComponent implements OnInit {
         this.initListModeComponent();
       }
     
-    
+      this.nomeLista = this.listasService.getListas()[this.listasService.idxListActive].nome;
       }
 
     initListModeComponent(){
@@ -78,11 +79,12 @@ export class ListModeComponent implements OnInit {
       document.addEventListener('keypress', function(e:any){
           if (e.keyCode == 13){
             let item :HTMLInputElement = document.querySelector("[name='inputItem']");
+            if(item.value == ""){
+              return false;
+            }
             _this.addItem(item);
           }
       })
-
-      
     }
 
   initSubscription(){
@@ -95,10 +97,12 @@ export class ListModeComponent implements OnInit {
     this.subscriptions.add(this.listasService.isEmptyLists$.subscribe((getIsEmpty:boolean) => {
       this.checkedIfIsEmptyList();
     }));
+
     this.checkedIfIsEmptyList();
     this.verifyCheckedItens();
-  }
 
+    
+  }
 
    addItem(inputElement:HTMLInputElement){
        
@@ -114,7 +118,8 @@ export class ListModeComponent implements OnInit {
       complete:false,
       checked:false,
       subItens:[],
-      notas:[]
+      notas:[],
+      kanban:"fazer"
     }
       
     this.listasService.getListas()[this.listasService.idxListActive].itens.push(inputItem);
@@ -138,6 +143,7 @@ export class ListModeComponent implements OnInit {
       this.activateButtonEdit = true;
       this.listasService.emitSubtaskActive(itensChecked[0].subItens);
       this.listasService.showSubtasks = true;
+      console.log("LshowSubtasks", this.listasService.showSubtasks);
       this.listasService.emitSubstasksShowHide();
     }
 

@@ -1,17 +1,16 @@
-<router-outlet></router-outlet>
+
 <main class="center">
   <app-header></app-header>
 
-  <div class="grid grid-template-columns-3">
+  <div id="conteudo" class="grid grid-template-columns-3">
 
     <app-menu (passingName)="selectList($event)"></app-menu>
-
-    <app-list-mode [nomeLista]="selectedList"></app-list-mode>
-    <app-list-info></app-list-info>
-
+    
+    <app-modes-container></app-modes-container>
+    
+   
   </div>
-
-
+  
   
 
 </main>

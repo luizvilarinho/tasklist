@@ -39,7 +39,7 @@ div.container-input{
   text-align: center;
 }
 div.container-input input{
-  width: 250px;
+  width: 100%;
   border:1px solid #c1c1c1;
   padding: 5px;
   border-radius: 5px;

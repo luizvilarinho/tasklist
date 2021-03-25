@@ -39,7 +39,7 @@ margin-bottom: 5px;
 }
 
 #menuPrincipal li{
-  float: right;
+  display: inline-block;
   list-style: none;
   margin: 10px 10px 10px 10px;
   font-size: 2em;

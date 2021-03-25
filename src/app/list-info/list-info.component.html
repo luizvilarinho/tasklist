@@ -1,10 +1,10 @@
-<section @fade @slideLight @fadeout *ngIf="listInfoShow == true" id="listInformation" class="background-blue">
+<section @fade @slideLight @fadeout *ngIf="listInfoShow" id="listInformation" class="background-blue">
   
   <div class="titleContainer">
     <h2>SubTask</h2>
   </div>
   <div class="inputContainer">
-    <input type="text" #inputSubitem name="inputItem" placeholder="new item"/><button (click)="addSubItem(inputSubitem)">OK</button>
+      <input type="text" #inputSubitem name="inputSubitem" placeholder="new item"/><button (click)="addSubItem(inputSubitem)">OK</button>
   </div>
   
 <app-subtask-porcentagem></app-subtask-porcentagem>

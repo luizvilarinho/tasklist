@@ -10,7 +10,8 @@ import { Subitem } from './model/subitem';
 })
 export class ListasService {
 
-  private listas: Array<Menu>;
+  listas: Array<Menu>;
+  listasSubject = new Subject<Array<Menu>>();
 
   private subjectList = new Subject<Array<Menu>>();
 
@@ -20,7 +21,7 @@ export class ListasService {
 
   private selectedItemIdSubject = new ReplaySubject<number>();
 
-  private showSubtasksSubject = new Subject<boolean>();
+  showSubtasksSubject = new Subject<boolean>();
 
   private porcentagemSubtaskSubject = new Subject<number>();
 
@@ -30,7 +31,7 @@ export class ListasService {
   
   porcentagemSubtask$ = this.porcentagemSubtaskSubject.asObservable();
 
-  showSubtasks$ = this.showSubtasksSubject.asObservable();
+  //showSubtasks$ = this.showSubtasksSubject.asObservable();
 
   selectedItemId$ = this.selectedItemIdSubject.asObservable();
 
@@ -53,6 +54,11 @@ export class ListasService {
   edit:string;
 
   subtaskActive:Array<Subitem>;
+
+  // kanbanShow = false;
+  // kanbanShowSubject = new Subject<boolean>();
+
+
 
   constructor() {
     this.init();
@@ -117,11 +123,16 @@ export class ListasService {
     this.gravarDados(this.listas);
   }
 
+  emitListas(){
+    this.listasSubject.next(this.listas);
+  }
+
   emitIndexList(){
     this.idxListSubject.next(this.idxListActive);
   }
 
   emitSubstasksShowHide(){
+    console.log("SERVICE", this.showSubtasks)
     this.showSubtasksSubject.next(this.showSubtasks);
   }
   

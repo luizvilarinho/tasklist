@@ -1,0 +1,13 @@
+<section @fade @fadeout></section>
+
+<div @fade @slideLight class="modal-container">
+  <h3>Adicionar ítem</h3>
+  <div class="container-input">
+    <input autofocus type="text" #inputEditItem [value]="itemEditValue" name="editItemInput" placeholder="adicione um item" maxlength="120"/>
+  </div>
+  <div class="btn-container">
+    <button  class="btn-primary" routerLink="/kanban" (click)="addItem(inputEditItem.value)">ok</button>
+    <button class="btn" routerLink="/kanban">cancel</button>
+  </div>
+
+</div>

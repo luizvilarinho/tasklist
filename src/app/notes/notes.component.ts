@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ListasService } from '../listas.service';
 import { isNgTemplate } from '@angular/compiler';
 import { Notes } from '../model/notes';
@@ -9,6 +9,8 @@ import { Notes } from '../model/notes';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
+
+  @ViewChild('newNote') novo:HTMLInputElement;
 
   notes:Array<Notes>;
 
@@ -23,15 +25,30 @@ export class NotesComponent implements OnInit {
   }
 
   componentInit(){
+    let _this = this;
     this.notes = this.listaService.getListas()[this.listaService.idxListActive].itens.filter((item)=>{
       return item.checked == true;
     })[0].notas;
+
+    document.addEventListener('keypress', function(e:any){
+      if (e.keyCode == 13){
+        let notaElement:HTMLInputElement = document.querySelector("[name='iptNota'")
+        
+        if(notaElement.value == ""){
+          return false;
+        }
+        _this.addNote(notaElement);
+        console.log("NOTA = ", notaElement)
+      }
+  })
   }
 
   addNote(newNote){
+    let nvalue = newNote.value;
+    console.log("NVALUE", nvalue)
     let note = [{
       edit:false,
-      txt:newNote.value
+      txt:nvalue
     }];
 
     this.notes = note.concat(this.notes);
@@ -42,8 +59,7 @@ export class NotesComponent implements OnInit {
 
     newNote.value = "";
 
-    console.log("gravar nota");
-    console.log(this.listaService.getListas());
+
     this.listaService.gravarDados(this.listaService.getListas());
   }
 

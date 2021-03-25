@@ -1,3 +1,4 @@
+
 #blocoCentral .itemContainer{
     padding: 0px 20px 8px 23px;
     position: relative;
@@ -133,7 +134,7 @@ h3.titleContainerEmpty {
     width: 25px;
     height: 20px;
     float: left;
-    margin-top: 5px;
+    margin-top: 2px;
 }
 div.wrapCheckBox:before{
     width: 15px;
@@ -155,4 +156,7 @@ div.wrapCheckBox:before{
        font-weight: 800;
        color:#5f9ea0ff;
        text-align: center;
+  }
+  .desapeare{
+      display:none;
   }

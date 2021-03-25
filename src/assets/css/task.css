@@ -19,12 +19,11 @@ body{
 main{
   height: auto;
 }
-
-
 header{
   background-color: #c1c1c1;
   height: 60px;
   background-color: #5f9ea0ff;
+  height: auto;
 }
 h2{
 color:#dcdcdcff;
@@ -37,9 +36,18 @@ margin-bottom: 5px;
   width:96%;
   margin:0 auto;
 }
-
-#menuPrincipal li{
+.menu ul{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
   float: right;
+}
+div.container__version{
+  width: 50%;
+  margin-top: 20px;
+}
+#menuPrincipal li{
   list-style: none;
   margin: 10px 10px 10px 10px;
   font-size: 2em;
@@ -53,12 +61,10 @@ color: white;
 #menuPrincipal li:active{
 color:#b0e0e6ff;
 }
-
 #menuLateral{
   min-height: 100vh;
   height: 100%;
 }
-
 #menuLateral .titulo-container{
   margin: 0px 20px 15px 20px;
 }
@@ -84,6 +90,11 @@ color:#b0e0e6ff;
   cursor:pointer;
   box-sizing: border-box;
 }
+#blocoCentral{
+  display:inline-block;
+  width: 50%;
+  vertical-align: top;
+}
 #blocoCentral h2{
   color:#5f9ea0ff;
   font-weight: 400;
@@ -92,6 +103,8 @@ color:#b0e0e6ff;
   min-height:100vh;
   height: auto;
   padding-bottom:40px;
+  display: inline-block;
+  width: 50%;
 }
 #listInformation h2{
   color:#dcdcdcff;
@@ -102,6 +115,7 @@ color:#b0e0e6ff;
   width: 90%;
   margin: 0 auto 15px auto;
   margin-top: 25px;
+  height: 2.3rem;
 }
 #listInformation .titleContainer{
   border-bottom: 1px solid #5f9ea0ff;
@@ -168,6 +182,7 @@ color: #f5f5f5ff;
   height: auto;
   width: 95%;
 }
+
 #listInformation label{
   color:#b0e0e6ff;
 }
@@ -180,7 +195,7 @@ color: #f5f5f5ff;
   border-bottom: 1px solid #dcdcdcff;
 }
 #container-tarefas section{
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-column-gap: 30px;
   height: 100px;
   border:1px solid #dcdcdcff
@@ -242,8 +257,8 @@ display: block;
   width: 90%;
   color:#5f9ea0ff;
   font-size: 1.2em;
-  margin: 0 auto 20px auto;
-  padding: 20px 0 10px 0;
+  margin: 0 auto 10px auto;
+  padding: 15px 0 0 0;
 }
 #blocoCentral .material-icons, #listInformation .material-icons{
   width: 10px;
@@ -319,11 +334,11 @@ padding: 14px;
 }
 
 .grid-template-columns-3{
-  grid-template-columns: 200px 1fr 1fr;
+  grid-template-columns: 250px 1fr;
   height: calc(100vh - 60px);
 }
 .grid-template-columns-2{
-  grid-template-columns: 200px 1fr;
+  grid-template-columns:0 1fr;
   height: calc(100vh - 60px);
 }
 .background-blue{
@@ -433,45 +448,4 @@ opacity:0.5;
 }
 .relative-lg-top{
   top:45px;
-}
-.aviso{
-  font-size: 1.6em;
-  color:#5f9ea0ff;
-  text-align: center;
-  padding: 25px;
-  margin-top: 30px;
-}
-
-#cardsModuloTarefa{
-  padding:30px;
-  width: calc(100% - 80px);
-  height: 100%;
-}
-#cardsModuloTarefa h2{
-  width: 67%;
-  margin-left: 20px;
-}
-.cardTarefa{
-  width:30%;
-  border:1px solid #c1c1c1;
-  display: inline-block;
-  margin-left: 20px;
-}
-.cardTarefa div{
-  height: auto;
-  padding: 15px;
-  border-bottom: 1px solid #c1c1c1;
-  font-size: 1.2em;
-
-
-}
-.cardTarefa .titulo{
-  text-align: center;
-  background-color: #5f9ea0ff;
-  font-weight: 300;
-  font-size: 2em;
-  color:#dcdcdcff;
-  height: 20px;
-  padding: 12px;
-  margin:0;
 }

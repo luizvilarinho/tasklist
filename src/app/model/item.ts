@@ -7,6 +7,6 @@ export interface Item {
     complete:boolean,
     checked:boolean,
     subItens:Array<Subitem>,
-    notas:Array<Notes>
-
+    notas:Array<Notes>,
+    kanban:String
 }

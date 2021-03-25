@@ -1,4 +1,10 @@
-<section id="menuLateral" class="background-blue">
+<section class="ico-burger-container" [class.height100]="h100"> 
+  <span class="material-icons" (click)="showHideMenuLateral()">
+    view_column
+  </span>
+</section>
+
+<section id="menuLateral" class="background-blue" [class.is-hidden]="lateralHidden">
   <div class="titulo-container borderBottom">
     <h2>Listas:<span routerLink="addLista" class="teste addIcon"></span></h2>
   </div>

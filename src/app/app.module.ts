@@ -14,6 +14,10 @@ import { EditItemComponent } from './edit-item/edit-item.component';
 import { EditListNameComponent } from './edit-list-name/edit-list-name.component';
 import { SubtaskPorcentagemComponent } from './subtask-porcentagem/subtask-porcentagem.component';
 import { NotesComponent } from './notes/notes.component';
+import { KanbanComponent } from './kanban/kanban.component';
+import { ModesContainerComponent } from './modes-container/modes-container.component';
+import { EditKanbanItemComponent } from './edit-kanban-item/edit-kanban-item.component';
+import { KanbanAddItemComponent } from './kanban-add-item/kanban-add-item.component';
 
 
 
@@ -29,6 +33,10 @@ import { NotesComponent } from './notes/notes.component';
     EditListNameComponent,
     SubtaskPorcentagemComponent,
     NotesComponent,
+    KanbanComponent,
+    ModesContainerComponent,
+    EditKanbanItemComponent,
+    KanbanAddItemComponent,
   ],
   imports: [
     BrowserModule,

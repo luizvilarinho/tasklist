@@ -19,15 +19,15 @@
     vertical-align: middle;
     margin-bottom: 3px;
     cursor:pointer;
-  }
+}
   
-  #listInformation input[type='checkbox']:checked ~ div.wrapCheckBox:before{
-      font-family: 'Material Icons';
-       content: "check";
-       font-weight: 800;
-       color:#5f9ea0ff;
-       text-align: center;
-  }
+#listInformation input[type='checkbox']:checked ~ div.wrapCheckBox:before{
+    font-family: 'Material Icons';
+    content: "check";
+    font-weight: 800;
+    color:#5f9ea0ff;
+    text-align: center;
+}
 #subItemControllers{
     margin: 0px 20px 0px 30px;
     text-align: right;

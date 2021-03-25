@@ -1,0 +1,104 @@
+<section  @fade id="cardsModuloTarefa">
+  <h2>{{ nomeLista }}</h2>
+  <article class="cardTarefa">
+    <div class="titulo">fazer
+      <div class="kanban-addIcon__container"  routerLink="/kanban/add" [queryParams]="{ label: 'fazer'}"></div>
+    </div>
+   
+    <div *ngFor="let item of fazer" class="item">
+      <div class="texto-item-container">
+          <p>{{ item.text }}</p>
+      </div>
+      <div class="container-itens-menu">
+        <ul>
+          <li routerLink="edit-item" [queryParams]="{ itemId: item._id}" >edit</li>
+          <li (click)="deleteItem(item._id)">delete</li>
+          <li>subtask</li>
+          <li (click)="changeToFazendo(item._id)">>></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="cardTarefa">
+    <div class="titulo">fazendo</div>
+    <div *ngFor="let item of fazendo" class="item">
+      <div class="texto-item-container">
+          <p>{{ item.text }}</p>
+      </div>
+      <div class="container-itens-menu">
+        <ul>
+          <li (click)="changeToFazer(item._id)"> << </li>
+          <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
+          <li (click)="deleteItem(item._id)">delete</li>
+          <li>subtask</li>
+          <li (click)="changeToFeito(item._id)">>></li>
+        </ul>
+      </div>
+    </div>
+    
+  </article>
+
+  <article class="cardTarefa">
+    <div class="titulo">feito</div>
+    <div *ngFor="let item of feito" class="item">
+      <div class="texto-item-container">
+          <p>{{ item.text }}</p>
+      </div>
+      <div class="container-itens-menu">
+        <ul>
+          <li (click)="changeToFazendo(item._id)"> << </li>
+          <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
+          <li (click)="deleteItem(item._id)">delete</li>
+          <li>subtask</li>
+        </ul>
+      </div>
+    </div>
+    
+  </article>
+  
+</section>
+<!-- <section id="task-info">
+  <section id="listInformation" class="background-blue">
+    <div class="listIconContainer">
+      <img id="iconeListas" src="images/listas_icon.svg">
+      <div class="boxListas hidden">
+          <div class="itemBoxListas">todas</div>
+          <div class="itemBoxListas">inbox</div>
+          <div class="itemBoxListas">lista1</div>
+          <div class="itemBoxListas">lista2</div>
+      </div>
+    </div>
+    <div class="titleContainer">
+      <h2>SubTask</h2>
+    </div>
+    <div class="inputContainer">
+      <input type="text" name="inputItem" placeholder="new item"/><button>OK</button>
+    </div>
+    <div id="doneComponent">
+      <span>25%</span>
+      <div class="doneItem"></div>
+    </div>
+    <div class="listContainer">
+      <div class="itemContainer">
+        <input type="checkbox" id="1"  /><label for="1" class="item">lsadsad sa as ad asd asd </label>
+          <div class="deleteIcon"><i class="material-icons">delete_forever</i></div>
+      </div>
+    </div>
+    <div id="annotation">
+      <div class="titleContainer">
+        <h2>Annotation</h2>
+      </div>
+      <div class="inputContainer">
+        <input type="text" name="inputItem" placeholder="new item"/><button>OK</button>
+      </div>
+      <div class="annotationItem">
+        <div class="txtAnnotation">ajn NDASMD MALS ASLSKDMAçams çms masçdm çalmsdç</div>
+      <div class="editAnnotation">
+        <span>Edit</span><span>delete</span>
+      </div>
+
+      </div>
+    </div>
+  </section> 
+</section>-->

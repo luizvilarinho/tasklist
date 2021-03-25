@@ -4,7 +4,7 @@
 <div @fade @slideLight @fadeout class="modal-container">
   <h3>Editar Nome</h3>
   <div class="container-input">
-    <input type="text" #inputEditItem [value]="listName" maxlength="14"/>
+    <input type="text" #inputEditItem [value]="listName" maxlength="14" autofocus/>
   </div>
   <div class="btn-container">
     <button class="btn-primary" routerLink="/" (click)="editItemName(inputEditItem.value)">ok</button>

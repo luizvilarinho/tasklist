@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 
 import { ListasService } from '../listas.service';
 import { taskAnimations, slideLight } from '../animations';
@@ -14,11 +14,14 @@ import { taskAnimations, slideLight } from '../animations';
 })
 export class ModalAddListaComponent implements OnInit {
 
+  @ViewChild('inputLNewList') input; 
+
   newList:any;
 
   constructor(private listaService:ListasService) { }
 
   ngOnInit() {
+    this.input.nativeElement.focus()
   }
 
     addNewList(InputValue:string){

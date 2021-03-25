@@ -18,3 +18,18 @@ a.active ~ a>i{
 .deleteIcon:active{
     opacity: 0.4;
 }
+.ico-burger-container{
+    width: 100%;
+    margin: 0;
+    height: auto;
+    padding: 0 0 0 25px;
+    background-color: #5f9ea0ff;
+    color:#b0e0e6ff;
+    cursor: pointer;
+}
+.height100{
+    height: 100%;
+}
+.is-hidden{
+    display: none;
+}
