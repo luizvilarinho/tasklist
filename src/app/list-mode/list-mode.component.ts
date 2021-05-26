@@ -143,7 +143,7 @@ export class ListModeComponent implements OnInit {
       this.activateButtonEdit = true;
       this.listasService.emitSubtaskActive(itensChecked[0].subItens);
       this.listasService.showSubtasks = true;
-      console.log("LshowSubtasks", this.listasService.showSubtasks);
+      //console.log("LshowSubtasks", this.listasService.showSubtasks);
       this.listasService.emitSubstasksShowHide();
     }
 

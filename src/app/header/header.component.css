@@ -1,5 +1,6 @@
 .version{
     color:#b0e0e6ff;
-    text-align:left;
-    margin-right: 25px;
+    text-align:right;
+    /* margin-right: 25px; */
+    padding:3px;
 }

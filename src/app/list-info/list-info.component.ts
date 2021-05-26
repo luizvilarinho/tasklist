@@ -40,7 +40,7 @@ export class ListInfoComponent implements OnInit {
     this.initSubscription();
     this.componentInit();
     
-    console.log("LISTAS", this.listasService.getListas())
+    console.log("SUBTASKS INIT")
     this.verifyCheckedItens();
 
   }
@@ -88,9 +88,17 @@ export class ListInfoComponent implements OnInit {
   verifyCheckedItens(){
     let showSubitens = false;
     for(let lista of this.listasService.getListas()){
-      console.log("lista", lista.itens)
+      //console.log("lista", lista.itens)
         lista.itens.forEach(el => {
           if(el.checked === true){
+            console.log("SHOWDUBITENS TRUE")
+            let sub = this.listasService.getListas()[this.listasService.idxListActive].itens.filter((el) => {
+              if (el.checked == true){
+                  return el;
+              }
+            })[0].subItens
+      
+            this.listasService.emitSubtaskActive(sub);
             showSubitens = true;
             return 
           }

@@ -113,16 +113,19 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   showHideMenuLateral(){
-    this.lateralHidden = !this.lateralHidden;
+    var columnElement:HTMLElement = document.querySelector(".grid-template-columns-3")
 
+    this.lateralHidden = !this.lateralHidden;
+    
     if(this.lateralHidden == true){
-      document.querySelector(".grid-template-columns-3").style.gridTemplateColumns = "70px 1fr"
+      
+      columnElement.style.gridTemplateColumns = "70px 1fr"
 
       //document.querySelector('#conteudo').classList.add("grid-template-columns-2")
       this.h100 = true;
       
     }else{
-      document.querySelector(".grid-template-columns-3").style.gridTemplateColumns = "250px 1fr"
+      columnElement.style.gridTemplateColumns = "250px 1fr"
       //document.querySelector('#conteudo').classList.add("grid-template-columns-3")
       //document.querySelector('#conteudo').classList.remove("grid-template-columns-2")
       this.h100 = false;

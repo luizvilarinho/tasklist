@@ -52,7 +52,6 @@ export class EditItemComponent implements OnInit {
   private initListener(): void {
       this.subscribeItemId.add(this.listasService.selectedItemId$.subscribe((itemId:number) => {
 
-        
         let itens = this.listasService.getListas()[this.listasService.idxListActive].itens;
         //let lista = this.listasService.getListByName(activeName).itens;
         
@@ -62,7 +61,6 @@ export class EditItemComponent implements OnInit {
               this._selectedItem = itens[i];
               this.itemEditValue = itens[i].text;
             }
-
         }
     }))
   }
@@ -70,6 +68,15 @@ export class EditItemComponent implements OnInit {
   editItem(newValue:string){
     if(this.listasService.edit == "subitem"){
       this._selectedSubitem.text = newValue;
+    //   let i = this.listasService.getListas()[this.listasService.idxListActive].itens.filter((item)=>{
+    //     return item.checked == true;
+    // })[0].subItens;
+    // console.log("SUBITENS", i)
+    //   this.listasService.emitSubtaskActive(i);
+    //   this.listasService.emitIndexList();
+    //   this.listasService.showSubtasks = false
+    //   this.listasService.emitSubstasksShowHide()
+
     }else{
       this._selectedItem.text = newValue;
     }
