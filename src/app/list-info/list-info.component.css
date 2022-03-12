@@ -1,6 +1,5 @@
 #listInformation .wrapCheckBox{
     width: 25px;
-    height: 24px;
     float: left;
     margin-top: 5px;
 }
@@ -58,3 +57,19 @@
     text-decoration: line-through;
     opacity: 0.5;
 }
+
+@media (max-width:760px){
+    
+    #listInformation{
+      width: 100vw;
+    }
+    #listInformation button{
+        width: 10%;
+    }
+    #subItemControllers button{
+        width: auto;
+    }
+    #listInformation input[type='text']{
+        width: 90%;
+    }
+  }

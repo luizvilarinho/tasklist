@@ -11,8 +11,17 @@
               <div @fade @slideLight class="edit-icon-name" routerLink="edit-name"><i class="material-icons materialIconEditName"> edit</i></div>
               
               {{ nomeLista }}
-              <a (click)="showCompletedTasks()" class="fly-r" [class.selected]="completeSelected">complete</a>
-              <a (click)="showIncompletedTasks()" class="fly-r" [class.selected]="incompleteSelected">incomplete</a>
+                <a (click)="showCompletedTasks()" class="fly-r desktop" [class.selected]="completeSelected">complete</a>
+                <a (click)="showIncompletedTasks()" class="fly-r desktop" [class.selected]="incompleteSelected">incomplete</a>
+
+
+                <a (click)="showCompletedTasks()" class="fly-r mobile" [class.selected]="completeSelected">
+                  C
+                </a>
+
+                <a (click)="showIncompletedTasks()" class="fly-r mobile" [class.selected]="incompleteSelected">
+                  I
+                </a>
             </h2>
       
           </div>

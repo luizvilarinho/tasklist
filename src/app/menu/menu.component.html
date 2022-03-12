@@ -1,32 +1,47 @@
-<section class="ico-burger-container" [class.height100]="h100"> 
-  <span class="material-icons" (click)="showHideMenuLateral()">
-    view_column
-  </span>
-</section>
+<div id="menu-descktop">
+  <section class="ico-burger-container" [class.height100]="h100"> 
+    <span class="material-icons" (click)="showHideMenuLateral()">
+      view_column
+    </span>
+  </section>
+  
+  <section id="menuLateral" class="background-blue" [class.is-hidden]="lateralHidden">
+    <div class="titulo-container borderBottom">
+      <h2>Lists:<span routerLink="addLista" class="teste addIcon"></span></h2>
+    </div>
+    <div class="md-marginBottom">
+      <ul id="listNames">
+        <li @fade @fadeout @slideLight *ngFor="let nomesListaItem of nomesListas; let idx=index">
+          <a href="javascript:;" (click)="selected(idx)" id="{{ idx }}" class=""> {{ nomesListaItem.nome }} </a>
+          <span @fade @fadeout @slideLight class="list-length">{{ nomesListaItem.incompletedItens() }}</span>
+          <a (click)="deleteList(idx)"><i class="material-icons deleteIcon">delete_forever</i></a>
+        </li>
+        
+      </ul>
+    </div>
+  </section>
+</div>
 
-<section id="menuLateral" class="background-blue" [class.is-hidden]="lateralHidden">
-  <div class="titulo-container borderBottom">
-    <h2>Lists:<span routerLink="addLista" class="teste addIcon"></span></h2>
-  </div>
-  <div class="md-marginBottom">
-    <ul id="listNames">
-      <li @fade @fadeout @slideLight *ngFor="let nomesListaItem of nomesListas; let idx=index">
-        <a href="javascript:;" (click)="selected(idx)" id="{{ idx }}" class=""> {{ nomesListaItem.nome }} </a>
-        <span @fade @fadeout @slideLight class="list-length">{{ nomesListaItem.incompletedItens() }}</span>
-        <a (click)="deleteList(idx)"><i class="material-icons deleteIcon">delete_forever</i></a>
-      </li>
-      
-    </ul>
-  </div>
+<div id="menu-mobile">
+  <section class="ico-burger-container-mobile"> 
+    <span class="material-icons" (click)="openMobileMenu()">
+      view_column
+    </span>
+    <article @fade @fadeout @slideLight id="menu-container" *ngIf="mobileOpenedMenu">
+      <div class="titulo-container borderBottom">
+        <h2>Lists:<span routerLink="addLista" class="teste addIcon"></span></h2>
+      </div>
+      <div class="md-marginBottom">
+        <ul id="listNames">
+          <li *ngFor="let nomesListaItem of nomesListas; let idx=index">
+            <a href="javascript:;" (click)="selected(idx)" id="{{ idx }}" class=""> {{ nomesListaItem.nome }} </a>
+            <span class="list-length">{{ nomesListaItem.incompletedItens() }}</span>
+            <a (click)="deleteList(idx)"><i class="material-icons deleteIcon">delete_forever</i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </article>
+  </section>
+</div>
 
-  <!-- <div class="titulo-container borderBottom">
-    <h2>Modo Tarefa:</h2>
-  </div>
-  <div>
-    <ul>
-      <li>nome 1</li>
-      <li>nome 2</li>
-    </ul>
-  </div> -->
-
-</section>

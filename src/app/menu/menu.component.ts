@@ -27,6 +27,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   isActive:boolean;
+  mobileOpenedMenu:boolean = false;
 
   constructor(private listasService:ListasService) { }
 
@@ -110,6 +111,8 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.selected(idx-1);
       
       this.listasService.gravarDados(this.listasService.getListas());
+      this.listasService.showSubtasks = false;
+      this.listasService.emitSubstasksShowHide()
   }
 
   showHideMenuLateral(){
@@ -130,10 +133,13 @@ export class MenuComponent implements OnInit, OnDestroy {
       //document.querySelector('#conteudo').classList.remove("grid-template-columns-2")
       this.h100 = false;
     }
-   
-    
-
   }
   
+  /*mobile*/
+  openMobileMenu(){
+   
+    this.mobileOpenedMenu = !this.mobileOpenedMenu;
+    console.log("mobileOpenedMenu", this.mobileOpenedMenu)
+  }
   
 }

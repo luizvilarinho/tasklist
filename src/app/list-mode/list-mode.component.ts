@@ -54,14 +54,16 @@ export class ListModeComponent implements OnInit {
 
   ngOnInit() {
 
-      if(this.listasService.isEmptyLists){
-        this.initSubscription();
-      }else{
-        this.initListModeComponent();
-      }
-    
-      this.nomeLista = this.listasService.getListas()[this.listasService.idxListActive].nome;
-      }
+  if(this.listasService.isEmptyLists){
+    this.initSubscription();
+  }else{
+    this.initListModeComponent();
+  }
+  if(this.listasService.getListas()[this.listasService.idxListActive]){
+    this.nomeLista = this.listasService.getListas()[this.listasService.idxListActive].nome;
+  }
+      
+}
 
     initListModeComponent(){
 
@@ -74,7 +76,7 @@ export class ListModeComponent implements OnInit {
     
     this.initSubscription();
 
-    this.checkedIfIsEmptyList();
+    //this.checkedIfIsEmptyList();
   
       document.addEventListener('keypress', function(e:any){
           if (e.keyCode == 13){
@@ -91,6 +93,7 @@ export class ListModeComponent implements OnInit {
       this.subscriptions.add(this.listasService.idxList$.subscribe((novoIdx:number) => {
         this.activedList = this.listasService.getListas()[novoIdx].itens;
         this.nomeLista = this.listasService.getListas()[novoIdx].nome;
+        
         this.verifyCheckedItens();
       }))
 
@@ -132,18 +135,24 @@ export class ListModeComponent implements OnInit {
 
    verifyCheckedItens(){
     
-    let itensChecked = this.activedList.filter((el) => {
-      if (el.checked == true){
-          return el;
-      }
-    });
+    var itensChecked;
 
+    if(this.activedList != undefined){
+      itensChecked = this.activedList.filter((el) => {
+        if (el.checked == true){
+            return el;
+        }
+      });
+    }else{
+      itensChecked = []
+    }
+
+   
     if(itensChecked.length == 1){
       this.activateButton = true;
       this.activateButtonEdit = true;
       this.listasService.emitSubtaskActive(itensChecked[0].subItens);
       this.listasService.showSubtasks = true;
-      //console.log("LshowSubtasks", this.listasService.showSubtasks);
       this.listasService.emitSubstasksShowHide();
     }
 
@@ -203,6 +212,9 @@ export class ListModeComponent implements OnInit {
       this.activateButton = false;
       this.activateButtonEdit = false;
 
+      this.listasService.showSubtasks = false;
+      this.listasService.emitSubstasksShowHide();
+
       this.listasService.gravarDados(this.listasService.getListas());
   }
 
@@ -217,6 +229,7 @@ export class ListModeComponent implements OnInit {
       this.isCentralHidden = false;
       this.isEmptyHidden = true;
     }
+
   }
 
   moveToDone(){

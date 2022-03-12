@@ -27,9 +27,68 @@ a.active ~ a>i{
     color:#b0e0e6ff;
     cursor: pointer;
 }
-.height100{
+#menu-descktop .height100{
     height: 100%;
+    min-height: 100vh;
 }
 .is-hidden{
     display: none;
+}
+
+#menu-mobile{
+    display: none;
+}
+
+@media (max-width:760px){
+    #menu-descktop{
+        display: none;
+    }
+    #menu-mobile{
+        display:block;
+    }
+    #menu-mobile .ico-burger-container-mobile{
+        min-height: 2rem;
+        width: 100vw;
+        padding:0.5rem;
+        background-color: #5f9ea0ff;
+        text-align: right;
+    }
+    #menu-mobile .ico-burger-container-mobile .material-icons{
+        font-size: 2rem;
+        color: #b0e0e6ff;
+    }
+    #menu-mobile .teste{
+        width: 20px;
+        height: 13px;
+        margin-left:2rem;
+    }
+    #menu-container .titulo-container{
+        text-align: left;
+    }
+    div.modal-container{
+        left: calc(50% - 142px);
+    }
+    #menu-mobile ul{
+        font-size: 1.4rem;
+        text-align: left;
+        padding: 15px 5px;
+        list-style: none;
+        color:#b0e0e6ff;
+    }
+    #menu-mobile li{
+        margin-bottom: 10px;
+    }
+    #menu-mobile .list-length{
+        font-size: 1rem;
+    }
+    #menu-mobile a{
+        text-decoration: none;
+        color:#b0e0e6;
+    }
+    #menu-mobile .ico-burger-container-mobile .material-icons.deleteIcon{
+        font-size: 1.5rem;
+        opacity: 1;
+        margin-right: 0;
+    }
+
 }

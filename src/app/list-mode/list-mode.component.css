@@ -160,3 +160,35 @@ div.wrapCheckBox:before{
   .desapeare{
       display:none;
   }
+  #blocoCentral[hidden]{
+      display:none;
+  }
+.mobile{
+    display: none;
+}
+
+  @media (max-width:760px){
+    #blocoCentral{
+        width: 100vw;
+    }
+    #blocoCentral button, #listInformation button{
+        width: 10%;
+    }
+    #blocoCentral input[type='text'], #listInformation input[type='text']{
+        width: 90%;
+    }
+    #itemControllers button{
+        width: auto;
+    }
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+        
+    }
+    #btns-complete-container__mobile a{
+
+    }
+    
+  }

@@ -1,0 +1,9 @@
+@media (max-width:760px){
+    
+    #annotation button{
+        width: 10%;
+    }
+    #annotation input[type='text']{
+        width: 90%;
+    }
+  }

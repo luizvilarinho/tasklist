@@ -69,8 +69,16 @@ div.modal-container button{
   border-radius: 5px;
   background-color: #c1c1c1;
   text-decoration: none;
-  color:#CJCJCJ;
+  /* color: #CJCJCJ; */
 }
 .btn:active{
   background-color: #b0e0e6ff;
+}
+
+@media (max-width:760px){
+  
+  div.modal-container{
+      left: calc(50% - 142px);
+  }
+
 }
