@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListasService } from '../listas.service';
-import { Subscription, Observable, Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { slideLight, taskAnimations } from '../animations';
 import { Menu } from '../model/menu';
 import { Item } from '../model/item';
+
 
 @Component({
   selector: 'app-kanban',
@@ -29,8 +30,14 @@ export class KanbanComponent implements OnInit {
   constructor(private listasService:ListasService) { }
 
   ngOnInit() {
+    
     this.initSubscription();
     this.initComponent();
+  }
+
+  notify(list){
+    this.listasService.listas = list;
+    this.listasService.notificastion();
   }
 
   initSubscription(){
@@ -76,42 +83,38 @@ export class KanbanComponent implements OnInit {
   }
 
   changeToFazendo(id:number){
-    let idx = this.listasService.idxListActive;
 
-    this.listasService.getListas()[idx].itens.forEach(el =>{
-      if( el._id === id){
-        el.kanban = "fazendo";
-        return el;
-      }
-    });
+    let item = this.listasService.getItem(id)
+    console.log("ITEM", item)
+    item.kanban = "fazendo";
+    item.complete = false;
 
-    this.listasService.emitListas();
-    console.log("novometodo", this.listasService.getListas()[idx].itens);
-    //this.kanbanUpdate();
+    this.notify(this.listasService.getListas())
   }
 
   changeToFazer(id:number){
-    let idx = this.listasService.idxListActive;
-    this.listasService.getListas()[idx].itens.forEach(el =>{
-      if( el._id === id){
-        el.kanban = "fazer";
-        return el;
-      }
-    });
+   
+    let item = this.listasService.getItem(id)
+    item.kanban = "fazer";
 
-    this.listasService.emitListas();
+    this.notify(this.listasService.getListas())
   }
 
   changeToFeito(id:number){
     let idx = this.listasService.idxListActive;
+    
     this.listasService.getListas()[idx].itens.forEach(el =>{
       if( el._id === id){
         el.kanban = "feito";
+        
+        el.complete = true
         return el;
       }
     });
 
-    this.listasService.emitListas();
+    //this.listasService.emitListas();
+    this.notify(this.listasService.getListas())
+    console.log("LISTAS", this.listasService.listas)
   }
 
   deleteItem(id){

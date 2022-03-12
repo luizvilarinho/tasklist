@@ -5,54 +5,57 @@
       <div class="kanban-addIcon__container"  routerLink="/kanban/add" [queryParams]="{ label: 'fazer'}"></div>
     </div>
    
-    <div *ngFor="let item of fazer" class="item">
-      <div class="texto-item-container">
-          <p>{{ item.text }}</p>
-      </div>
-      <div class="container-itens-menu">
-        <ul>
-          <li routerLink="edit-item" [queryParams]="{ itemId: item._id}" >edit</li>
-          <li (click)="deleteItem(item._id)">delete</li>
-          <li>subtask</li>
-          <li (click)="changeToFazendo(item._id)">>></li>
-        </ul>
-      </div>
+    <div @slideLight *ngFor="let item of fazer" class="item">
+        <div class="texto-item-container">
+            <p>{{ item.text }}</p>
+        </div>
+        <div class="container-itens-menu">
+          <ul>
+            <li routerLink="edit-item" [queryParams]="{ itemId: item._id}" >edit</li>
+            <li (click)="deleteItem(item._id)">delete</li>
+            <li>subtask</li>
+            <li (click)="changeToFazendo(item._id)">>></li>
+          </ul>
+        </div>
+
     </div>
   </article>
 
   <article class="cardTarefa">
     <div class="titulo">fazendo</div>
-    <div *ngFor="let item of fazendo" class="item">
-      <div class="texto-item-container">
-          <p>{{ item.text }}</p>
-      </div>
-      <div class="container-itens-menu">
-        <ul>
-          <li (click)="changeToFazer(item._id)"> << </li>
-          <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
-          <li (click)="deleteItem(item._id)">delete</li>
-          <li>subtask</li>
-          <li (click)="changeToFeito(item._id)">>></li>
-        </ul>
-      </div>
+    <div @slideLight *ngFor="let item of fazendo" class="item">
+        <div class="texto-item-container">
+            <p>{{ item.text }}</p>
+        </div>
+        <div class="container-itens-menu">
+          <ul>
+            <li (click)="changeToFazer(item._id)"> << </li>
+            <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
+            <li (click)="deleteItem(item._id)">delete</li>
+            <li>subtask</li>
+            <li (click)="changeToFeito(item._id)">>></li>
+          </ul>
+        </div>
+
     </div>
     
   </article>
 
   <article class="cardTarefa">
     <div class="titulo">feito</div>
-    <div *ngFor="let item of feito" class="item">
-      <div class="texto-item-container">
-          <p>{{ item.text }}</p>
-      </div>
-      <div class="container-itens-menu">
-        <ul>
-          <li (click)="changeToFazendo(item._id)"> << </li>
-          <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
-          <li (click)="deleteItem(item._id)">delete</li>
-          <li>subtask</li>
-        </ul>
-      </div>
+    <div @slideLight *ngFor="let item of feito" class="item">
+        <div class="texto-item-container">
+            <p>{{ item.text }}</p>
+        </div>
+        <div class="container-itens-menu">
+          <ul>
+            <li (click)="changeToFazendo(item._id)"> << </li>
+            <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
+            <li (click)="deleteItem(item._id)">delete</li>
+            <li>subtask</li>
+          </ul>
+        </div>
+
     </div>
     
   </article>

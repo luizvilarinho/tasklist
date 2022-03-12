@@ -109,6 +109,28 @@ export class ListasService {
       
   }
 
+  notificastion(){
+   
+    this.listasSubject.next(this.listas)
+    this.gravarDados(this.listas);
+    console.log("NOTIFICATION", this.listas)
+  }
+
+  notificationListener(){
+    return this.listasSubject.asObservable();
+  }
+
+  getItem(itemId:number){
+    let itemSelected = this.listas[this.idxListActive].itens.map(item => {
+      console.log(this.listas, this.idxListActive)
+      if(item._id === itemId) {
+        return item
+      }
+    })[0]
+
+    return itemSelected
+  }
+
   getListas(): Array<Menu>{
    
 

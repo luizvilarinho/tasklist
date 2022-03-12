@@ -2,9 +2,8 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 import { ListasService } from '../listas.service';
 import { Item } from '../model/item';
-import { Subscription, Observable, Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { taskAnimations, slideLight } from '../animations';
-import { transition, useAnimation, style } from '@angular/animations';
 
 @Component({
   selector: 'app-list-mode',
