@@ -59,6 +59,12 @@ export class KanbanComponent implements OnInit {
     this.lista = this.listasService.getListas()[idx];
     this.nomeLista = this.lista.nome;
     
+    this.listasService.getListas()[idx].itens.map(item=>{
+      if(item.complete){
+        item.kanban = 'feito'
+      }
+    });
+    
     this.kanbanUpdate();
   }
 

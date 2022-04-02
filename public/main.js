@@ -809,6 +809,7 @@ var KanbanComponent = /** @class */ (function () {
         var _this = this;
         this.subscriptions.add(this.listasService.idxList$.subscribe(function (novoIdx) {
             _this.nomeLista = _this.listasService.getListas()[novoIdx].nome;
+            _this.initComponent();
         }));
         this.subscriptions.add(this.listasService.listasSubject.subscribe(function (listas) {
             var idx = _this.listasService.idxListActive;
@@ -887,14 +888,16 @@ var KanbanComponent = /** @class */ (function () {
     };
     KanbanComponent.prototype.kanbanSubtaskLength = function (kanban, idx) {
         var subItensLenth = 0;
-        this.listasService.listas[this.listasService.idxListActive].itens.filter(function (item) {
-            return item.kanban === kanban;
-        })[idx].subItens.map(function (sub) {
-            if (!sub.complete) {
-                subItensLenth++;
-            }
-        });
-        return subItensLenth;
+        if (this.listasService.listas[this.listasService.idxListActive].itens.length > 0) {
+            this.listasService.listas[this.listasService.idxListActive].itens.filter(function (item) {
+                return item.kanban === kanban;
+            })[idx].subItens.map(function (sub) {
+                if (!sub.complete) {
+                    subItensLenth++;
+                }
+            });
+            return subItensLenth;
+        }
     };
     KanbanComponent.prototype.ngOnDestroy = function () {
         this.subscriptions.unsubscribe();
