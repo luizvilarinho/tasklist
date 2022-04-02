@@ -72,13 +72,20 @@
           <div @fade class="listContainer" *ngIf = "selectIncompleteTasks">
             <ng-container *ngFor="let item of activedList; let i = index">
               <div @fade @fadeout *ngIf="item.complete == false" class="itemContainer" (click)="itemClicked(item._id)" >
-                
-                <input type="checkbox" class="elementItem" id="{{ item._id }}" [checked]="item.checked"  />
-                <div class="wrapCheckBox">
-                  <span></span>
-                </div>
-                <p class="item">{{ item.text }}</p>
-                <!-- <div class="deleteIcon"><i class="material-icons">delete_forever</i></div> -->
+                <!-- Contador de subtasks-->
+                <article id='subtasks-counter'>
+                  <div>
+                    <h5>{{ subintemLength(i) }}</h5>
+                  </div>
+                </article>
+                <article class="text-container">
+                  <input type="checkbox" class="elementItem" id="{{ item._id }}" [checked]="item.checked"  />
+                  <div class="wrapCheckBox">
+                    <span></span>
+                  </div>
+                  <p class="item">{{ item.text }}</p>
+                  <!-- <div class="deleteIcon"><i class="material-icons">delete_forever</i></div> -->
+                </article>
               </div>
             </ng-container>
           </div>
@@ -87,7 +94,7 @@
             <ng-container *ngFor="let item of activedList; let i = index">
               <div *ngIf="item.complete == true" class="itemContainer" (click)="itemClicked(item._id)">
                 <input type="checkbox" class="elementItem" id="{{ item._id }}" [checked]="item.checked"  />
-              <div class="wrapCheckBox">
+                <div class="wrapCheckBox">
                   <span></span>
                 </div>
                 <p class="item item-done">{{ item.text }}</p>

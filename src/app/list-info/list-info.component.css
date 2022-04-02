@@ -19,7 +19,6 @@
     margin-bottom: 3px;
     cursor:pointer;
 }
-  
 #listInformation input[type='checkbox']:checked ~ div.wrapCheckBox:before{
     font-family: 'Material Icons';
     content: "check";

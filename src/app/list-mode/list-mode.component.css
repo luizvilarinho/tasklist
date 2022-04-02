@@ -1,13 +1,30 @@
 
 #blocoCentral .itemContainer{
-    padding: 0px 20px 8px 23px;
+    /* padding: 0px 20px 8px 23px;
     position: relative;
-    left:0px;
+    left:0px; */
+    display: flex;
+    justify-content: flex-start;
+    padding: 9px 20px 8px 23px;
     width: 100%;
-  }
-  #blocoCentral .itemContainer:hover{
+}
+#blocoCentral .text-container{
+    width: 100%;
+}
+#subtasks-counter div{
+    background-color: #b0e0e6ff;
+    color: #5f9ea0ff;
+    padding: 1.5px 0 0 0;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+}
+#blocoCentral .itemContainer:hover{
     background-color: #efefefff;
-  }
+}
 #itemControllers{
     margin: 0px 20px 0px 5px;
     text-align: right;
@@ -134,7 +151,6 @@ h3.titleContainerEmpty {
     width: 25px;
     height: 20px;
     float: left;
-    margin-top: 2px;
 }
 div.wrapCheckBox:before{
     width: 15px;
@@ -167,6 +183,9 @@ div.wrapCheckBox:before{
     display: none;
 }
 
+/* #subtasks-counter div{
+
+} */
   @media (max-width:760px){
     #blocoCentral{
         width: 100vw;
@@ -187,8 +206,8 @@ div.wrapCheckBox:before{
         display: block;
         
     }
-    #btns-complete-container__mobile a{
+    /* #btns-complete-container__mobile a{
 
-    }
+    } */
     
   }

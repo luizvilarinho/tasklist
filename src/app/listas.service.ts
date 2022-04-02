@@ -121,8 +121,8 @@ export class ListasService {
   }
 
   getItem(itemId:number){
-    let itemSelected = this.listas[this.idxListActive].itens.map(item => {
-      console.log(this.listas, this.idxListActive)
+    let itemSelected = this.listas[this.idxListActive].itens.filter(item => {
+      console.log(this.listas, this.idxListActive, itemId)
       if(item._id === itemId) {
         return item
       }

@@ -75,7 +75,38 @@
     margin: 6px;
     cursor: pointer;
   }
-  
+  #kanban-list-info{
+    position: absolute;
+    top: 48px;
+    left: 60%;
+    width: 80%;
+    border-top: 1px solid #1f31313d;
+  }
+  #kanban-list-info .btn-fechar-subtask{
+    padding: 10px;
+    width: 100%;
+    background-color: #5f9ea0;
+  }
+  #kanban-list-info i{
+    color: #b0e0e6;
+    cursor: pointer;
+  }
+  #kanban-list-info .titleContainer h2{
+    padding-top: 0px;
+  }
+  .kanban-subtask-length{
+    display: inline-block;
+    background-color: #5f9ea0;
+    color: #d2e2e2;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+  .container-itens-menu li:hover{
+    color: #383838;
+  }
   /*
   .kanban-addIcon:hover{
     background-image: url('../images/addIcon_hover.svg');

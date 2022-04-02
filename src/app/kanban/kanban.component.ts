@@ -30,7 +30,7 @@ export class KanbanComponent implements OnInit {
   constructor(private listasService:ListasService) { }
 
   ngOnInit() {
-    
+    console.log(this.listasService.listas)
     this.initSubscription();
     this.initComponent();
   }
@@ -43,6 +43,7 @@ export class KanbanComponent implements OnInit {
   initSubscription(){
     this.subscriptions.add(this.listasService.idxList$.subscribe((novoIdx:number) => {
       this.nomeLista = this.listasService.getListas()[novoIdx].nome;
+      this.initComponent();
     }));
 
     this.subscriptions.add(this.listasService.listasSubject.subscribe(listas => {
@@ -125,16 +126,44 @@ export class KanbanComponent implements OnInit {
     });
 
     this.listasService.getListas()[idx].itens.splice(itemIndex, 1); 
-    this.listasService.emitListas();
-
-    console.log(itemIndex)
-    console.log(this.listasService.getListas()[idx].itens)
+    this.listasService.notificastion();
 
   }
   
-  editItem(){
+  showSubtask(kanban:string, idx:number){
     
+    this.listasService.listas[this.listasService.idxListActive].itens.map(item=> item.checked = false)
+
+    let itensArray = this.listasService.listas[this.listasService.idxListActive].itens.filter(item=>{
+     return item.kanban === kanban
+    });
+
+    itensArray[idx].checked = true;
+    this.listasService.subtaskActive = itensArray[idx].subItens;
+
+    this.listasService.showSubtasks = !this.listasService.showSubtasks;
   }
+
+  subtaskHide(){
+    this.listasService.showSubtasks = !this.listasService.showSubtasks;
+  }
+
+  kanbanSubtaskLength(kanban:string, idx:number){
+    let subItensLenth = 0;
+    
+    if(this.listasService.listas[this.listasService.idxListActive].itens.length > 0){
+      this.listasService.listas[this.listasService.idxListActive].itens.filter(item=>{
+        return item.kanban === kanban
+       })[idx].subItens.map(sub=>{
+        if(!sub.complete){
+          subItensLenth++;
+        }
+       })
+  
+      return subItensLenth
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }

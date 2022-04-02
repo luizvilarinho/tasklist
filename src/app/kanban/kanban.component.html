@@ -5,7 +5,7 @@
       <div class="kanban-addIcon__container"  routerLink="/kanban/add" [queryParams]="{ label: 'fazer'}"></div>
     </div>
    
-    <div @slideLight *ngFor="let item of fazer" class="item">
+    <div @slideLight *ngFor="let item of fazer; let i = index" class="item">
         <div class="texto-item-container">
             <p>{{ item.text }}</p>
         </div>
@@ -13,7 +13,10 @@
           <ul>
             <li routerLink="edit-item" [queryParams]="{ itemId: item._id}" >edit</li>
             <li (click)="deleteItem(item._id)">delete</li>
-            <li>subtask</li>
+            <li (click)="showSubtask('fazer', i)">
+              <div class="kanban-subtask-length">{{ kanbanSubtaskLength('fazer', i) }}</div> 
+              subtask
+            </li>
             <li (click)="changeToFazendo(item._id)">>></li>
           </ul>
         </div>
@@ -23,7 +26,7 @@
 
   <article class="cardTarefa">
     <div class="titulo">fazendo</div>
-    <div @slideLight *ngFor="let item of fazendo" class="item">
+    <div @slideLight *ngFor="let item of fazendo; let i = index" class="item">
         <div class="texto-item-container">
             <p>{{ item.text }}</p>
         </div>
@@ -32,7 +35,10 @@
             <li (click)="changeToFazer(item._id)"> << </li>
             <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
             <li (click)="deleteItem(item._id)">delete</li>
-            <li>subtask</li>
+            <li (click)="showSubtask('fazendo', i)">
+              <div class="kanban-subtask-length">{{ kanbanSubtaskLength('fazendo', i) }}</div>
+              subtask
+            </li>
             <li (click)="changeToFeito(item._id)">>></li>
           </ul>
         </div>
@@ -43,7 +49,7 @@
 
   <article class="cardTarefa">
     <div class="titulo">feito</div>
-    <div @slideLight *ngFor="let item of feito" class="item">
+    <div @slideLight *ngFor="let item of feito; let i = index" class="item">
         <div class="texto-item-container">
             <p>{{ item.text }}</p>
         </div>
@@ -52,7 +58,10 @@
             <li (click)="changeToFazendo(item._id)"> << </li>
             <li routerLink="edit-item" [queryParams]="{ itemId: item._id}">edit</li>
             <li (click)="deleteItem(item._id)">delete</li>
-            <li>subtask</li>
+            <li (click)="showSubtask('feito', i)">
+              <div class="kanban-subtask-length">{{ kanbanSubtaskLength('feito', i) }}</div>
+              subtask
+            </li>
           </ul>
         </div>
 
@@ -61,6 +70,13 @@
   </article>
   
 </section>
+<section id="kanban-list-info" *ngIf="listasService.showSubtasks">
+  <div class="btn-fechar-subtask">
+    <div class="deleteIcon"><i class="material-icons" (click)="subtaskHide()">swap_horiz</i></div>
+  </div>
+  <app-list-info></app-list-info>
+</section>
+
 <!-- <section id="task-info">
   <section id="listInformation" class="background-blue">
     <div class="listIconContainer">
@@ -104,4 +120,4 @@
       </div>
     </div>
   </section> 
-</section>-->
+</section> -->

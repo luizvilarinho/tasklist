@@ -1,3 +1,4 @@
+import { Subitem } from './../model/subitem';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 import { ListasService } from '../listas.service';
@@ -356,6 +357,17 @@ export class ListModeComponent implements OnInit {
     this.listasService.emitSelectedlistId();
 }
 
+subintemLength(idx:number){
+  let subitensIncomplete = 0;
+  this.listasService.getListas()[this.listasService.idxListActive].itens[idx].subItens
+    .map(sub=>{
+      if(!sub.complete){
+        subitensIncomplete++
+      }
+    })
+
+  return subitensIncomplete
+}
   
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Subscription, observable, } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ListasService } from '../listas.service';
 import { taskAnimations, slideLight } from '../animations';
 import { Subitem } from '../model/subitem';
-import { Item } from '../model/item';
 
 @Component({
   selector: 'app-list-info',
