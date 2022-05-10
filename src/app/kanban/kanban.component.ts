@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ListasService } from '../listas.service';
 import { Subscription } from 'rxjs';
 import { slideLight, taskAnimations } from '../animations';
@@ -17,6 +17,7 @@ import { Item } from '../model/item';
 })
 export class KanbanComponent implements OnInit {
 
+  @ViewChild('sectionKanban') sectionKanban: ElementRef; 
   nomeLista:string;
 
   lista:Menu;
@@ -87,6 +88,11 @@ export class KanbanComponent implements OnInit {
         return el;
       }
     })
+
+
+    setTimeout(()=>{
+      this.listasService.emitKanbanHeight(`${this.sectionKanban.nativeElement.getBoundingClientRect().height}px`);
+    }, 500)
   }
 
   changeToFazendo(id:number){

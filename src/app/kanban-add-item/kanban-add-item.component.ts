@@ -60,6 +60,7 @@ export class KanbanAddItemComponent implements OnInit {
       
     this.listasService.getListas()[this.listasService.idxListActive].itens.push(inputItem);
 
+
     //this.listasService.gravarDados(this.listasService.getListas());
   }
 }

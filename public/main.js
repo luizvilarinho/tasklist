@@ -767,7 +767,7 @@ module.exports = "/*NOVO CSS*/\r\n#cardsModuloTarefa{\r\n    padding-top:15px;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section  @fade id=\"cardsModuloTarefa\">\r\n  <h2>{{ nomeLista }}</h2>\r\n  <article class=\"cardTarefa\">\r\n    <div class=\"titulo\">fazer\r\n      <div class=\"kanban-addIcon__container\"  routerLink=\"/kanban/add\" [queryParams]=\"{ label: 'fazer'}\"></div>\r\n    </div>\r\n   \r\n    <div @slideLight *ngFor=\"let item of fazer; let i = index\" class=\"item\">\r\n        <div class=\"texto-item-container\">\r\n            <p>{{ item.text }}</p>\r\n        </div>\r\n        <div class=\"container-itens-menu\">\r\n          <ul>\r\n            <li routerLink=\"edit-item\" [queryParams]=\"{ itemId: item._id}\" >edit</li>\r\n            <li (click)=\"deleteItem(item._id)\">delete</li>\r\n            <li (click)=\"showSubtask('fazer', i)\">\r\n              <div class=\"kanban-subtask-length\">{{ kanbanSubtaskLength('fazer', i) }}</div> \r\n              subtask\r\n            </li>\r\n            <li (click)=\"changeToFazendo(item._id)\">>></li>\r\n          </ul>\r\n        </div>\r\n\r\n    </div>\r\n  </article>\r\n\r\n  <article class=\"cardTarefa\">\r\n    <div class=\"titulo\">fazendo</div>\r\n    <div @slideLight *ngFor=\"let item of fazendo; let i = index\" class=\"item\">\r\n        <div class=\"texto-item-container\">\r\n            <p>{{ item.text }}</p>\r\n        </div>\r\n        <div class=\"container-itens-menu\">\r\n          <ul>\r\n            <li (click)=\"changeToFazer(item._id)\"> << </li>\r\n            <li routerLink=\"edit-item\" [queryParams]=\"{ itemId: item._id}\">edit</li>\r\n            <li (click)=\"deleteItem(item._id)\">delete</li>\r\n            <li (click)=\"showSubtask('fazendo', i)\">\r\n              <div class=\"kanban-subtask-length\">{{ kanbanSubtaskLength('fazendo', i) }}</div>\r\n              subtask\r\n            </li>\r\n            <li (click)=\"changeToFeito(item._id)\">>></li>\r\n          </ul>\r\n        </div>\r\n\r\n    </div>\r\n    \r\n  </article>\r\n\r\n  <article class=\"cardTarefa\">\r\n    <div class=\"titulo\">feito</div>\r\n    <div @slideLight *ngFor=\"let item of feito; let i = index\" class=\"item\">\r\n        <div class=\"texto-item-container\">\r\n            <p>{{ item.text }}</p>\r\n        </div>\r\n        <div class=\"container-itens-menu\">\r\n          <ul>\r\n            <li (click)=\"changeToFazendo(item._id)\"> << </li>\r\n            <li routerLink=\"edit-item\" [queryParams]=\"{ itemId: item._id}\">edit</li>\r\n            <li (click)=\"deleteItem(item._id)\">delete</li>\r\n            <li (click)=\"showSubtask('feito', i)\">\r\n              <div class=\"kanban-subtask-length\">{{ kanbanSubtaskLength('feito', i) }}</div>\r\n              subtask\r\n            </li>\r\n          </ul>\r\n        </div>\r\n\r\n    </div>\r\n    \r\n  </article>\r\n  \r\n</section>\r\n<section id=\"kanban-list-info\" *ngIf=\"listasService.showSubtasks\">\r\n  <div class=\"btn-fechar-subtask\">\r\n    <div class=\"deleteIcon\"><i class=\"material-icons\" (click)=\"subtaskHide()\">swap_horiz</i></div>\r\n  </div>\r\n  <app-list-info></app-list-info>\r\n</section>\r\n\r\n<!-- <section id=\"task-info\">\r\n  <section id=\"listInformation\" class=\"background-blue\">\r\n    <div class=\"listIconContainer\">\r\n      <img id=\"iconeListas\" src=\"images/listas_icon.svg\">\r\n      <div class=\"boxListas hidden\">\r\n          <div class=\"itemBoxListas\">todas</div>\r\n          <div class=\"itemBoxListas\">inbox</div>\r\n          <div class=\"itemBoxListas\">lista1</div>\r\n          <div class=\"itemBoxListas\">lista2</div>\r\n      </div>\r\n    </div>\r\n    <div class=\"titleContainer\">\r\n      <h2>SubTask</h2>\r\n    </div>\r\n    <div class=\"inputContainer\">\r\n      <input type=\"text\" name=\"inputItem\" placeholder=\"new item\"/><button>OK</button>\r\n    </div>\r\n    <div id=\"doneComponent\">\r\n      <span>25%</span>\r\n      <div class=\"doneItem\"></div>\r\n    </div>\r\n    <div class=\"listContainer\">\r\n      <div class=\"itemContainer\">\r\n        <input type=\"checkbox\" id=\"1\"  /><label for=\"1\" class=\"item\">lsadsad sa as ad asd asd </label>\r\n          <div class=\"deleteIcon\"><i class=\"material-icons\">delete_forever</i></div>\r\n      </div>\r\n    </div>\r\n    <div id=\"annotation\">\r\n      <div class=\"titleContainer\">\r\n        <h2>Annotation</h2>\r\n      </div>\r\n      <div class=\"inputContainer\">\r\n        <input type=\"text\" name=\"inputItem\" placeholder=\"new item\"/><button>OK</button>\r\n      </div>\r\n      <div class=\"annotationItem\">\r\n        <div class=\"txtAnnotation\">ajn NDASMD MALS ASLSKDMAçams çms masçdm çalmsdç</div>\r\n      <div class=\"editAnnotation\">\r\n        <span>Edit</span><span>delete</span>\r\n      </div>\r\n\r\n      </div>\r\n    </div>\r\n  </section> \r\n</section> -->"
+module.exports = "<section  @fade id=\"cardsModuloTarefa\" #sectionKanban>\r\n  <h2>{{ nomeLista }}</h2>\r\n  <article class=\"cardTarefa\">\r\n    <div class=\"titulo\">fazer\r\n      <div class=\"kanban-addIcon__container\"  routerLink=\"/kanban/add\" [queryParams]=\"{ label: 'fazer'}\"></div>\r\n    </div>\r\n   \r\n    <div @slideLight *ngFor=\"let item of fazer; let i = index\" class=\"item\">\r\n        <div class=\"texto-item-container\">\r\n            <p>{{ item.text }}</p>\r\n        </div>\r\n        <div class=\"container-itens-menu\">\r\n          <ul>\r\n            <li routerLink=\"edit-item\" [queryParams]=\"{ itemId: item._id}\" >edit</li>\r\n            <li (click)=\"deleteItem(item._id)\">delete</li>\r\n            <li (click)=\"showSubtask('fazer', i)\">\r\n              <div class=\"kanban-subtask-length\">{{ kanbanSubtaskLength('fazer', i) }}</div> \r\n              subtask\r\n            </li>\r\n            <li (click)=\"changeToFazendo(item._id)\">>></li>\r\n          </ul>\r\n        </div>\r\n\r\n    </div>\r\n  </article>\r\n\r\n  <article class=\"cardTarefa\">\r\n    <div class=\"titulo\">fazendo</div>\r\n    <div @slideLight *ngFor=\"let item of fazendo; let i = index\" class=\"item\">\r\n        <div class=\"texto-item-container\">\r\n            <p>{{ item.text }}</p>\r\n        </div>\r\n        <div class=\"container-itens-menu\">\r\n          <ul>\r\n            <li (click)=\"changeToFazer(item._id)\"> << </li>\r\n            <li routerLink=\"edit-item\" [queryParams]=\"{ itemId: item._id}\">edit</li>\r\n            <li (click)=\"deleteItem(item._id)\">delete</li>\r\n            <li (click)=\"showSubtask('fazendo', i)\">\r\n              <div class=\"kanban-subtask-length\">{{ kanbanSubtaskLength('fazendo', i) }}</div>\r\n              subtask\r\n            </li>\r\n            <li (click)=\"changeToFeito(item._id)\">>></li>\r\n          </ul>\r\n        </div>\r\n\r\n    </div>\r\n    \r\n  </article>\r\n\r\n  <article class=\"cardTarefa\">\r\n    <div class=\"titulo\">feito</div>\r\n    <div @slideLight *ngFor=\"let item of feito; let i = index\" class=\"item\">\r\n        <div class=\"texto-item-container\">\r\n            <p>{{ item.text }}</p>\r\n        </div>\r\n        <div class=\"container-itens-menu\">\r\n          <ul>\r\n            <li (click)=\"changeToFazendo(item._id)\"> << </li>\r\n            <li routerLink=\"edit-item\" [queryParams]=\"{ itemId: item._id}\">edit</li>\r\n            <li (click)=\"deleteItem(item._id)\">delete</li>\r\n            <li (click)=\"showSubtask('feito', i)\">\r\n              <div class=\"kanban-subtask-length\">{{ kanbanSubtaskLength('feito', i) }}</div>\r\n              subtask\r\n            </li>\r\n          </ul>\r\n        </div>\r\n\r\n    </div>\r\n    \r\n  </article>\r\n  \r\n</section>\r\n<section id=\"kanban-list-info\" *ngIf=\"listasService.showSubtasks\">\r\n  <div class=\"btn-fechar-subtask\">\r\n    <div class=\"deleteIcon\"><i class=\"material-icons\" (click)=\"subtaskHide()\">swap_horiz</i></div>\r\n  </div>\r\n  <app-list-info></app-list-info>\r\n</section>\r\n\r\n<!-- <section id=\"task-info\">\r\n  <section id=\"listInformation\" class=\"background-blue\">\r\n    <div class=\"listIconContainer\">\r\n      <img id=\"iconeListas\" src=\"images/listas_icon.svg\">\r\n      <div class=\"boxListas hidden\">\r\n          <div class=\"itemBoxListas\">todas</div>\r\n          <div class=\"itemBoxListas\">inbox</div>\r\n          <div class=\"itemBoxListas\">lista1</div>\r\n          <div class=\"itemBoxListas\">lista2</div>\r\n      </div>\r\n    </div>\r\n    <div class=\"titleContainer\">\r\n      <h2>SubTask</h2>\r\n    </div>\r\n    <div class=\"inputContainer\">\r\n      <input type=\"text\" name=\"inputItem\" placeholder=\"new item\"/><button>OK</button>\r\n    </div>\r\n    <div id=\"doneComponent\">\r\n      <span>25%</span>\r\n      <div class=\"doneItem\"></div>\r\n    </div>\r\n    <div class=\"listContainer\">\r\n      <div class=\"itemContainer\">\r\n        <input type=\"checkbox\" id=\"1\"  /><label for=\"1\" class=\"item\">lsadsad sa as ad asd asd </label>\r\n          <div class=\"deleteIcon\"><i class=\"material-icons\">delete_forever</i></div>\r\n      </div>\r\n    </div>\r\n    <div id=\"annotation\">\r\n      <div class=\"titleContainer\">\r\n        <h2>Annotation</h2>\r\n      </div>\r\n      <div class=\"inputContainer\">\r\n        <input type=\"text\" name=\"inputItem\" placeholder=\"new item\"/><button>OK</button>\r\n      </div>\r\n      <div class=\"annotationItem\">\r\n        <div class=\"txtAnnotation\">ajn NDASMD MALS ASLSKDMAçams çms masçdm çalmsdç</div>\r\n      <div class=\"editAnnotation\">\r\n        <span>Edit</span><span>delete</span>\r\n      </div>\r\n\r\n      </div>\r\n    </div>\r\n  </section> \r\n</section> -->"
 
 /***/ }),
 
@@ -821,9 +821,15 @@ var KanbanComponent = /** @class */ (function () {
         var idx = this.listasService.idxListActive;
         this.lista = this.listasService.getListas()[idx];
         this.nomeLista = this.lista.nome;
+        this.listasService.getListas()[idx].itens.map(function (item) {
+            if (item.complete) {
+                item.kanban = 'feito';
+            }
+        });
         this.kanbanUpdate();
     };
     KanbanComponent.prototype.kanbanUpdate = function () {
+        var _this = this;
         this.fazer = this.lista.itens.filter(function (el) {
             console.log("FAZER1", el.kanban);
             if (el.kanban === "fazer") {
@@ -840,6 +846,9 @@ var KanbanComponent = /** @class */ (function () {
                 return el;
             }
         });
+        setTimeout(function () {
+            _this.listasService.emitKanbanHeight(_this.sectionKanban.nativeElement.getBoundingClientRect().height + "px");
+        }, 500);
     };
     KanbanComponent.prototype.changeToFazendo = function (id) {
         var item = this.listasService.getItem(id);
@@ -902,6 +911,10 @@ var KanbanComponent = /** @class */ (function () {
     KanbanComponent.prototype.ngOnDestroy = function () {
         this.subscriptions.unsubscribe();
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('sectionKanban'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], KanbanComponent.prototype, "sectionKanban", void 0);
     KanbanComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-kanban',
@@ -1535,6 +1548,7 @@ var ListasService = /** @class */ (function () {
         this.idxList$ = this.idxListSubject.asObservable();
         this.isEmptyLists$ = this.isEmptySubject.asObservable();
         this.list$ = this.subjectList.asObservable();
+        this.kanbanHeight$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
         this.init();
     }
     ListasService.prototype.init = function () {
@@ -1573,6 +1587,9 @@ var ListasService = /** @class */ (function () {
         this.listasSubject.next(this.listas);
         this.gravarDados(this.listas);
         console.log("NOTIFICATION", this.listas);
+    };
+    ListasService.prototype.emitKanbanHeight = function (height) {
+        this.kanbanHeight$.next(height);
     };
     ListasService.prototype.notificationListener = function () {
         return this.listasSubject.asObservable();
@@ -1697,7 +1714,7 @@ module.exports = ".active{\r\n    font-weight: 400!important;\r\n    color: #b0e
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"menu-descktop\">\r\n  <section class=\"ico-burger-container\" [class.height100]=\"h100\"> \r\n    <span class=\"material-icons\" (click)=\"showHideMenuLateral()\">\r\n      view_column\r\n    </span>\r\n  </section>\r\n  \r\n  <section id=\"menuLateral\" class=\"background-blue\" [class.is-hidden]=\"lateralHidden\">\r\n    <div class=\"titulo-container borderBottom\">\r\n      <h2>Lists:<span routerLink=\"addLista\" class=\"teste addIcon\"></span></h2>\r\n    </div>\r\n    <div class=\"md-marginBottom\">\r\n      <ul id=\"listNames\">\r\n        <li @fade @fadeout @slideLight *ngFor=\"let nomesListaItem of nomesListas; let idx=index\">\r\n          <a href=\"javascript:;\" (click)=\"selected(idx)\" id=\"{{ idx }}\" class=\"\"> {{ nomesListaItem.nome }} </a>\r\n          <span @fade @fadeout @slideLight class=\"list-length\">{{ nomesListaItem.incompletedItens() }}</span>\r\n          <a (click)=\"deleteList(idx)\"><i class=\"material-icons deleteIcon\">delete_forever</i></a>\r\n        </li>\r\n        \r\n      </ul>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n<div id=\"menu-mobile\">\r\n  <section class=\"ico-burger-container-mobile\"> \r\n    <span class=\"material-icons\" (click)=\"openMobileMenu()\">\r\n      view_column\r\n    </span>\r\n    <article @fade @fadeout @slideLight id=\"menu-container\" *ngIf=\"mobileOpenedMenu\">\r\n      <div class=\"titulo-container borderBottom\">\r\n        <h2>Lists:<span routerLink=\"addLista\" class=\"teste addIcon\"></span></h2>\r\n      </div>\r\n      <div class=\"md-marginBottom\">\r\n        <ul id=\"listNames\">\r\n          <li *ngFor=\"let nomesListaItem of nomesListas; let idx=index\">\r\n            <a href=\"javascript:;\" (click)=\"selected(idx)\" id=\"{{ idx }}\" class=\"\"> {{ nomesListaItem.nome }} </a>\r\n            <span class=\"list-length\">{{ nomesListaItem.incompletedItens() }}</span>\r\n            <a (click)=\"deleteList(idx)\"><i class=\"material-icons deleteIcon\">delete_forever</i></a>\r\n          </li>\r\n          \r\n        </ul>\r\n      </div>\r\n    </article>\r\n  </section>\r\n</div>\r\n\r\n"
+module.exports = "<div id=\"menu-descktop\">\r\n  <section class=\"ico-burger-container\" [class.height100]=\"h100\"> \r\n    <span class=\"material-icons\" (click)=\"showHideMenuLateral()\">\r\n      view_column\r\n    </span>\r\n  </section>\r\n  \r\n  <section id=\"menuLateral\" class=\"background-blue\" [class.is-hidden]=\"lateralHidden\" [ngStyle]=\"{height: kanbanHeight}\">\r\n    <div class=\"titulo-container borderBottom\">\r\n      <h2>Lists:<span routerLink=\"addLista\" class=\"teste addIcon\"></span></h2>\r\n    </div>\r\n    <div class=\"md-marginBottom\">\r\n      <ul id=\"listNames\">\r\n        <li @fade @fadeout @slideLight *ngFor=\"let nomesListaItem of nomesListas; let idx=index\">\r\n          <a href=\"javascript:;\" (click)=\"selected(idx)\" id=\"{{ idx }}\" class=\"\"> {{ nomesListaItem.nome }} </a>\r\n          <span @fade @fadeout @slideLight class=\"list-length\">{{ nomesListaItem.incompletedItens() }}</span>\r\n          <a (click)=\"deleteList(idx)\"><i class=\"material-icons deleteIcon\">delete_forever</i></a>\r\n        </li>\r\n        \r\n      </ul>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n<div id=\"menu-mobile\">\r\n  <section class=\"ico-burger-container-mobile\"> \r\n    <span class=\"material-icons\" (click)=\"openMobileMenu()\">\r\n      view_column\r\n    </span>\r\n    <article @fade @fadeout @slideLight id=\"menu-container\" *ngIf=\"mobileOpenedMenu\">\r\n      <div class=\"titulo-container borderBottom\">\r\n        <h2>Lists:<span routerLink=\"addLista\" class=\"teste addIcon\"></span></h2>\r\n      </div>\r\n      <div class=\"md-marginBottom\">\r\n        <ul id=\"listNames\">\r\n          <li *ngFor=\"let nomesListaItem of nomesListas; let idx=index\">\r\n            <a href=\"javascript:;\" (click)=\"selected(idx)\" id=\"{{ idx }}\" class=\"\"> {{ nomesListaItem.nome }} </a>\r\n            <span class=\"list-length\">{{ nomesListaItem.incompletedItens() }}</span>\r\n            <a (click)=\"deleteList(idx)\"><i class=\"material-icons deleteIcon\">delete_forever</i></a>\r\n          </li>\r\n          \r\n        </ul>\r\n      </div>\r\n    </article>\r\n  </section>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1726,17 +1743,22 @@ var MenuComponent = /** @class */ (function () {
         this.listasService = listasService;
         this.lateralHidden = false;
         this.h100 = false;
+        this.kanbanHeight = '0px';
         this.selectedNameList = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.subscriptions = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subscription"]();
         this.mobileOpenedMenu = false;
     }
     MenuComponent.prototype.ngOnInit = function () {
+        var _this = this;
         if (this.listasService.isEmptyLists) {
             this.initSubscription();
         }
         else {
             this.initMenuComponent();
         }
+        this.listasService.kanbanHeight$.subscribe(function (novsAltura) {
+            _this.kanbanHeight = novsAltura;
+        });
     };
     MenuComponent.prototype.initMenuComponent = function () {
         this.initSubscription();

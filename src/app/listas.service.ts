@@ -55,6 +55,8 @@ export class ListasService {
 
   subtaskActive:Array<Subitem>;
 
+  kanbanHeight$ = new Subject<string>();
+
   // kanbanShow = false;
   // kanbanShowSubject = new Subject<boolean>();
 
@@ -114,6 +116,10 @@ export class ListasService {
     this.listasSubject.next(this.listas)
     this.gravarDados(this.listas);
     console.log("NOTIFICATION", this.listas)
+  }
+
+  emitKanbanHeight(height:string){
+    this.kanbanHeight$.next(height)
   }
 
   notificationListener(){

@@ -19,6 +19,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   lateralHidden = false;
   h100 = false;
 
+  kanbanHeight = '0px';
   nomesListas:Array<Menu>;
 
   @Input() selectedList:string;
@@ -40,6 +41,9 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.initMenuComponent();
     }
     
+    this.listasService.kanbanHeight$.subscribe(novsAltura=>{
+      this.kanbanHeight = novsAltura;
+    })
     
   }
 
