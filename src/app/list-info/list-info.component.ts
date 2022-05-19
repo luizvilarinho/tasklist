@@ -4,22 +4,23 @@ import { Subscription } from 'rxjs';
 import { ListasService } from '../listas.service';
 import { taskAnimations, slideLight } from '../animations';
 import { Subitem } from '../model/subitem';
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-list-info',
   templateUrl: './list-info.component.html',
   styleUrls: ['./list-info.component.css'],
   animations: [
-    taskAnimations, 
+    taskAnimations,
     slideLight
   ]
 })
 export class ListInfoComponent implements OnInit {
 
-  
+
   private subscriptions = new Subscription();
 
-  subItens:Array<Subitem>; 
+  subItens:Array<Subitem>;
 
   listInfoShow:boolean;
 
@@ -31,14 +32,14 @@ export class ListInfoComponent implements OnInit {
   showDoneBtn:boolean;
 
   anable = false;
-  
+
   constructor(private listasService:ListasService) { }
 
   ngOnInit() {
-    
+
     this.initSubscription();
     this.componentInit();
-    
+
     console.log("SUBTASKS INIT")
     this.verifyCheckedItens();
 
@@ -53,7 +54,7 @@ export class ListInfoComponent implements OnInit {
     document.addEventListener('keypress', function(e:any){
       if (e.keyCode == 13){
         let item :HTMLInputElement = document.querySelector("[name='inputSubitem']");
-        
+
         if(!item){
           return false;
         }
@@ -66,7 +67,7 @@ export class ListInfoComponent implements OnInit {
         _this.addSubItem(item);
       }
   })
-    
+
   }
 
   initSubscription(){
@@ -96,14 +97,14 @@ export class ListInfoComponent implements OnInit {
                   return el;
               }
             })[0].subItens
-      
+
             this.listasService.emitSubtaskActive(sub);
             showSubitens = true;
-            return 
+            return
           }
         });
     }
-   
+
     this.listInfoShow = showSubitens;
   }
 
@@ -139,7 +140,7 @@ export class ListInfoComponent implements OnInit {
   }
 
   addSubItem(inputSuitem){
-      
+
 
       if(inputSuitem.value == ''){
         return false;
@@ -167,7 +168,7 @@ export class ListInfoComponent implements OnInit {
       });
 
       this.subItens = itensUncomplete.concat(itensCompletes);
-        
+
       this.listasService.calcularPorcentagemConcluida();
 
       /*Gravar*/
@@ -206,9 +207,9 @@ export class ListInfoComponent implements OnInit {
       return sub.checked == true;
     });
 
-    
+
     subItensChecked.forEach((sub, index)=>{
-      
+
       sub.complete = true;
       sub.checked = false;
       let idx= this.subItens.indexOf(sub);
@@ -217,18 +218,18 @@ export class ListInfoComponent implements OnInit {
       this.subItens.push(this.subItens.splice(idx, 1)[0]);
     })
 
-    
+
     if(subItensChecked.length > 0){
       this.showDoneBtn = true;
     }
 
-    //desativa botoes 
+    //desativa botoes
     this.activateButton = false;
     this.activateButtonEdit = false;
 
     //calcula porcentagem
     this.listasService.calcularPorcentagemConcluida();
-    
+
     /*Gravar*/
     this.gravarSubitens();
   }
@@ -280,6 +281,10 @@ export class ListInfoComponent implements OnInit {
 
   changeEditParam(){
     this.listasService.edit = "subitem";
+  }
+
+  onDrop(event: CdkDragDrop<any>){
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
   }
 
   ngOnDestroy(): void {

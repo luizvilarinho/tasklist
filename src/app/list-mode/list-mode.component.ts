@@ -5,19 +5,20 @@ import { ListasService } from '../listas.service';
 import { Item } from '../model/item';
 import { Subscription } from 'rxjs';
 import { taskAnimations, slideLight } from '../animations';
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-list-mode',
   templateUrl: './list-mode.component.html',
   styleUrls: ['./list-mode.component.css'],
   animations: [
-    taskAnimations, 
+    taskAnimations,
     slideLight
-    
+
   ]
 })
 export class ListModeComponent implements OnInit {
-  
+
   @ViewChild('editButton') editButton: ElementRef;
 
   private subscriptions = new Subscription();
@@ -36,7 +37,7 @@ export class ListModeComponent implements OnInit {
   isEmpty:boolean;
 
   showNameLists:boolean = false;
-  
+
   arrowIcon:string = 'keyboard_arrow_right';
 
   selectIncompleteTasks:boolean = true;
@@ -62,22 +63,22 @@ export class ListModeComponent implements OnInit {
   if(this.listasService.getListas()[this.listasService.idxListActive]){
     this.nomeLista = this.listasService.getListas()[this.listasService.idxListActive].nome;
   }
-      
+
 }
 
     initListModeComponent(){
 
 
     let _this =this;
-      
+
     this.activedList = this.listasService.getListas()[this.listasService.idxListActive].itens;
 
     this.incompleteSelected = true;
-    
+
     this.initSubscription();
 
     //this.checkedIfIsEmptyList();
-  
+
       document.addEventListener('keypress', function(e:any){
           if (e.keyCode == 13){
             let item :HTMLInputElement = document.querySelector("[name='inputItem']");
@@ -93,7 +94,7 @@ export class ListModeComponent implements OnInit {
       this.subscriptions.add(this.listasService.idxList$.subscribe((novoIdx:number) => {
         this.activedList = this.listasService.getListas()[novoIdx].itens;
         this.nomeLista = this.listasService.getListas()[novoIdx].nome;
-        
+
         this.verifyCheckedItens();
       }))
 
@@ -104,11 +105,11 @@ export class ListModeComponent implements OnInit {
     this.checkedIfIsEmptyList();
     this.verifyCheckedItens();
 
-    
+
   }
 
    addItem(inputElement:HTMLInputElement){
-       
+
     let item:string= inputElement.value;
 
     if(item == ""){
@@ -124,7 +125,7 @@ export class ListModeComponent implements OnInit {
       notas:[],
       kanban:"fazer"
     }
-      
+
     this.listasService.getListas()[this.listasService.idxListActive].itens.push(inputItem);
 
     inputElement.value="";
@@ -134,7 +135,7 @@ export class ListModeComponent implements OnInit {
    }
 
    verifyCheckedItens(){
-    
+
     var itensChecked;
 
     if(this.activedList != undefined){
@@ -147,7 +148,7 @@ export class ListModeComponent implements OnInit {
       itensChecked = []
     }
 
-   
+
     if(itensChecked.length == 1){
       this.activateButton = true;
       this.activateButtonEdit = true;
@@ -171,7 +172,7 @@ export class ListModeComponent implements OnInit {
   }
 
    itemClicked(id){
-    
+
       let item = this.activedList.filter((el) => {
           if (el._id == id){
               return el;
@@ -186,7 +187,7 @@ export class ListModeComponent implements OnInit {
 
       this.listasService.gravarDados(this.listasService.getListas());
    }
-   
+
    deleteItens(){
 
       let itens:any = this.activedList.filter((el) => {
@@ -208,7 +209,7 @@ export class ListModeComponent implements OnInit {
 
       this.listasService.getListByName(this.nomeLista).itens = itensUnchecked;
       this.activedList = itensUnchecked;
-      
+
       this.activateButton = false;
       this.activateButtonEdit = false;
 
@@ -221,7 +222,7 @@ export class ListModeComponent implements OnInit {
   checkedIfIsEmptyList(){
     let isEmpty:boolean = this.listasService.isEmptyLists;
 
-    
+
     if(isEmpty){
       this.isCentralHidden = true;
       this.isEmptyHidden = false;
@@ -237,7 +238,7 @@ export class ListModeComponent implements OnInit {
       return el.checked == true;
     });
 
-    let currentList = this.listasService.getListByName(this.nomeLista); 
+    let currentList = this.listasService.getListByName(this.nomeLista);
 
     for(let i = 0; i < itens.length; i++){
       let itemId = itens[i]._id;
@@ -253,7 +254,7 @@ export class ListModeComponent implements OnInit {
       }
       this.activateButton = false;
     }
-    
+
     this.listasService.showSubtasks = false;
     this.listasService.emitSubstasksShowHide();
     this.listasService.gravarDados(this.listasService.getListas());
@@ -265,7 +266,7 @@ export class ListModeComponent implements OnInit {
           return item;
         }
     });
-    let currentList = this.listasService.getListByName(this.nomeLista); 
+    let currentList = this.listasService.getListByName(this.nomeLista);
 
     for(let i = 0; i < itens.length; i++){
       let itemId = itens[i]._id;
@@ -276,7 +277,7 @@ export class ListModeComponent implements OnInit {
           currentList.itens[j].checked = false;
         }
       }
-      
+
     }
 
     this.activateButton = false;
@@ -301,35 +302,35 @@ export class ListModeComponent implements OnInit {
       itens[i].checked = false;
     }
   }
-  
+
   doChange(name:string):void{
-    
+
     let itens:any = this.activedList.filter((el) => {
      if(el.checked == true && el.complete == false){
         return el;
      }
     });
 
-    let changeTo = this.listasService.getListByName(name).itens; 
+    let changeTo = this.listasService.getListByName(name).itens;
 
     for(let i = 0; i < itens.length; i++){
       let itemId:number = itens[i]._id;
         changeTo.push(itens[i]);
     }
 
-    
+
 
     this.deleteItens();
     this.uncheckedAll(name);
 
     this.showListsNames();
-    
+
     this.showNameLists = false;
 
     this.arrowIcon = 'keyboard_arrow_right';
-    
+
     this.listasService.gravarDados(this.listasService.getListas());
-   
+
   }
 
   showCompletedTasks(){
@@ -357,22 +358,26 @@ export class ListModeComponent implements OnInit {
     this.listasService.emitSelectedlistId();
 }
 
-subintemLength(idx:number){
-  let subitensIncomplete = 0;
-  this.listasService.getListas()[this.listasService.idxListActive].itens[idx].subItens
-    .map(sub=>{
-      if(!sub.complete){
-        subitensIncomplete++
-      }
-    })
+  subintemLength(idx:number){
+    let subitensIncomplete = 0;
+    this.listasService.getListas()[this.listasService.idxListActive].itens[idx].subItens
+      .map(sub=>{
+        if(!sub.complete){
+          subitensIncomplete++
+        }
+      })
 
-  return subitensIncomplete
-}
-  
+    return subitensIncomplete
+  }
+
+  onDrop(event: CdkDragDrop<any>){
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
 }
 
-    
+

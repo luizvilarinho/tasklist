@@ -1,11 +1,15 @@
-<div id="annotation">
+<div id="annotation"
+     cdkDropList
+     cdkDropListOrientation="vertical"
+     (cdkDropListDropped)="onDrop($event)"
+     [cdkDropListData]="notes">
   <div class="titleContainer">
     <h2>Notes</h2>
   </div>
   <div class="inputContainer">
     <input type="text" #newNote name="iptNota" [value]="inputNoteValue" placeholder="new item"/><button (click)="addNote( newNote )">OK</button>
   </div>
-  <div *ngFor = "let note of notes; let i=index" class="annotationItem">
+  <div cdkDrag *ngFor = "let note of notes; let i=index" class="annotationItem">
     <div [hidden]="note.edit" class="txtAnnotation">{{ note.txt }}</div>
     <input [type]="typeEditInput" #iptEdit value="{{ note.txt }}" />
   <div class="editAnnotation">

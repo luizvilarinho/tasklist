@@ -65,7 +65,7 @@
 }
 h3.titleContainerEmpty {
     margin-left: 7px;
-    
+
 }
 .edit-icon-name{
     margin-right: 15px;
@@ -114,7 +114,7 @@ h3.titleContainerEmpty {
   #blocoCentral p.item-done{
       color:#c1c1c1;
   }
-  
+
   #containerLista div.envelop{
     position: relative;
     top:-5px;
@@ -165,7 +165,7 @@ div.wrapCheckBox:before{
     margin-bottom: 3px;
     cursor:pointer;
   }
-  
+
   input[type='checkbox']:checked ~ div.wrapCheckBox:before{
       font-family: 'Material Icons';
        content: "check";
@@ -204,10 +204,10 @@ div.wrapCheckBox:before{
     }
     .mobile{
         display: block;
-        
+
     }
     /* #btns-complete-container__mobile a{
 
     } */
-    
+
   }

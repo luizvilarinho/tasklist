@@ -23,9 +23,9 @@
     color:#dcdcdcff;
     padding: 5px;
   }
- 
+
   .cardTarefa .texto-item-container{
-  
+
     font-size: 1rem;
     color: #383838;
     padding: 15px;
@@ -33,7 +33,7 @@
   #cardsModuloTarefa .item{
     margin: 10px 0 10px 0;
     border: 1px solid #c1c1c1;
-  
+
   }
   .cardTarefa .container-itens-menu{
     height: auto;
@@ -107,6 +107,7 @@
   .container-itens-menu li:hover{
     color: #383838;
   }
+
   /*
   .kanban-addIcon:hover{
     background-image: url('../images/addIcon_hover.svg');

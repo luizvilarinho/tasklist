@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ListasService } from '../listas.service';
 import { isNgTemplate } from '@angular/compiler';
 import { Notes } from '../model/notes';
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-notes',
@@ -33,7 +34,7 @@ export class NotesComponent implements OnInit {
     document.addEventListener('keypress', function(e:any){
       if (e.keyCode == 13){
         let notaElement:HTMLInputElement = document.querySelector("[name='iptNota'")
-        
+
         if(notaElement.value == ""){
           return false;
         }
@@ -93,6 +94,10 @@ export class NotesComponent implements OnInit {
     })[0].notas = this.notes;
 
     this.listaService.gravarDados(this.listaService.getListas());
+  }
+
+  onDrop(event: CdkDragDrop<any>){
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
   }
 
 }

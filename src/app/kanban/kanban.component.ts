@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { slideLight, taskAnimations } from '../animations';
 import { Menu } from '../model/menu';
 import { Item } from '../model/item';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 
 
 @Component({
@@ -11,13 +12,13 @@ import { Item } from '../model/item';
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.css'],
   animations: [
-    taskAnimations, 
+    taskAnimations,
     slideLight
   ]
 })
 export class KanbanComponent implements OnInit {
 
-  @ViewChild('sectionKanban') sectionKanban: ElementRef; 
+  @ViewChild('sectionKanban') sectionKanban: ElementRef;
   nomeLista:string;
 
   lista:Menu;
@@ -59,13 +60,13 @@ export class KanbanComponent implements OnInit {
     let idx = this.listasService.idxListActive;
     this.lista = this.listasService.getListas()[idx];
     this.nomeLista = this.lista.nome;
-    
+
     this.listasService.getListas()[idx].itens.map(item=>{
       if(item.complete){
         item.kanban = 'feito'
       }
     });
-    
+
     this.kanbanUpdate();
   }
 
@@ -82,7 +83,7 @@ export class KanbanComponent implements OnInit {
         return el;
       }
     })
-    
+
     this.feito =  this.lista.itens.filter(el =>{
       if(el.kanban === "feito"){
         return el;
@@ -106,7 +107,7 @@ export class KanbanComponent implements OnInit {
   }
 
   changeToFazer(id:number){
-   
+
     let item = this.listasService.getItem(id)
     item.kanban = "fazer";
 
@@ -115,11 +116,11 @@ export class KanbanComponent implements OnInit {
 
   changeToFeito(id:number){
     let idx = this.listasService.idxListActive;
-    
+
     this.listasService.getListas()[idx].itens.forEach(el =>{
       if( el._id === id){
         el.kanban = "feito";
-        
+
         el.complete = true
         return el;
       }
@@ -137,13 +138,13 @@ export class KanbanComponent implements OnInit {
       return el._id === id;
     });
 
-    this.listasService.getListas()[idx].itens.splice(itemIndex, 1); 
+    this.listasService.getListas()[idx].itens.splice(itemIndex, 1);
     this.listasService.notificastion();
 
   }
-  
+
   showSubtask(kanban:string, idx:number){
-    
+
     this.listasService.listas[this.listasService.idxListActive].itens.map(item=> item.checked = false)
 
     let itensArray = this.listasService.listas[this.listasService.idxListActive].itens.filter(item=>{
@@ -162,17 +163,31 @@ export class KanbanComponent implements OnInit {
 
   kanbanSubtaskLength(kanban:string, idx:number){
     let subItensLenth = 0;
-    
+
     if(this.listasService.listas[this.listasService.idxListActive].itens.length > 0){
-      this.listasService.listas[this.listasService.idxListActive].itens.filter(item=>{
-        return item.kanban === kanban
-       })[idx].subItens.map(sub=>{
-        if(!sub.complete){
-          subItensLenth++;
-        }
-       })
-  
+      //console.log("idx", idx, this.listasService.listas[this.listasService.idxListActive].itens.filter(item=>item.kanban === kanban))
+      let li = this.listasService.listas[this.listasService.idxListActive].itens
+        .filter(item=>item.kanban === kanban)
+
+      if(li && li[idx] != undefined){
+        //console.log("LI", li)
+        li[idx].subItens.map(sub=>{
+          if(!sub.complete){
+            subItensLenth++;
+          }
+        })
+      }
       return subItensLenth
+    }
+  }
+
+  onDrop(event: CdkDragDrop<any>){
+    if(event.previousContainer === event.container){
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
+
+    }else{
+      //console.log(event)
+      //transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex)
     }
   }
 

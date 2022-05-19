@@ -4,18 +4,19 @@ import { ListasService } from '../listas.service';
 import { Menu } from '../model/menu';
 import { Subscription, Observable } from 'rxjs';
 import { taskAnimations, slideLight } from '../animations';
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  animations: [ 
+  animations: [
     taskAnimations,
     slideLight
   ]
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  
+
   lateralHidden = false;
   h100 = false;
 
@@ -36,20 +37,20 @@ export class MenuComponent implements OnInit, OnDestroy {
 
     if(this.listasService.isEmptyLists){
       this.initSubscription();
-      
+
     }else{
       this.initMenuComponent();
     }
-    
+
     this.listasService.kanbanHeight$.subscribe(novsAltura=>{
       this.kanbanHeight = novsAltura;
     })
-    
+
   }
 
   initMenuComponent(){
-    
-    
+
+
     this.initSubscription();
 
     setTimeout(() =>{
@@ -59,7 +60,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   initSubscription(){
     this.nomesListas=this.listasService.getListas();
-    
+
     this.subscriptions.add(this.listasService.list$.subscribe((listas:Array<Menu>) => {
       this.nomesListas = listas;
     }))
@@ -96,11 +97,11 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.listasService.idxListActive=idx;
 
       this.listasService.emitIndexList();
-      
+
       this.putClassActive(idx);
 
       //this.listasService.showSubtasks = false;
-      
+
       this.listasService.emitSubstasksShowHide();
     }
   }
@@ -113,7 +114,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
       this.listasService.getListas().splice(idx, 1);
       this.selected(idx-1);
-      
+
       this.listasService.gravarDados(this.listasService.getListas());
       this.listasService.showSubtasks = false;
       this.listasService.emitSubstasksShowHide()
@@ -123,14 +124,14 @@ export class MenuComponent implements OnInit, OnDestroy {
     var columnElement:HTMLElement = document.querySelector(".grid-template-columns-3")
 
     this.lateralHidden = !this.lateralHidden;
-    
+
     if(this.lateralHidden == true){
-      
+
       columnElement.style.gridTemplateColumns = "70px 1fr"
 
       //document.querySelector('#conteudo').classList.add("grid-template-columns-2")
       this.h100 = true;
-      
+
     }else{
       columnElement.style.gridTemplateColumns = "250px 1fr"
       //document.querySelector('#conteudo').classList.add("grid-template-columns-3")
@@ -138,12 +139,14 @@ export class MenuComponent implements OnInit, OnDestroy {
       this.h100 = false;
     }
   }
-  
+
   /*mobile*/
   openMobileMenu(){
-   
+
     this.mobileOpenedMenu = !this.mobileOpenedMenu;
     console.log("mobileOpenedMenu", this.mobileOpenedMenu)
   }
-  
+  onDrop(event: CdkDragDrop<any>){
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
+  }
 }

@@ -18,6 +18,8 @@ import { KanbanComponent } from './kanban/kanban.component';
 import { ModesContainerComponent } from './modes-container/modes-container.component';
 import { EditKanbanItemComponent } from './edit-kanban-item/edit-kanban-item.component';
 import { KanbanAddItemComponent } from './kanban-add-item/kanban-add-item.component';
+import { DndDirective } from './directives/dnd.directive';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 
 
@@ -37,11 +39,13 @@ import { KanbanAddItemComponent } from './kanban-add-item/kanban-add-item.compon
     ModesContainerComponent,
     EditKanbanItemComponent,
     KanbanAddItemComponent,
+    DndDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [
     ListasService

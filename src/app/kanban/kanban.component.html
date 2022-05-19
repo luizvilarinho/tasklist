@@ -1,11 +1,17 @@
-<section  @fade id="cardsModuloTarefa" #sectionKanban>
+<section cdkDropListGroup @fade id="cardsModuloTarefa" #sectionKanban>
   <h2>{{ nomeLista }}</h2>
-  <article class="cardTarefa">
+  <article
+    id="fazer"
+    cdkDropList
+    (cdkDropListDropped)="onDrop($event)"
+    [cdkDropListData]="fazer"
+    [cdkDropListConnectedTo]="['fazendo']"
+    class="cardTarefa">
     <div class="titulo">fazer
       <div class="kanban-addIcon__container"  routerLink="/kanban/add" [queryParams]="{ label: 'fazer'}"></div>
     </div>
-   
-    <div @slideLight *ngFor="let item of fazer; let i = index" class="item">
+
+    <div @slideLight cdkDrag *ngFor="let item of fazer; let i = index" class="item">
         <div class="texto-item-container">
             <p>{{ item.text }}</p>
         </div>
@@ -14,7 +20,7 @@
             <li routerLink="edit-item" [queryParams]="{ itemId: item._id}" >edit</li>
             <li (click)="deleteItem(item._id)">delete</li>
             <li (click)="showSubtask('fazer', i)">
-              <div class="kanban-subtask-length">{{ kanbanSubtaskLength('fazer', i) }}</div> 
+              <div class="kanban-subtask-length">{{ kanbanSubtaskLength('fazer', i) }}</div>
               subtask
             </li>
             <li (click)="changeToFazendo(item._id)">>></li>
@@ -24,9 +30,15 @@
     </div>
   </article>
 
-  <article class="cardTarefa">
+  <article class="cardTarefa"
+           cdkDropList
+           (cdkDropListDropped)="onDrop($event)"
+           [cdkDropListData]="fazendo"
+           [cdkDropListConnectedTo]="['fazer', 'feito']"
+           id="fazendo">
     <div class="titulo">fazendo</div>
-    <div @slideLight *ngFor="let item of fazendo; let i = index" class="item">
+
+    <div @slideLight cdkDrag *ngFor="let item of fazendo; let i = index" class="item">
         <div class="texto-item-container">
             <p>{{ item.text }}</p>
         </div>
@@ -44,12 +56,19 @@
         </div>
 
     </div>
-    
+
   </article>
 
-  <article class="cardTarefa">
+  <article
+    id="feito"
+    class="cardTarefa"
+    cdkDropList
+    (cdkDropListDropped)="onDrop($event)"
+    [cdkDropListData]="feito"
+    [cdkDropListConnectedTo]="['fazendo']"
+  >
     <div class="titulo">feito</div>
-    <div @slideLight *ngFor="let item of feito; let i = index" class="item">
+    <div @slideLight cdkDrag *ngFor="let item of feito; let i = index" class="item">
         <div class="texto-item-container">
             <p>{{ item.text }}</p>
         </div>
@@ -66,9 +85,9 @@
         </div>
 
     </div>
-    
+
   </article>
-  
+
 </section>
 <section id="kanban-list-info" *ngIf="listasService.showSubtasks">
   <div class="btn-fechar-subtask">
@@ -119,5 +138,5 @@
 
       </div>
     </div>
-  </section> 
+  </section>
 </section> -->
