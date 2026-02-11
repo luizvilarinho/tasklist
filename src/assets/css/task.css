@@ -33,8 +33,9 @@ font-size: 2em;
 margin-bottom: 5px;
 }
 .menu{
-  width:96%;
-  margin:0 auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
 }
 .menu ul{
   display: flex;
@@ -45,48 +46,59 @@ margin-bottom: 5px;
 }
 div.container__version{
   width: 50%;
-  margin-top: 20px;
+  margin-top: 0;
+  padding: 16px 0;
 }
 #menuPrincipal li{
   list-style: none;
-  margin: 10px 10px 10px 10px;
-  font-size: 2em;
-  font-weight: 200;
-  color:#dcdcdcff;
+  margin: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #37352f;
   cursor:pointer;
 }
 #menuPrincipal li:hover{
-color: white;
+  color: #0084ff;
 }
 #menuPrincipal li:active{
-color:#b0e0e6ff;
+  color: #0084ff;
 }
 #menuLateral{
   min-height: 100vh;
   height: 100%;
+  background-color: #f5f5f4;
+  border-right: 1px solid #e5e5e5;
 }
 #menuLateral .titulo-container{
-  margin: 0px 20px 15px 20px;
+  margin: 0 16px 16px 16px;
+  padding: 16px 0;
 }
 #menuLateral li{
-  margin-left: 25px;
+  margin-left: 16px;
   list-style: none;
-  color:#dcdcdcff;
-  font-size: 1.2em;
-  margin-bottom: 10px;
+  color: #37352f;
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 8px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+#menuLateral li:hover {
+  background-color: #efefee;
 }
 #menuLateral a{
   text-decoration: none;
-  color:#dcdcdcff;
-  font-size: 1.2em;
-  font-weight: 300;
+  color: #37352f;
+  font-size: 14px;
+  font-weight: 400;
 }
 #menuLateral a:hover{
   font-weight: 500;
+  color: #0084ff;
 }
 
 #menuLateral .addIcon{
-  padding: 10px;
+  padding: 8px;
   cursor:pointer;
   box-sizing: border-box;
 }
@@ -96,34 +108,36 @@ color:#b0e0e6ff;
   vertical-align: top;
 }
 #blocoCentral h2{
-  color:#5f9ea0ff;
-  font-weight: 400;
+  color: #37352f;
+  font-weight: 500;
 }
 #listInformation{
   min-height:100vh;
   height: auto;
-  padding-bottom:40px;
+  padding-bottom: 40px;
   display: inline-block;
   width: 50%;
+  background-color: #ffffff;
 }
 #listInformation h2{
-  color:#dcdcdcff;
-  font-weight: 200;
+  color: #37352f;
+  font-weight: 500;
 }
 #blocoCentral .titleContainer{
-  border-bottom: 1px solid #5f9ea0ff;
+  border-bottom: 1px solid #e5e5e5;
   width: 90%;
-  margin: 0 auto 15px auto;
-  margin-top: 25px;
-  height: 2.3rem;
+  margin: 0 auto 16px auto;
+  margin-top: 24px;
+  height: auto;
+  padding-bottom: 16px;
 }
 #listInformation .titleContainer{
-  border-bottom: 1px solid #5f9ea0ff;
+  border-bottom: 1px solid #e5e5e5;
   width: 90%;
-  margin: 0 auto 15px auto;
+  margin: 0 auto 16px auto;
 }
 #listInformation .titleContainer h2{
-  padding-top: 25px;
+  padding-top: 0;
 }
 
 #kanban-list-info #listInformation .titleContainer h2{
@@ -131,60 +145,68 @@ color:#b0e0e6ff;
 }
 
 #blocoCentral .inputContainer, #listInformation .inputContainer{
-  border:1px solid #b0e0e6ff;
+  border: 1px solid #e5e5e5;
   width: 90%;
   margin: 0 auto 0 auto;
-  height: 30px;
-  border-radius: 3px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
 }
 #blocoCentral input[type='text'], #listInformation input[type='text']{
   width: 94%;
   height: 100%;
-  padding: 10px;
+  padding: 8px 12px;
   box-sizing: border-box;
+  border: none;
+  font-size: 14px;
 }
 #blocoCentral input::placeholder, #listInformation input::placeholder{
-  /* position: relative;
-  top:10px; */
-  padding: 10px;
-  color:#dcdcdcff;
-  font-size: 1.2em;
+  color: #c1c1c1;
+  font-size: 14px;
 }
 #blocoCentral button, #listInformation button{
-border-radius: 3px;
-height: 100%;
-width: 6%;
-background-color: #75abacff;
-color: #f5f5f5ff;
+  border-radius: 6px;
+  height: 100%;
+  width: 6%;
+  background-color: #0084ff;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+#blocoCentral button:hover, #listInformation button:hover{
+  background-color: #0673d6;
 }
 #blocoCentral button:active, #listInformation button:active{
-  background-color: #b0e0e6ff;
-  color:#5f9ea0ff;
+  background-color: #0560c4;
+  color: #ffffff;
 }
 #blocoCentral .listContainer, #listInformation .listContainer{
   width: 100%;
   height: auto;
-  margin: 5px auto 10px auto;
+  margin: 8px auto 8px auto;
 }
-
 
 #listInformation .itemContainer{
-  padding: 2px 20px 2px 23px;
+  padding: 8px 16px;
 }
 #kanban-list-info #listInformation .itemContainer{
-  padding-left: 35px;
+  padding-left: 32px;
 }
 
 #listInformation .itemContainer:hover{
-  background-color: #5e9494ff;
+  background-color: #f5f5f4;
 }
 #blocoCentral input[type='checkbox'], #listInformation input[type='checkbox']{
   display: none;
 }
 #blocoCentral p.item, #listInformation p.item{
-  font-size: 1.3em;
+  font-size: 14px;
   z-index: 1;
-  color:#1f3131ff;
+  color: #37352f;
   vertical-align: middle;
   position: relative;
   height: auto;
@@ -192,50 +214,56 @@ color: #f5f5f5ff;
 }
 
 #listInformation label{
-  color:#b0e0e6ff;
+  color: #0084ff;
 }
 #container-tarefas{
-  margin: 20px;
+  margin: 24px;
 }
 #container-tarefas h2{
-  color:#1f3131ff;
-  margin:20px;
-  border-bottom: 1px solid #dcdcdcff;
+  color: #37352f;
+  margin: 24px;
+  border-bottom: 1px solid #e5e5e5;
 }
 #container-tarefas section{
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 30px;
-  height: 100px;
-  border:1px solid #dcdcdcff
+  grid-column-gap: 24px;
+  height: auto;
+  border: 1px solid #e5e5e5;
 }
 
 #blocoCentral .deleteIcon, #listInformation .deleteIcon{
-width: 10%;
-height: auto;
-padding: 0;
-text-align: right;
-float: right;
-margin-right:4%;
-color: #c1c1c1;
-display: block;
+  width: 10%;
+  height: auto;
+  padding: 0;
+  text-align: right;
+  float: right;
+  margin-right: 4%;
+  color: #d0d0ce;
+  display: block;
+  transition: color 0.2s ease;
 }
 #listInformation .deleteIcon{
-  color:#b0e0e6ff;
+  color: #0084ff;
+}
+#listInformation .deleteIcon:hover{
+  color: #0673d6;
 }
 #annotation .annotationItem{
   width: 90%;
-  margin:0 auto;
+  margin: 0 auto;
   min-height: 55px;
-  background-color: #b3d6d8ff;
-  border-radius: 15px;
-  margin-top: 20px;
+  background-color: #f5f5f4;
+  border-radius: 8px;
+  margin-top: 16px;
+  border: 1px solid #e5e5e5;
+  padding: 12px;
 }
 #annotation .editAnnotation{
   width: 90%;
   margin: 0 auto;
-  border-top: 1px solid #5f9ea0ff;
+  border-top: 1px solid #e5e5e5;
   text-align: right;
-  padding: 10px 0 10px 0;
+  padding: 12px 0;
 }
 
 .teste{
@@ -253,20 +281,22 @@ display: block;
 }
 
 .editAnnotation span{
-  margin-left: 25px;
-  color:#5f9ea0ff;
-  font-size: 1.2em;
+  margin-left: 16px;
+  color: #0084ff;
+  font-size: 13px;
   cursor:pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 .editAnnotation span:hover{
-  font-weight: 600
+  color: #0673d6;
 }
 .txtAnnotation{
   width: 90%;
-  color:#5f9ea0ff;
-  font-size: 1.2em;
-  margin: 0 auto 10px auto;
-  padding: 15px 0 0 0;
+  color: #37352f;
+  font-size: 14px;
+  margin: 0 auto 12px auto;
+  padding: 12px 0 0 0;
 }
 #blocoCentral .material-icons, #listInformation .material-icons{
   width: 10px;
@@ -281,58 +311,71 @@ display: block;
 #loginContainer{
   height: calc(100vh - 60px);
   width: 100%;
+  background-color: #f5f5f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #loginContainer .login-card{
   width: 368px;
-  min-height: 200px;
+  min-height: 300px;
   height: auto;
   margin: 0 auto;
-  background-color: #fffffffa;
-  border-radius: 10px;
-  position: relative;
-  top:60 px;
-  padding-bottom:40px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 #loginContainer .login-card-header{
-  border-radius: 10px 10px 0 0 ;
-  height: 60px;
-  background-color: #5f9ea0fd;
+  border-radius: 0;
+  height: auto;
+  background-color: transparent;
   text-align: center;
+  margin-bottom: 24px;
 }
 #loginContainer .login-card-header h2{
-padding: 14px;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+  color: #37352f;
 }
 #loginContainer .login-inputs{
-  width: 315px;
+  width: 100%;
   height: auto;
   margin: 0 auto;
 }
 #loginContainer .login-inputs input{
   width: 100%;
-  height: 30px;
-  margin-top: 25px;
-  border-bottom: 1px solid #b3b3b3ff;
+  height: 40px;
+  margin-top: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
 }
 .list-length{
-  background-color: #b0e0e6ff;
+  background-color: #f5f5f4;
   width: auto;
-  height: 18px;
-  color: #5f9ea0ff;
-  padding: 0px 3px 0px 3px;
+  height: 20px;
+  color: #0084ff;
+  padding: 0 8px;
   position: relative;
-  top: -8px;
-  border-radius: 3px;
-  font-size: 1em;
+  top: 0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #e5e5e5;
 }
 .item-header{
-  background-color:#5f9ea0ff;
-  height: 100%
+  background-color: #f5f5f4;
+  height: 100%;
 }
 .item-central{
-  height: 100%
+  height: 100%;
 }
 .center{
-  margin:0,auto,0, auto;
+  margin: 0 auto;
 }
 .grid{
   display:grid;
@@ -342,7 +385,7 @@ padding: 14px;
 }
 
 .grid-template-columns-3{
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 280px 1fr;
   height: calc(100vh - 60px);
 }
 .grid-template-columns-2{
@@ -350,48 +393,51 @@ padding: 14px;
   height: calc(100vh - 60px);
 }
 .background-blue{
-  background-color: #5f9ea0ff;
+  background-color: #f5f5f4;
 }
 
 .fly-r{
   float: right;
 }
 .md-marginBottom{
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 .borderBottom{
-  border-bottom: 1px solid  #b0e0e6ff;
+  border-bottom: 1px solid #e5e5e5;
 }
 .md-marginTop{
-  margin-top:35px!important;
+  margin-top: 24px !important;
 }
 .listIconContainer{
   width: 90%;
-  margin:0 auto;
+  margin: 0 auto;
   cursor:pointer;
 }
 .boxListas{
   width: 15%;
-  background-color: #def2f4ff;
-  box-shadow:0px 0px 25px rgba(0,0,0,0.2);
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
   position: absolute;
   display:none;
 }
 #listInformation li{
   width: 100%;
-  border-bottom: 1px solid #b0e0e6ff;
-  color:#5f9ea0ff;
-  margin:0;
+  border-bottom: 1px solid #e5e5e5;
+  color: #37352f;
+  margin: 0;
   height: auto;
 }
 .boxListas div{
-  color:#5f9ea0ff;
-  font-size: 1.4em;
-  padding: 10px;
-  border-bottom: 1px solid #bbe4e8fa;
+  color: #37352f;
+  font-size: 13px;
+  padding: 12px;
+  border-bottom: 1px solid #e5e5e5;
 }
 .boxListas div:hover{
-  background-color:#bbe4e8fa;
+  background-color: #f5f5f4;
+  color: #0084ff;
 }
 .vertical-align-middle{
   vertical-align: middle;
@@ -403,7 +449,7 @@ padding: 14px;
   display:block;
 }
 .bg-gray{
-  background-color: #e6e6e6ff;
+  background-color: #f5f5f4;
 }
 .row{
   width: 100%;
@@ -412,48 +458,53 @@ padding: 14px;
 .btn-bubble-md{
   width: 130px;
   height: 40px;
-  margin: 25px auto 25px auto;
+  margin: 24px auto;
   text-align: center;
 }
 .btn-bubble-md a{
-    width: 100%;
-    height: auto;
-    background-color: #609fa1ff;
-    color:#f5f5f5ff;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.4em;
-    padding: 10px 0 10px 0;
-    margin-top: 25px;
+  width: 100%;
+  height: auto;
+  background-color: #0084ff;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 0;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  padding: 12px 0;
+  margin-top: 0;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
 }
 .btn-bubble-md a:hover{
-  box-shadow:0px 0px 25px rgba(0,0,0,0.2);
+  background-color: #0673d6;
+  box-shadow: 0 2px 8px rgba(0, 132, 255, 0.2);
 }
 .btn-bubble-md a:active{
-  background-color: #b0e0e6ff;
-  color:#5f9ea0ff;
+  background-color: #0560c4;
+  color: #ffffff;
   text-decoration: none;
 }
 
 .linkEsqueceuASenha{
-  margin-top:35px;
+  margin-top: 24px;
   text-align: right;
-  padding-top:45px;
+  padding-top: 0;
 }
 .linkEsqueceuASenha a{
-text-decoration: none;
-font-size: 1.6em;
-color:#b3d6d8ff;
-margin: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #0084ff;
+  margin: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 .linkEsqueceuASenha a:hover{
-  color:#5f9ea0fd;
+  color: #0673d6;
 }
 .linkEsqueceuASenha a:active{
-opacity:0.5;
+  opacity: 0.8;
 }
 .relative-lg-top{
-  top:45px;
+  top: 0;
 }

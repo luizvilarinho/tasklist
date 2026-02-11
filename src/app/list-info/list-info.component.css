@@ -1,56 +1,64 @@
 #listInformation .wrapCheckBox{
-    width: 25px;
+    width: 24px;
     float: left;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 #listInformation .itemContainer {
-    padding: 8px 20px 2px 23px;
+    padding: 8px 16px 8px 16px;
 }
 #listInformation div.wrapCheckBox:before{
-    width: 15px;
-    height: 15px;
-    border:1px solid #b0e0e6ff;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #e5e5e5;
     background-color: #ffffff;
-    border-radius: 3px;
+    border-radius: 4px;
     display: inline-block;
     content: "";
     margin-right: 12px;
     vertical-align: middle;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
     cursor:pointer;
+    transition: all 0.2s ease;
 }
 #listInformation input[type='checkbox']:checked ~ div.wrapCheckBox:before{
     font-family: 'Material Icons';
     content: "check";
     font-weight: 800;
-    color:#5f9ea0ff;
+    color: #0084ff;
     text-align: center;
+    border-color: #0084ff;
+    background-color: #ffffff;
 }
 #subItemControllers{
-    margin: 0px 20px 0px 30px;
+    margin: 0 16px 0 24px;
     text-align: right;
 }
 #subItemControllers button{
-    padding: 4px;
+    padding: 6px 12px;
     width: auto;
-    color:#246c6e;
-    border: 1px solid #33878a;
-    margin:0px 5px 0px 5px;
+    color: #787774;
+    border: 1px solid #e5e5e5;
+    margin: 8px 4px 4px 0;
     pointer-events: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
 }
 #subItemControllers button.active{
-    background-color: #b0e0e6ff;
-    color: #5f9ea0ff;
-    border: 1px solid #5f9ea0ff;
+    background-color: #0084ff;
+    color: #ffffff;
+    border: 1px solid #0084ff;
     cursor: pointer;
     pointer-events: all;
 }
 #subItemControllers button.active:active{
-    background-color:#b0e0e6ff;
-    color:#5f9ea0ff;
+    background-color: #0560c4;
+    color: #ffffff;
 }
 #subItemControllers button.active:hover{
-    background-color:rgb(147, 190, 196);
+    background-color: #0673d6;
 }
 .completed{
     text-decoration: line-through;
@@ -58,7 +66,6 @@
 }
 
 @media (max-width:760px){
-    
     #listInformation{
       width: 100vw;
     }

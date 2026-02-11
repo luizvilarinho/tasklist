@@ -4,74 +4,94 @@ section{
     position: absolute;
     top: 0;
     left: 0;
-    background-color: black;
-    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
     z-index:10;
   }
   div.modal-container{
     position: absolute;
-    top:calc(50% - 250px);
+    top: calc(50% - 250px);
     left: calc(50% - 250px);
-    background-color: white;
-    border-radius: 5px;
-    width: 450px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 500px;
     height: auto;
     margin: 0 auto;
-    margin-top: 20vh;
+    margin-top: 0;
     opacity: 1;
-    padding: 25px;
+    padding: 32px;
     z-index: 20;
-  
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   }
   div.modal-container h3{
     text-align: center;
-    font-size: 1.4em;
+    font-size: 18px;
     font-weight: 500;
+    color: #37352f;
+    margin-bottom: 24px;
   }
   div.btn-container{
     text-align: center;
+    margin-top: 24px;
   }
   div.container-input{
     width: auto;
     height: auto;
-    margin-top:25px;
-    margin-bottom: 25px;
+    margin-top: 0;
+    margin-bottom: 24px;
     text-align: center;
   }
   div.container-input input{
-    width: 425px;
-    border:1px solid #c1c1c1;
-    padding: 5px;
-    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+  }
+  div.container-input input:focus{
+    outline: none;
+    border-color: #0084ff;
+    box-shadow: 0 0 0 2px rgba(0, 132, 255, 0.1);
   }
   div.modal-container button{
-    width: 100px;
+    width: auto;
     height: auto;
-    padding:10px;
-    border: 1px, solid;
-    margin-right:15px;
+    padding: 8px 20px;
+    border: none;
+    margin-right: 12px;
     text-align: center;
-    margin: 0, auto;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
   .btn-primary{
-    background-color: #5f9ea0ff;
-    color:white;
+    background-color: #0084ff;
+    color: #ffffff;
+  }
+  .btn-primary:hover{
+    background-color: #0673d6;
   }
   .btn-primary:active{
-    background-color: #b0e0e6ff;
-    color:#5f9ea0ff;
+    background-color: #0560c4;
   }
   .btn{
-    background-color: white;
-    border: 1px solid #c1c1c1;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #c1c1c1;
+    background-color: #f5f5f4;
+    border: 1px solid #e5e5e5;
+    padding: 8px 20px;
+    border-radius: 6px;
     text-decoration: none;
-    
+    color: #37352f;
+    transition: background-color 0.2s ease;
+  }
+  .btn:hover{
+    background-color: #efefee;
   }
   .btn:active{
-    background-color: #b0e0e6ff;
+    background-color: #e5e5e5;
   }
   
