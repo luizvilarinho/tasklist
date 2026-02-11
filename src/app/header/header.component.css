@@ -1,6 +1,7 @@
 .version{
-    color:#b0e0e6ff;
-    text-align:left;
-    /* margin-right: 25px; */
-    padding:3px;
+    color: #0084ff;
+    text-align: left;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 500;
 }

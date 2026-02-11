@@ -1,117 +1,134 @@
 /*NOVO CSS*/
 #cardsModuloTarefa{
-    padding-top:15px;
+    padding-top: 16px;
     height: 100%;
     width: 83vw;
   }
   #cardsModuloTarefa h2{
     width: 67%;
-    margin-left: 20px;
+    margin-left: 16px;
   }
   article.cardTarefa{
-    width:31%;
+    width: 31%;
     height: auto;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 16px;
+    margin-bottom: 16px;
     vertical-align: top;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffffff;
   }
   .cardTarefa .titulo{
     text-align: center;
-    background-color: #5f9ea0ff;
-    font-weight: 300;
-    font-size: 1.3rem;
-    color:#dcdcdcff;
-    padding: 5px;
+    background-color: #f5f5f4;
+    font-weight: 500;
+    font-size: 14px;
+    color: #37352f;
+    padding: 12px;
+    border-bottom: 1px solid #e5e5e5;
   }
 
   .cardTarefa .texto-item-container{
-
-    font-size: 1rem;
-    color: #383838;
-    padding: 15px;
+    font-size: 14px;
+    color: #37352f;
+    padding: 16px;
   }
   #cardsModuloTarefa .item{
-    margin: 10px 0 10px 0;
-    border: 1px solid #c1c1c1;
-
+    margin: 8px 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 8px 12px;
   }
   .cardTarefa .container-itens-menu{
     height: auto;
-    color:#5f9ea0;
+    color: #37352f;
   }
   .cardTarefa .container-itens-menu ul{
     list-style: none;
     display: flex;
     padding: 8px;
     flex-direction: row;
-    background-color: #d2e2e2;
+    background-color: #f5f5f4;
+    border-top: 1px solid #e5e5e5;
   }
   .cardTarefa .container-itens-menu ul li{
-    flex:1;
+    flex: 1;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 13px;
     cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .cardTarefa .container-itens-menu ul li:hover{
+    color: #0084ff;
   }
   #task-info{
     width: 500px;
     min-height: 100vh;
     height: auto;
-    background-color: #4f6f80;
+    background-color: #f5f5f4;
+    border-left: 1px solid #e5e5e5;
     position: absolute;
-    top:0;
+    top: 0;
     right: 0;
   }
   #task-info #listInformation{
     background-color: unset;
   }
   .kanban-addIcon__container{
-    width: 15px;
-    height: 15px;
-    background-color: #b0e0e6;
+    width: 16px;
+    height: 16px;
+    background-color: #e5e5e5;
     background-image: url('../../assets/images/addIcon.svg');
     background-repeat: no-repeat;
     background-size: cover;
     float: right;
-    margin: 6px;
+    margin: 8px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .kanban-addIcon__container:hover{
+    background-color: #0084ff;
   }
   #kanban-list-info{
     position: absolute;
     top: 48px;
     left: 60%;
     width: 80%;
-    border-top: 1px solid #1f31313d;
+    border-top: 1px solid #e5e5e5;
   }
   #kanban-list-info .btn-fechar-subtask{
-    padding: 10px;
+    padding: 12px;
     width: 100%;
-    background-color: #5f9ea0;
+    background-color: #f5f5f4;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: 500;
   }
   #kanban-list-info i{
-    color: #b0e0e6;
+    color: #0084ff;
     cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  #kanban-list-info i:hover{
+    color: #0673d6;
   }
   #kanban-list-info .titleContainer h2{
-    padding-top: 0px;
+    padding-top: 0;
   }
   .kanban-subtask-length{
     display: inline-block;
-    background-color: #5f9ea0;
-    color: #d2e2e2;
+    background-color: #f5f5f4;
+    color: #0084ff;
     width: 20px;
     height: 20px;
     text-align: center;
-    border-radius: 3px;
-    margin-right: 5px;
+    border-radius: 4px;
+    margin-right: 8px;
+    border: 1px solid #e5e5e5;
+    font-size: 12px;
+    font-weight: 500;
   }
   .container-itens-menu li:hover{
-    color: #383838;
+    color: #0084ff;
   }
-
-  /*
-  .kanban-addIcon:hover{
-    background-image: url('../images/addIcon_hover.svg');
-  }
-  .kanban-addIcon:active{
-    background-image: url('../images/addIcon.svg');
-  }*/
